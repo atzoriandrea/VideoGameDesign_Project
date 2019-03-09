@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
         float h = horizontalSpeed * Input.GetAxis("Mouse X");
         float v = verticalSpeed * Input.GetAxis("Mouse Y");
         transform.Rotate(v, h, 0);
+        //transform.Translate(v, h, 0);
     }
 
     void FixedUpdate()
