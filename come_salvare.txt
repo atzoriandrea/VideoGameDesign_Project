@@ -1,0 +1,7 @@
+Manuale salvataggio:
+
+git add --all
+
+git commit -m "digita il commento"
+
+git push
