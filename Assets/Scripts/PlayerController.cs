@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
+        //test davide
         float salto = Input.GetAxis("Jump");
         Vector3 v = new Vector3(0, salto * 5, 0);
         rb.AddForce(v, ForceMode.Impulse);
