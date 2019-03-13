@@ -1,0 +1,3 @@
+Unione con la repository : git merge
+Rimozione dei file dalla repository (Ma non dalla cartella locale): git rm -r --cached nomecartella/file
+Eliminare le commit non pushate :  git reset --hard origin/master
