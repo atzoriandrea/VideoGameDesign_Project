@@ -19,7 +19,12 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate(){
-        transform.Translate((transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal")) * MoveSpeed * Time.deltaTime);
+        var camera = Camera.main;
+        var forward = camera.transform.forward;    
+        forward.y = 0f;//
+        var desiredMoveDirection = forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
+
+        transform.Translate(desiredMoveDirection * MoveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.LeftShift))
         {
             MoveSpeed = 2.3f;

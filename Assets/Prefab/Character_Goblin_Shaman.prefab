@@ -813,7 +813,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1723966693861800
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 136302156258327808}
   - component: {fileID: 64019699914813570}
   - component: {fileID: 114265176828206932}
+  - component: {fileID: 114791622311790496}
   m_Layer: 0
   m_Name: Character_Goblin_Shaman
   m_TagString: Untagged
@@ -1392,6 +1393,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4939726945994694}
+  - {fileID: 4256752678698430}
   m_Father: {fileID: 4222124632589614}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1504,12 +1506,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723966693861800}
-  m_LocalRotation: {x: 0.077850066, y: 0, z: 0, w: 0.9969651}
-  m_LocalPosition: {x: 0.001, y: 1.597, z: -0.128}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.52581906, y: 0.472773, z: -0.52581906, w: -0.472773}
+  m_LocalPosition: {x: -61.160557, y: 14.303272, z: 0.10070801}
+  m_LocalScale: {x: 100.00004, y: 100, z: 100.00004}
   m_Children: []
-  m_Father: {fileID: 4546485477613904}
-  m_RootOrder: 17
+  m_Father: {fileID: 4157056976461740}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 8.93, y: 0, z: 0}
 --- !u!4 &4265586891496256
 Transform:
@@ -1791,7 +1793,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799013843268538}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 29.79, y: 0.86, z: 28.67}
+  m_LocalPosition: {x: 206.47757, y: -0.0000076293945, z: 920.196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4341419634196372}
@@ -1811,7 +1813,6 @@ Transform:
   - {fileID: 4643220864668942}
   - {fileID: 4328203867691980}
   - {fileID: 4763819207802586}
-  - {fileID: 4256752678698430}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -2917,12 +2918,12 @@ MeshCollider:
   m_GameObject: {fileID: 1799013843268538}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: -1
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300058, guid: b69174d668ba02d44b14a084b217670a, type: 3}
 --- !u!64 &64454576612003974
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -2973,9 +2974,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff95a20b60e34782989951f3ac1d55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  horizontalSpeed: 20
-  verticalSpeed: 20
+  MoveSpeed: 0
+  JumpForce: 0
+--- !u!114 &114791622311790496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799013843268538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd79e26ba167724a998c201536cdbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124575954008795308
 Behaviour:
   m_ObjectHideFlags: 1
