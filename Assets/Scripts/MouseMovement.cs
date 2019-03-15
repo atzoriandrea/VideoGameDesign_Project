@@ -6,7 +6,7 @@ public class MouseMovement : MonoBehaviour {
 
     float yRotation;
     float xRotation;
-    float lookSensitivity = 5;
+    float lookSensitivity = 4;
     float currentXRotation;
     float currentYRotation;
     float yRotationV;
@@ -20,6 +20,6 @@ public class MouseMovement : MonoBehaviour {
         xRotation = Mathf.Clamp(xRotation, -80, 100);
         currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes);
         currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); 
     }
 }
