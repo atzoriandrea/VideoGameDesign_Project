@@ -4,32 +4,32 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 1f;
-    public float horizontalSpeed = 2.0F;
-    public float verticalSpeed = 2.0F;
+    public float MoveSpeed;
+    public float JumpForce;
+    Transform t;
     private Rigidbody rb;
-
     void Start(){
         rb = GetComponent<Rigidbody>();
+        
+        MoveSpeed = 1.5f;
+        JumpForce = 1.5f;
     }
-    
-    void Update()
-    {
-        float h = horizontalSpeed * Input.GetAxis("Mouse X");
-        float v = verticalSpeed * Input.GetAxis("Mouse Y");
-        transform.Rotate(v, h, 0);
-        //transform.Translate(v, h, 0);
+    void Update(){
+
     }
 
-    void FixedUpdate()
-    {
-        transform.Translate(speed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, speed * Input.GetAxis("Vertical") * Time.deltaTime);
+    void FixedUpdate(){
+        transform.Translate((transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal")) * MoveSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            MoveSpeed = 2.3f;
+        }
+        else
+        {
+            MoveSpeed = 1.5f;
+        }
+        if (Input.GetKeyDown("space"))
+            rb.AddForce(transform.up * JumpForce);
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        //test davide
-        float salto = Input.GetAxis("Jump");
-        Vector3 v = new Vector3(0, salto * 5, 0);
-        rb.AddForce(v, ForceMode.Impulse);
-    }
+  
 }
