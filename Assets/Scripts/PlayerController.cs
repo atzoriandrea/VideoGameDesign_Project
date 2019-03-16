@@ -8,63 +8,52 @@ public class PlayerController : MonoBehaviour
     public int JumpForce;
     Transform t;
     Vector3 jumpVector;
+    //Vector3 fromCameraToMe;
+    //public GameObject mainCamera;
     public Rigidbody _rigidB;
     void Start()
     {
         _rigidB = GetComponent<Rigidbody>();
-        Speed = 25;
+        Speed = 3;
         //mainCamera = ;
-        JumpForce = 5;
+        JumpForce = 420;
     }
     void Update()
-    {
-        
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        //Salto
-        if (Input.GetKeyDown("space"))
-        {
-            
-            _rigidB.AddForce(new Vector3(0, 10 * _rigidB.mass, 0), ForceMode.Impulse);
-
-        }
-    }
-
-    void FixedUpdate()
     {
         jumpVector.x = (Input.GetAxis("Horizontal") * JumpForce);
         jumpVector.y = JumpForce;
         jumpVector.z = (Input.GetAxis("Vertical") * JumpForce);
+    }
 
-        //differenza tra posizione del personaggioe della camera
+    void FixedUpdate()
+    {
         Vector3 fromCameraToMe = transform.position - Camera.main.transform.position;
-        //azzera la differenza di altezza
         fromCameraToMe.y = 0;
-        //In caso riceva un input (wasd)
         if (Input.GetAxisRaw("Vertical") != 0.0 || Input.GetAxisRaw("Horizontal") != 0.0)
         {
-            //sposta il personaggio in modo relativo alla camera (da problemi sullo spostamento laterale)
-            transform.Translate((fromCameraToMe * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * (Input.GetAxisRaw("Horizontal")*-1)) * Speed * Time.deltaTime);
+            transform.Translate(fromCameraToMe * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * (Input.GetAxisRaw("Horizontal") * -1) * Speed * Time.deltaTime);
         }
         else
         {
-            //azzera la velocità di spostamento se non si preme nulla
-            _rigidB.velocity = new  Vector3(0,_rigidB.velocity.y,0);
-        }
-       
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Speed = 40;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            Speed = 25;
+            _rigidB.velocity = Vector3.zero;
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Speed = 7;
+        }
+        else
+        {
+            Speed = 3;
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            _rigidB.AddForce(new Vector3(0, 10 * _rigidB.mass, 0), ForceMode.Impulse);
+
+        }
 
 
     }
 
 }
+
