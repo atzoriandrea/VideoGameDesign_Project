@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") != 0.0 || Input.GetAxisRaw("Horizontal") != 0.0)
         {
             //sposta il personaggio in modo relativo alla camera (da problemi sullo spostamento laterale)
-            transform.Translate((fromCameraToMe * Input.GetAxisRaw("Vertical")+ fromCameraToMe * (Input.GetAxisRaw("Horizontal")*-1)) * Speed * Time.deltaTime);
+            transform.Translate((fromCameraToMe * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * (Input.GetAxisRaw("Horizontal")*-1)) * Speed * Time.deltaTime);
         }
         else
         {
