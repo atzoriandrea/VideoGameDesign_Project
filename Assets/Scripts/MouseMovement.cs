@@ -17,9 +17,9 @@ public class MouseMovement : MonoBehaviour {
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
         xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80, 100);
-        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes);
-        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
+        xRotation = Mathf.Clamp(xRotation, -45, 45);
+        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes) * Time.deltaTime;
+        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes) * Time.deltaTime;
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); 
     }
 }
