@@ -12,15 +12,19 @@ public class MouseMovementBody : MonoBehaviour
     float currentYRotation;
     float yRotationV;
     float xRotationV;
-    float lookSmoothnes = 0.1f;
+    float lookSmoothnes;
+
+    private void Start()
+    {
+        lookSmoothnes = 0.3f;
+        lookSensitivity = 4;
+    }
+
 
     void Update()
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
-        xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80, 100);
-        currentXRotation = Mathf.SmoothDamp(currentXRotation, 0, ref xRotationV, lookSmoothnes);
         currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        transform.rotation = Quaternion.Euler(0, yRotation , 0);
     }
 }

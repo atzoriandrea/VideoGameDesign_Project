@@ -11,15 +11,20 @@ public class MouseMovement : MonoBehaviour {
     float currentYRotation;
     float yRotationV;
     float xRotationV;
-    float lookSmoothnes = 0.1f;
+    float lookSmoothnes;
+    private void Start()
+    {
+        lookSensitivity = 4;
+        lookSmoothnes = 0.3f;
+    }
 
     void Update()
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
         xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -45, 45);
-        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes) * Time.deltaTime;
-        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes) * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); 
+        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes) ;
+        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes) ;
+        transform.rotation = Quaternion.Euler(xRotation, GameObject.Find("Character_Hero_Knight_Male").transform.eulerAngles.y, 0); 
     }
 }
