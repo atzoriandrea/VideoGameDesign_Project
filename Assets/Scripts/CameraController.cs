@@ -1,39 +1,73 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public enum RotationAxis
+
+    [SerializeField]
+    private Transform target;
+
+    [SerializeField]
+    public Vector3 offsetPosition;
+    public float cameraTargetHeight;
+    public float cameraTargetHorizontal;
+
+    [SerializeField]
+    private Space SpaceType = Space.Self;
+    Vector3 LoockAtPoint;
+
+    public enum UpdateType { Update, FixedUpdate, LateUpdate };
+    public UpdateType updateSystem = UpdateType.LateUpdate;
+
+    [Range(1, 5)]
+    public float smoothMovement = 1;
+
+
+    //Nel caso si debba aggiornare in Update
+    private void Update()
     {
-        MouseX = 1,
-        MouseY = 2
+        if (updateSystem.Equals(UpdateType.Update))
+            Refresh(Time.deltaTime);
     }
 
-    public RotationAxis axes = RotationAxis.MouseX;
-
-    public float minimumVert = -45.0f;
-    public float maximumVert = 45.0f;
-    public float sensHorizontal = 10.0f;
-    public float sensVertical = 10.0f;
-    public float _rotationX = 0;
-    private Vector3 _velocity = Vector3.zero;
-
-    // Update is called once per frame
-    
-    void Update()
+    //Nel caso si debba aggiornare in FixedUpdate
+    private void FixedUpdate()
     {
-        if (axes == RotationAxis.MouseX)
-        {
-            transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime, 0);
-        }
-        else if (axes == RotationAxis.MouseY)
-        {
-            _rotationX -= Input.GetAxis("Mouse Y") * sensVertical ;
-            float rotationY = transform.localEulerAngles.y;
-            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
-            //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, Camera.main.transform.position, ref _velocity, 0.5f);
+        if (updateSystem.Equals(UpdateType.FixedUpdate))
+            Refresh(Time.fixedDeltaTime);
+    }
+    //Nel caso si debba aggiornare in LateUpdate
+    private void LateUpdate()
+    {
+        if (updateSystem.Equals(UpdateType.LateUpdate))
+            Refresh(Time.deltaTime);
+    }
 
+    //Il metod che aggiorna le posizioni della telecamera
+    public void Refresh(float updateDelta)
+    {
+        if (target == null)
+        {
+            Debug.LogWarning("Ops, No Target !", this);
+
+            return;
         }
+
+
+
+        //Se ruota insieme al target
+        if (SpaceType == Space.Self)
+        {
+            transform.position = Vector3.Lerp(transform.position, target.TransformPoint(offsetPosition), smoothMovement * updateDelta);
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, target.position + offsetPosition, smoothMovement * updateDelta);
+        }
+
+        LoockAtPoint = Vector3.Lerp(LoockAtPoint, (target.position + (target.up * cameraTargetHeight) + (target.right * cameraTargetHorizontal)), (smoothMovement * updateDelta));
+
+        transform.LookAt(LoockAtPoint);
+
+
     }
 }

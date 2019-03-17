@@ -3,18 +3,19 @@ using System.Collections;
 using System.Timers;
 
 public class PlayerController : MonoBehaviour
-{
+{   
     public float speed;
-    public float gravity = -9.8f;
-    public float JumpForce; 
+    public float gravity;
+    public float jumpForce; 
     private CharacterController _charCont;
     Vector3 movement;
     float deltaX, deltaZ;
     // Use this for initialization
     void Start(){
         _charCont = GetComponent<CharacterController>();
-        JumpForce = 5.0f;
+        jumpForce = 5.0f;
         speed = 4;
+        gravity = -9.8f;
     }
     // Update is called once per frame
     void Update()
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
             movement = transform.TransformDirection(movement);
             if (Input.GetButton("Jump"))
             {
-                movement.y = JumpForce;
+                movement.y = jumpForce;
             }
         }
         movement.y += gravity * Time.deltaTime;
@@ -43,7 +44,11 @@ public class PlayerController : MonoBehaviour
             speed = 4;
         }
     }
- 
+
+    void OnCollisionEnter(Collider collision)
+    {
+        movement.y -= gravity * Time.deltaTime;
+    }
 
 }
 
