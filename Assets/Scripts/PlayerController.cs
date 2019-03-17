@@ -3,9 +3,11 @@ using System.Collections;
 using System.Timers;
 
 public class PlayerController : MonoBehaviour
-{
+{   
     public float speed;
-    public float gravity = -9.8f;
+
+    public float gravity;
+
     public float jumpForce; 
     private CharacterController _charCont;
     public Animator anim;
@@ -15,10 +17,10 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start(){
         _charCont = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
-        jumpForce = 3.0f;
+
+        jumpForce = 5.0f;
         speed = 4;
-        walking = running = false;
+        gravity = -9.8f;
     }
     // Update is called once per frame
     void Update()
@@ -43,11 +45,11 @@ public class PlayerController : MonoBehaviour
             movement = transform.TransformDirection(movement);
             if (Input.GetButton("Jump"))
             {
-
                 //movement.y = jumpForce;
                 anim.SetFloat("jump", jumpForce);
+                movement.y = jumpForce;
             }
-            
+
         }
         movement.y += gravity * Time.deltaTime;
         _charCont.Move(movement * Time.deltaTime);
@@ -71,7 +73,11 @@ public class PlayerController : MonoBehaviour
            
         }
     }
- 
+
+    void OnCollisionEnter(Collider collision)
+    {
+        movement.y -= gravity * Time.deltaTime;
+    }
 
 }
 
