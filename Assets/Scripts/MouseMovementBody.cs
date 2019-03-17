@@ -6,20 +6,25 @@ public class MouseMovementBody : MonoBehaviour
 {
 
     float yRotation;
-    float lookSensitivity;
+    float xRotation;
+    float lookSensitivity = 4;
+    float currentXRotation;
+    float currentYRotation;
+    float yRotationV;
+    float xRotationV;
     float lookSmoothnes;
 
     private void Start()
     {
+        lookSmoothnes = 0.3f;
         lookSensitivity = 4;
-        lookSmoothnes = 0.0f;
     }
+
 
     void Update()
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
+        transform.rotation = Quaternion.Euler(0, yRotation , 0);
     }
-
 }
-

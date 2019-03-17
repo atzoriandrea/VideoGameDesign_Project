@@ -6,6 +6,7 @@ public class MouseMovement : MonoBehaviour {
 
     float yRotation;
     float xRotation;
+
     float lookSensitivity;
     float lookSmoothnes;
     GameObject body;
@@ -20,6 +21,7 @@ public class MouseMovement : MonoBehaviour {
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
         xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
+
         xRotation = Mathf.Clamp(xRotation, -45, 60);
         transform.rotation = Quaternion.Euler(xRotation, body.transform.eulerAngles.y, 0);
     }
