@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float gravity = -9.8f;
     public float JumpForce;
+    public bool crouch;
     private CharacterController _charCont;
     Vector3 movement;
     float deltaX, deltaZ;
@@ -17,12 +18,17 @@ public class PlayerController : MonoBehaviour
         _charCont = GetComponent<CharacterController>();
         JumpForce = 1.0f;
         speed = 2f;
+        crouch = false;
         anim = GetComponent<Animator>();
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Debug.Log(deltaX.ToString() + deltaZ.ToString() );
+        //Debug.Log(deltaX.ToString() + deltaZ.ToString() );
+        if (Input.GetKeyDown(KeyCode.C)) {
+            crouch = !crouch;
+            anim.SetBool("crouch", crouch);
+        }
         if (Input.GetButton("Fire1"))
         {
             anim.SetTrigger("swordattack");
@@ -35,18 +41,32 @@ public class PlayerController : MonoBehaviour
             //camminata avanti
             if ((deltaZ > 0) && !Input.GetKey(KeyCode.LeftShift))
             {
-                anim.SetBool("walkback", false);
-                anim.SetBool("walking", true);
+                if (!crouch)
+                {
+                    anim.SetBool("walkback", false);
+                    anim.SetBool("walking", true);
+                }
+                else {
+                    anim.SetBool("crouchwalk", true);
+                }
             }
             //camminata indietro
             else if ((deltaZ < 0) && !Input.GetKey(KeyCode.LeftShift))
             {
-                anim.SetBool("walkback", true);
-                anim.SetBool("walking", false);
+                if (!crouch)
+                {
+                    anim.SetBool("walkback", true);
+                    anim.SetBool("walking", false);
+                }
+                else {
+                    anim.SetBool("crouchback", true);
+                }
             }
             //fermo
             else
             {
+                anim.SetBool("crouchback", false);
+                anim.SetBool("crouchwalk", false);
                 anim.SetBool("walking", false);
                 anim.SetBool("walkback", false);
             }
@@ -76,6 +96,10 @@ public class PlayerController : MonoBehaviour
         //Corsa in avanti
         if (Input.GetKey(KeyCode.LeftShift) &&  deltaZ >= 0)
         {
+            crouch = false;
+            anim.SetBool("crouch",false);
+            anim.SetBool("crouchback", false);
+            anim.SetBool("crouchwalk", false);
             anim.SetBool("walkback", false);
             anim.SetBool("runback", false);
             anim.SetBool("walking", false);
@@ -85,6 +109,10 @@ public class PlayerController : MonoBehaviour
         //Corsa all'indietro
         if (Input.GetKey(KeyCode.LeftShift) && deltaZ < 0)
         {
+            crouch = false;
+            anim.SetBool("crouch", false);
+            anim.SetBool("crouchback", false);
+            anim.SetBool("crouchwalk", false);
             anim.SetBool("running", false);
             anim.SetBool("walking", false);
             anim.SetBool("walkback", false);
@@ -99,7 +127,14 @@ public class PlayerController : MonoBehaviour
             speed = 2f;
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "swordcollider")
+        {
+           // Physics.IgnoreCollision(collision.collider, _charCont.collider);
+        }
 
+    }
 
 }
 
