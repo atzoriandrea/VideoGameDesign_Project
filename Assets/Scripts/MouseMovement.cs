@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MouseMovement : MonoBehaviour {
 
-    float yRotation;
-    float xRotation;
+    public float yRotation;
+    public float xRotation;
 
-    float lookSensitivity;
+    public float lookSensitivity;
     //float lookSmoothnes;
     GameObject body;
 
