@@ -18,7 +18,7 @@ public class EnemyInfo : MonoBehaviour {
 
     void FixedUpdate()
     {
-        Debug.Log("Enemy Life: " + _health);
+        //Debug.Log("Enemy Life: " + _health);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -43,7 +43,7 @@ public class EnemyInfo : MonoBehaviour {
             _enemyCont.height = 0;
             _enemyCont.radius = 0;
         }
-        Debug.Log("Health: " + _health);
+        //Debug.Log("Health: " + _health);
     }
 
     public static int getHealth() {

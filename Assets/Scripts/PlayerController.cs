@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _charCont = GetComponent<CharacterController>();
-        JumpForce = 1.0f;
+        JumpForce = 5.0f;
         speed = 2f;
         crouch = false;
         anim = GetComponent<Animator>();
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(deltaX.ToString() + deltaZ.ToString() );
+        Debug.Log(deltaZ);
         if (Input.GetKeyDown(KeyCode.C)) {
             crouch = !crouch;
             anim.SetBool("crouch", crouch);
@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("swordattack");
 
         }
-        if (_charCont.isGrounded)
-        {
+        //if (_charCont.isGrounded)
+        //{
             deltaX = Input.GetAxis("Horizontal") * speed;
             deltaZ = Input.GetAxis("Vertical") * speed;
             //camminata avanti
@@ -73,17 +73,15 @@ public class PlayerController : MonoBehaviour
             movement = new Vector3(deltaX, movement.y, deltaZ);//Vettore movimento
             movement = transform.TransformDirection(movement);
             //corsa avanti
-            if (Input.GetKey(KeyCode.Space) && deltaZ >= 0)
-            {
-                anim.SetBool("jump", true);
+            if (Input.GetKey(KeyCode.Space) && deltaZ >= 0 && movement.y < gravity)
+        {
                 movement.y = JumpForce;
             }
             //corsa indietro
             else if (Input.GetKey(KeyCode.Space) && deltaZ < 0) {
-                anim.SetBool("jumpback", true);
                 movement.y = JumpForce;
             }
-        }
+        //}
         
         movement.y += gravity * Time.deltaTime;
         //ferma salto
