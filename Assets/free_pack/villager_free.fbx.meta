@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: c79ff4d12824ab043bdaf85b31a313a9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: NoNameMat0
+    100002: Object02
+    100004: villager
+    100006: //RootNode
+    100008: villager_Head
+    100010: villager_L_Calf
+    100012: villager_L_Clavicle
+    100014: villager_L_Finger0
+    100016: villager_L_Finger01
+    100018: villager_L_Finger1
+    100020: villager_L_Finger11
+    100022: villager_L_Finger2
+    100024: villager_L_Finger21
+    100026: villager_L_Finger3
+    100028: villager_L_Finger31
+    100030: villager_L_Finger4
+    100032: villager_L_Finger41
+    100034: villager_L_Foot
+    100036: villager_L_Forearm
+    100038: villager_L_Hand
+    100040: villager_L_Thigh
+    100042: villager_L_Toe0
+    100044: villager_L_UpperArm
+    100046: villager_Neck
+    100048: villager_Pelvis
+    100050: villager_R_Calf
+    100052: villager_R_Clavicle
+    100054: villager_R_Finger0
+    100056: villager_R_Finger01
+    100058: villager_R_Finger1
+    100060: villager_R_Finger11
+    100062: villager_R_Finger2
+    100064: villager_R_Finger21
+    100066: villager_R_Finger3
+    100068: villager_R_Finger31
+    100070: villager_R_Finger4
+    100072: villager_R_Finger41
+    100074: villager_R_Foot
+    100076: villager_R_Forearm
+    100078: villager_R_Hand
+    100080: villager_R_Thigh
+    100082: villager_R_Toe0
+    100084: villager_R_UpperArm
+    100086: villager_Spine
+    100088: villager_Spine1
+    400000: NoNameMat0
+    400002: Object02
+    400004: villager
+    400006: //RootNode
+    400008: villager_Head
+    400010: villager_L_Calf
+    400012: villager_L_Clavicle
+    400014: villager_L_Finger0
+    400016: villager_L_Finger01
+    400018: villager_L_Finger1
+    400020: villager_L_Finger11
+    400022: villager_L_Finger2
+    400024: villager_L_Finger21
+    400026: villager_L_Finger3
+    400028: villager_L_Finger31
+    400030: villager_L_Finger4
+    400032: villager_L_Finger41
+    400034: villager_L_Foot
+    400036: villager_L_Forearm
+    400038: villager_L_Hand
+    400040: villager_L_Thigh
+    400042: villager_L_Toe0
+    400044: villager_L_UpperArm
+    400046: villager_Neck
+    400048: villager_Pelvis
+    400050: villager_R_Calf
+    400052: villager_R_Clavicle
+    400054: villager_R_Finger0
+    400056: villager_R_Finger01
+    400058: villager_R_Finger1
+    400060: villager_R_Finger11
+    400062: villager_R_Finger2
+    400064: villager_R_Finger21
+    400066: villager_R_Finger3
+    400068: villager_R_Finger31
+    400070: villager_R_Finger4
+    400072: villager_R_Finger41
+    400074: villager_R_Foot
+    400076: villager_R_Forearm
+    400078: villager_R_Hand
+    400080: villager_R_Thigh
+    400082: villager_R_Toe0
+    400084: villager_R_UpperArm
+    400086: villager_Spine
+    400088: villager_Spine1
+    4300000: NoNameMat0
+    7400000: sit_idle
+    11100000: //RootNode
+    13700000: NoNameMat0
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: NoNameMat0
+    second: {fileID: 2100000, guid: 31f943a6928da014fb752da6f423ddb3, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.3
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 70
+    normalImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

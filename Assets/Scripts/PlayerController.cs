@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float gravity = -9.8f;
     public float JumpForce;
     public bool crouch;
+    public static bool attacking;
     private CharacterController _charCont;
     Vector3 movement;
     float deltaX, deltaZ;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         speed = 2f;
         crouch = false;
         anim = GetComponent<Animator>();
+        attacking = false;
     }
     // Update is called once per frame
     void Update()
@@ -124,15 +126,14 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("running", false);
             speed = 2f;
         }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "swordcollider")
-        {
-           // Physics.IgnoreCollision(collision.collider, _charCont.collider);
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att")) {
+            attacking = true;
         }
-
+        else
+        {
+            attacking = false;
+        }
     }
-
+  
 }
 
