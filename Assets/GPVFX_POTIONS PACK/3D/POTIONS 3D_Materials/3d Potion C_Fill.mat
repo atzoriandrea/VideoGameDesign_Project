@@ -4,7 +4,11 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 0}
+=======
+  m_PrefabParentObject: {fileID: 0}
+>>>>>>> cc2f7f440090149459835940e46fda483d37503d
   m_PrefabInternal: {fileID: 0}
   m_Name: 3d Potion C_Fill
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
@@ -73,5 +77,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+<<<<<<< HEAD
     - _Color: {r: 0, g: 0.5620556, b: 1, a: 1}
     - _EmissionColor: {r: 0.12454414, g: 0.54509807, b: 1, a: 1}
+=======
+    - _Color: {r: 0, g: 1, b: 0.2965517, a: 1}
+    - _EmissionColor: {r: 0.18088233, g: 0.6397059, b: 0, a: 1}
+>>>>>>> cc2f7f440090149459835940e46fda483d37503d
