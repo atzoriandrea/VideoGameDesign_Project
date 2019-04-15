@@ -9,12 +9,20 @@
 ![Aa]ssets/**/*.meta
  
 # Uncomment this line if you wish to ignore the asset store tools plugin
-[Aa]ssets/AssetStoreTools*
-[Aa]ssets/Knight/
-[Aa]ssets/PolygonDungeon/
-[Aa]ssets/MedievalVillage/
-[Aa]ssets/Skybox/
 [Aa]ssets/Animations/
+[Aa]ssets/AssetStoreTools*
+[Aa]ssets/AstarPathfindingEditor/
+[Aa]ssets/free_pack/
+[Aa]ssets/Knight/
+[Aa]ssets/[Mm]*
+[Aa]ssets/old_wise_lord/
+[Aa]ssets/OldCity/
+[Aa]ssets/PolygonDungeon/
+[Aa]ssets/Plugins/
+[Aa]ssets/Skybox/
+[Aa]ssets/sketch_gothic_school/
+[Aa]ssets/Standard*Assets/
+
  
 # TextMesh Pro files
 [Aa]ssets/TextMesh*Pro/
