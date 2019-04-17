@@ -864,8 +864,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 115844330}
-  m_LocalRotation: {x: -0.22993962, y: 0.53032, z: 0.1520998, w: 0.80171955}
-  m_LocalPosition: {x: -272.23798, y: -112.01243, z: -246.32343}
+  m_LocalRotation: {x: -0.22993964, y: 0.53032, z: 0.15209982, w: 0.80171955}
+  m_LocalPosition: {x: -272.238, y: -112.01243, z: -246.32343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 780882153}
@@ -2607,8 +2607,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392590544}
-  m_LocalRotation: {x: -0.22993962, y: 0.53032, z: 0.1520998, w: 0.80171955}
-  m_LocalPosition: {x: -272.23798, y: -112.01243, z: -246.32343}
+  m_LocalRotation: {x: -0.22993964, y: 0.53032, z: 0.15209982, w: 0.80171955}
+  m_LocalPosition: {x: -272.238, y: -112.01243, z: -246.32343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 780882153}
@@ -8327,8 +8327,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1114254275}
-  m_LocalRotation: {x: -0.22993962, y: 0.53032, z: 0.1520998, w: 0.80171955}
-  m_LocalPosition: {x: -272.23798, y: -112.01243, z: -246.32343}
+  m_LocalRotation: {x: -0.22993964, y: 0.53032, z: 0.15209982, w: 0.80171955}
+  m_LocalPosition: {x: -272.238, y: -112.01243, z: -246.32343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 780882153}
@@ -10880,6 +10880,18 @@ Prefab:
     - target: {fileID: 100006, guid: 933386ace88cd5d4cbeb6ff92e0c52b5, type: 3}
       propertyPath: m_Name
       value: FirePit_mdl (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: 933386ace88cd5d4cbeb6ff92e0c52b5, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 933386ace88cd5d4cbeb6ff92e0c52b5, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 20500000, guid: 933386ace88cd5d4cbeb6ff92e0c52b5, type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.006680848
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 933386ace88cd5d4cbeb6ff92e0c52b5, type: 3}
