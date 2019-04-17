@@ -12733,15 +12733,23 @@ MonoBehaviour:
   sky3: {fileID: 2100000, guid: d4d16ca3d56fb7142a32d49bbd323836, type: 2}
   sky4: {fileID: 2100000, guid: 16522f49031ff414abdf1f83f1b6a36c, type: 2}
   lt: {fileID: 1671772500}
+<<<<<<< HEAD
 --- !u!114 &1479885938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 114251739211182490, guid: 880858dfd9b1e784e89d45242bf78d2b,
     type: 2}
+=======
+--- !u!114 &1479885945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+>>>>>>> f43b0c24de3d09e9d0cb9f57c1d0ccb387166024
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1479885936}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 206a5116b144dce4ca8660dcd12359f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -12857,6 +12865,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+=======
+  m_Script: {fileID: 11500000, guid: 6bf27866408bd5144bc0370a02ed8b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> f43b0c24de3d09e9d0cb9f57c1d0ccb387166024
 --- !u!1001 &1490649223
 Prefab:
   m_ObjectHideFlags: 0
