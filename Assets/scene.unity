@@ -2782,7 +2782,15 @@ Transform:
     type: 3}
   m_PrefabInternal: {fileID: 700257610}
   m_GameObject: {fileID: 413126026}
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_LocalRotation: {x: -0.174824, y: -0.22332802, z: 0.47947297, w: 0.8304618}
+=======
   m_LocalRotation: {x: -0.174824, y: -0.22332804, z: 0.47947297, w: 0.83046186}
+>>>>>>> 13622332442a2dac705273af998cac75e4173a66
+=======
+  m_LocalRotation: {x: -0.174824, y: -0.22332804, z: 0.47947297, w: 0.83046186}
+>>>>>>> cc2f7f440090149459835940e46fda483d37503d
   m_LocalPosition: {x: -0.13210231, y: 0, z: 0}
   m_LocalScale: {x: 1.0000006, y: 0.9999994, z: 1.0000004}
   m_Children:
@@ -3141,8 +3149,18 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 496188147}
   m_AABB:
+<<<<<<< HEAD
+<<<<<<< HEAD
+    m_Center: {x: -0.26666206, y: 0.078736246, z: 0.018951774}
+    m_Extent: {x: 0.43957734, y: 0.49422246, z: 0.3809765}
+=======
     m_Center: {x: -0.26666206, y: 0.078736246, z: 0.018951833}
     m_Extent: {x: 0.43957734, y: 0.49422246, z: 0.38097656}
+>>>>>>> 13622332442a2dac705273af998cac75e4173a66
+=======
+    m_Center: {x: -0.26666206, y: 0.078736246, z: 0.018951833}
+    m_Extent: {x: 0.43957734, y: 0.49422246, z: 0.38097656}
+>>>>>>> cc2f7f440090149459835940e46fda483d37503d
   m_DirtyAABB: 0
 --- !u!1 &485384162
 GameObject:
@@ -9659,7 +9677,15 @@ Transform:
     type: 3}
   m_PrefabInternal: {fileID: 1757994332}
   m_GameObject: {fileID: 1651305641}
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_LocalRotation: {x: -0.174824, y: -0.22332802, z: 0.47947297, w: 0.8304618}
+=======
   m_LocalRotation: {x: -0.174824, y: -0.22332804, z: 0.47947297, w: 0.83046186}
+>>>>>>> 13622332442a2dac705273af998cac75e4173a66
+=======
+  m_LocalRotation: {x: -0.174824, y: -0.22332804, z: 0.47947297, w: 0.83046186}
+>>>>>>> cc2f7f440090149459835940e46fda483d37503d
   m_LocalPosition: {x: -0.13210231, y: 0, z: 0}
   m_LocalScale: {x: 1.0000006, y: 0.9999994, z: 1.0000004}
   m_Children:
@@ -11051,8 +11077,18 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1349092645}
   m_AABB:
+<<<<<<< HEAD
+<<<<<<< HEAD
+    m_Center: {x: -0.26666206, y: 0.078736246, z: 0.018951774}
+    m_Extent: {x: 0.43957734, y: 0.49422246, z: 0.3809765}
+=======
     m_Center: {x: -0.26666206, y: 0.078736246, z: 0.018951833}
     m_Extent: {x: 0.43957734, y: 0.49422246, z: 0.38097656}
+>>>>>>> 13622332442a2dac705273af998cac75e4173a66
+=======
+    m_Center: {x: -0.26666206, y: 0.078736246, z: 0.018951833}
+    m_Extent: {x: 0.43957734, y: 0.49422246, z: 0.38097656}
+>>>>>>> cc2f7f440090149459835940e46fda483d37503d
   m_DirtyAABB: 0
 --- !u!1 &1976899283
 GameObject:

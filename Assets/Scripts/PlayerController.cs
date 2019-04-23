@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(deltaZ);
         if (Input.GetKeyDown(KeyCode.C)) {
             crouch = !crouch;
             anim.SetBool("crouch", crouch);

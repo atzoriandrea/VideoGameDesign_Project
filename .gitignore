@@ -13,7 +13,6 @@
 [Aa]ssets/AssetStoreTools*
 [Aa]ssets/AstarPathfindingEditor/
 [Aa]ssets/free_pack/
-[Aa]ssets/GPVFX_POTIONS*PACK/
 [Aa]ssets/Knight/
 [Aa]ssets/[Mm]*
 [Aa]ssets/old_wise_lord/
@@ -23,6 +22,7 @@
 [Aa]ssets/Skybox/
 [Aa]ssets/sketch_gothic_school/
 [Aa]ssets/Standard*Assets/
+[Aa]ssets/GPVFX_POTIONS*PACK/
 
  
 # TextMesh Pro files
@@ -67,3 +67,4 @@ sysinfo.txt
  
 # Crashlytics generated file
 crashlytics-build.properties
+

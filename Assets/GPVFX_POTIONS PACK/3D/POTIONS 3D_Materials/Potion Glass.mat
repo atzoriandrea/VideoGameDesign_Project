@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Potion Glass
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
@@ -77,6 +77,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.7941176, g: 0.7941176, b: 0.7941176, a: 0.435}
+    - _Color: {r: 0, g: 0.48321056, b: 1, a: 0.435}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.9485294, g: 0.9485294, b: 0.9485294, a: 1}
+    - _SpecColor: {r: 0, g: 0.28980523, b: 0.9528302, a: 1}
