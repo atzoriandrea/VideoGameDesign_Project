@@ -9,6 +9,7 @@
 ![Aa]ssets/**/*.meta
  
 # Uncomment this line if you wish to ignore the asset store tools plugin
+[Aa]ssets/Huge*Mocap*Library/
 [Aa]ssets/Animations/
 [Aa]ssets/AssetStoreTools*
 [Aa]ssets/AstarPathfindingEditor/
