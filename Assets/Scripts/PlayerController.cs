@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Timers;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,16 +8,29 @@ public class PlayerController : MonoBehaviour
     public float JumpForce;
     public bool crouch;
     public static bool attacking;
+    public float health;
+    private float _firstHealt;
     private CharacterController _charCont;
     Vector3 movement;
     float deltaX, deltaZ;
+    private int _healthText;
+    public Text healthText;
     Animator anim;
+
+
+    [HideInInspector]
+    public int worth = 50;
+
+
+    [Header("HealthBar")]
+    public Image healthBar;
     // Use this for initialization
     void Start()
     {
         _charCont = GetComponent<CharacterController>();
         JumpForce = 5.0f;
         speed = 2f;
+        _firstHealt = health;
         crouch = false;
         anim = GetComponent<Animator>();
         attacking = false;
@@ -26,6 +38,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _healthText = (int)health;
+        healthText.text = _healthText + "/" + _firstHealt;
+
         if (Input.GetKeyDown(KeyCode.C)) {
             crouch = !crouch;
             anim.SetBool("crouch", crouch);
@@ -128,7 +143,15 @@ public class PlayerController : MonoBehaviour
         {
             attacking = false;
         }
+
+        TakeDamage(0.1f);
     }
-  
+
+    public void TakeDamage (float amount)
+    {
+        health -= amount;
+        healthBar.fillAmount = health / 100f;
+    }
+
 }
 
