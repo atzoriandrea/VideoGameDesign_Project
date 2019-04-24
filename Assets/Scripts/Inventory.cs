@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.Animations;
 
 public class Inventory : MonoBehaviour {
     private int selected;
+
     Image sword, secondary, potion, bendages;
     public GameObject weapon1, weapon2, item1, item2;
     UnityEngine.Color sw, snd, pot, ben;
+    public Animator anim;
+
     // Use this for initialization
     void Start () {
         selected = 1;
@@ -19,28 +23,38 @@ public class Inventory : MonoBehaviour {
         pot = potion.color;
         bendages = GameObject.Find("Bendages").GetComponent<Image>();
         ben = bendages.color;
+        anim = GameObject.Find("Character_Hero_Knight_Male").GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown("1")) {
+        Debug.Log(selected);
+        if (Input.GetKeyDown("1")  && !CheckPlaying()) {
             selected = 1;
             Sword();
         }
-        if (Input.GetKeyDown("2")) { 
+        if (Input.GetKeyDown("2") && !CheckPlaying()) { 
             selected = 2;
             SecondWeapon();
         }
-        if (Input.GetKeyDown("3"))
+        if (Input.GetKeyDown("3") && !CheckPlaying())
         {
             selected = 3;
             Potion();
         }
-        selected = 3;
-        if (Input.GetKeyDown("4"))
+        if (Input.GetKeyDown("4") && !CheckPlaying())
         {
             selected = 4;
             Bendages();
+        }
+        if (Input.GetButton("Fire1") && selected == 1)
+        {
+            anim.SetTrigger("swordattack");
+
+        }
+        if ((selected == 3 || selected == 4 )&& Input.GetButton("Fire1")) {      
+           anim.SetTrigger("heal");
         }
     }
 
@@ -87,5 +101,12 @@ public class Inventory : MonoBehaviour {
         weapon2.SetActive(false);
         item1.SetActive(false);
         item2.SetActive(true);
+    }
+    public bool CheckPlaying() {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Eating") ||
+            anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att") ||
+            anim.GetCurrentAnimatorStateInfo(0).IsName("YourAnimationName")) //manca arma secondaria
+            return true;
+        return false;
     }
 }

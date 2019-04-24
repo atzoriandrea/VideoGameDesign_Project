@@ -30,11 +30,7 @@ public class PlayerController : MonoBehaviour
             crouch = !crouch;
             anim.SetBool("crouch", crouch);
         }
-        if (Input.GetButton("Fire1"))
-        {
-            anim.SetTrigger("swordattack");
-
-        }
+        
         //if (_charCont.isGrounded)
         //{
             deltaX = Input.GetAxis("Horizontal") * speed;
