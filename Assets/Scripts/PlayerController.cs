@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(Directory.GetCurrentDirectory() + "");
         _healthText = (int)player.health;
         healthText.text = _healthText + "/" + _firstHealt;
 
