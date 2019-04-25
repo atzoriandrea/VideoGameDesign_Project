@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour {
         pot = potion.color;
         bendages = GameObject.Find("Bendages").GetComponent<Image>();
         ben = bendages.color;
-        //anim = GameObject.Find("Character_Hero_Knight_Male").GetComponent<Animator>();
 
     }
 

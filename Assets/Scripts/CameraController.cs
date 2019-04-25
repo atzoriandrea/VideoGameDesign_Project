@@ -17,10 +17,7 @@ public class CameraController : MonoBehaviour
     public float sensHorizontal = 10.0f;
     public float sensVertical = 10.0f;
     public float rotationX = 0;
-    private Vector3 _velocity = Vector3.zero;
-
     // Update is called once per frame
-
     void Update()
     {
         if (axes == RotationAxis.MouseX)
@@ -32,8 +29,6 @@ public class CameraController : MonoBehaviour
             rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
             float rotationY = transform.localEulerAngles.y;
             transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
-            //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, Camera.main.transform.position, ref _velocity, 0.5f);
-
         }
     }
 }
