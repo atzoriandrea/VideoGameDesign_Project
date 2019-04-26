@@ -22,7 +22,6 @@ public class SpawnFirst : MonoBehaviour
             generated++;
             float angle = Random.Range(0, 360);
             enemy.transform.Rotate(0, angle, 0);
-            generated++;
         }
         else if (generated < 5)
         {
@@ -31,7 +30,6 @@ public class SpawnFirst : MonoBehaviour
             generated++;
             float angle = Random.Range(0, 360);
             enemy.transform.Rotate(0, angle, 0);
-            generated++;
         }
     }
 }

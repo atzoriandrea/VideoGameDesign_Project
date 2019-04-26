@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(selected);
         if (Input.GetKeyDown("1")  && !CheckPlaying()) {
             selected = 1;
             Sword();

@@ -543,6 +543,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 465932, guid: f2869d9e9b4b1044091c5b3a1a56bd0f,
     type: 2}
   m_PrefabInternal: {fileID: 493160138}
+--- !u!1 &68920140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1267397863282952, guid: d498c63395d3d574790dc62e76b60e12,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001037286}
+--- !u!114 &68920141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 68920140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e814cbf7062e46e0a09d33ab364dec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  health: 80
 --- !u!1001 &83657662
 Prefab:
   m_ObjectHideFlags: 0
@@ -3326,6 +3344,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 480232, guid: d9a03bfbfde7932419db0fe506b6a5b3,
     type: 2}
   m_PrefabInternal: {fileID: 1340480278}
+--- !u!1 &502223448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1439316032711142, guid: 022604bd8e8a4e4448660015dfcda637,
+    type: 2}
+  m_PrefabInternal: {fileID: 1330525216}
+--- !u!114 &502223449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502223448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e814cbf7062e46e0a09d33ab364dec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  health: 150
 --- !u!1001 &503930519
 Prefab:
   m_ObjectHideFlags: 0
@@ -6612,6 +6648,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1479885938}
+    - target: {fileID: 162860, guid: 880858dfd9b1e784e89d45242bf78d2b, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 880858dfd9b1e784e89d45242bf78d2b, type: 2}
   m_IsPrefabAsset: 0
@@ -8486,6 +8526,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1438381722647668, guid: a1329959e5f762241883c5b98d815601, type: 2}
+      propertyPath: m_TagString
+      value: Standard
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1329959e5f762241883c5b98d815601, type: 2}
   m_IsPrefabAsset: 0
@@ -9612,6 +9656,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 923611422}
         m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1581011655}
+        m_MethodName: InvokeLoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12179,6 +12234,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6988189, y: 4.6121745, z: 2}
   m_Center: {x: -0.7580627, y: 2.3060884, z: 0.00009177385}
+--- !u!1 &1581011654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1438381722647668, guid: a1329959e5f762241883c5b98d815601,
+    type: 2}
+  m_PrefabInternal: {fileID: 1109657542}
+--- !u!114 &1581011655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1581011654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e814cbf7062e46e0a09d33ab364dec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  health: 100
 --- !u!4 &1590970945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 475210, guid: 8995caca94342db4c831349441b30d1f,
@@ -13473,6 +13546,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1479885938}
         m_MethodName: SavePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1581011655}
+        m_MethodName: SaveEnemy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

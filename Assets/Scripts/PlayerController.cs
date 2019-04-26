@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Application.persistentDataPath);
+        //Debug.Log(Application.persistentDataPath);
         _healthText = (int)player.health;
         healthText.text = _healthText + "/" + _firstHealt;
 
