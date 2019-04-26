@@ -4,15 +4,17 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
+public class PauseMenu : MonoBehaviour
+{
 
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject player;
     public GameObject inventory;
     public GameObject healthBar;
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -66,11 +68,12 @@ public class PauseMenu : MonoBehaviour {
             string str = Directory.GetCurrentDirectory() + "/Assets/Scenes/Save/Save" + fi.Name;
             //if (!File.Exists(str))
             //{
-                File.Copy(filename, str, true);
+            File.Copy(filename, str, true);
             //}
             Debug.Log(filename);
             Debug.Log(str);
         }
 
     }
+
 }

@@ -6,7 +6,7 @@ public class EnemyInfoAgile : MonoBehaviour {
 
     public static int _health;
     Animator anim;
-   private CharacterController _enemyCont;
+    private CharacterController _enemyCont;
     void Start()
     {
         _enemyCont = GetComponent<CharacterController>();
