@@ -19,6 +19,20 @@ public static class SaveSystem {
         stream.Close();
     }
 
+    public static void SaveLastEnemy(LastEnemy enemy)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path = Application.persistentDataPath + "/LastEnemy/lastEnemy.fun";
+
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        LastEnemyData data = new LastEnemyData(enemy);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
     public static void SaveStandardEnemy(StandardEnemy enemy, int i)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -42,6 +56,26 @@ public static class SaveSystem {
             FileStream stream = new FileStream(path, FileMode.Open);
 
             PlayerData data = (PlayerData)formatter.Deserialize(stream);
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.Log("SAVE FILE NOT FOUND IN : " + path);
+            return null;
+        }
+    }
+
+    public static LastEnemyData LoadLastEnemy()
+    {
+        string path = Application.persistentDataPath + "/LastEnemy/lastEnemy.fun";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            LastEnemyData data = (LastEnemyData)formatter.Deserialize(stream);
             stream.Close();
 
             return data;

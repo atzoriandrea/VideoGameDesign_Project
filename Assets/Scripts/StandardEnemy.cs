@@ -33,7 +33,7 @@ public class StandardEnemy : MonoBehaviour {
     public void LoadEnemy( StandardEnemyData data)
     {
         GameObject enemy;
-        Debug.Log("Prefab name: "+prefab.name);
+        Debug.Log("Prefab name: " + prefab.name);
         enemy = Instantiate(prefab) as GameObject;
         level = data.level;
         health = data.health;
