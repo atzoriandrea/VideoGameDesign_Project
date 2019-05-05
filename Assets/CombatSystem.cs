@@ -62,16 +62,16 @@ public class CombatSystem : MonoBehaviour {
                 }
             }
             i = 0;
-            if (readytoAttack.Count > 0)
+            if (readytoAttack.Count > 0 && !attacking) { 
                 attacking = true;
-            int x = (int)Random.Range(0, readytoAttack.Count - 1);
-            anim = ((GameObject)enemies[x]).GetComponent<Animator>() ;
-            anim.SetTrigger("swordattack");
-            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att") && attacking)
-                attacking = false;
-            readytoAttack = null;
-            readytoAttack = new ArrayList(); 
-
+                int x = (int)Random.Range(0, readytoAttack.Count - 1);
+                anim = ((GameObject)enemies[x]).GetComponent<Animator>() ;
+                anim.SetTrigger("swordattack");
+                if(!anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att") && attacking)
+                    attacking = false;
+                readytoAttack = null;
+                readytoAttack = new ArrayList(); 
+            }
         }
         
 	}

@@ -8,13 +8,11 @@ public class MouseMovement : MonoBehaviour {
     public float xRotation;
 
     public float lookSensitivity;
-    //float lookSmoothnes;
     GameObject body;
 
     private void Start()
     {
         lookSensitivity = 4;
-        //lookSmoothnes = 0.0f;
         body = GameObject.Find("Character_Hero_Knight_Male");
     }
     void Update()
