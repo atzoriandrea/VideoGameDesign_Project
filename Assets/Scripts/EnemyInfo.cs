@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInfo : MonoBehaviour {
+public class EnemyInfo : Controller {
 
-    public static int _health;
     Animator anim;
    private CharacterController _enemyCont;
     void Start()
@@ -17,7 +16,6 @@ public class EnemyInfo : MonoBehaviour {
     {
         if (other.name.Equals("swordcollider") && PlayerController.attacking)
         {
-            Debug.Log("hit");
             Hurt(50);
         }
     }
@@ -35,6 +33,6 @@ public class EnemyInfo : MonoBehaviour {
     }
 
     public static int getHealth() {
-        return _health;
+        return health;
     }
 }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyControllerStd : MonoBehaviour {
+public class EnemyControllerStd : Controller {
 
     public Transform player;
     public float walkingDistance = 25.0f;
     public float smoothTime = 1.0f;
     private Vector3 smoothVelocity = Vector3.zero;
     Vector3 movement;
-
+    //public static bool ready;
     Animator anim;
     float distance;
     void Start()
@@ -20,7 +20,7 @@ public class EnemyControllerStd : MonoBehaviour {
     void Update()
     {
         
-        if (EnemyInfo._health > 0) {
+        if (EnemyInfo.health > 0) {
             //il nemico è sempre rivolto verso il giocatore
             transform.LookAt(player);
             //distanza tra nemico e giocatore
@@ -32,19 +32,24 @@ public class EnemyControllerStd : MonoBehaviour {
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
                 anim.SetBool("walking", true);
                 anim.SetBool("running", false);
+                ready = false;
+
 
             }
             else if (distance < walkingDistance * 8 && distance > walkingDistance) {
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
                 anim.SetBool("running", true);
                 anim.SetBool("walking", true);
+                ready = false;
+
 
             }
             else if (distance < 2) {
-                int temp;
+                /*int temp;
                 temp = Random.Range(0, 50);
                 if (temp == 0)
-                    anim.SetTrigger("swordattack");
+                    anim.SetTrigger("swordattack");*/
+                ready = true;
 
                 anim.SetBool("running", false);
                 anim.SetBool("walking", false);
