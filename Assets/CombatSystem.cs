@@ -19,7 +19,7 @@ public class CombatSystem : MonoBehaviour {
     int nearest;
     float mostnear;
     float distance;
-    Controller contr, info;
+    Controller contr, info, selected;
 
     // Use this for initialization
     void Start () {
@@ -79,6 +79,7 @@ public class CombatSystem : MonoBehaviour {
                 {
                     nearest = i;
                     mostnear = distance;
+                    selected = (Controller)cop[1];
                 }
                 else
                 {
@@ -86,6 +87,7 @@ public class CombatSystem : MonoBehaviour {
                     {
                         nearest = i;
                         mostnear = distance;
+                        selected = (Controller)cop[1];
                     }
 
                 }
@@ -93,14 +95,12 @@ public class CombatSystem : MonoBehaviour {
                 i++;
             }
         }
-            i = 0;
+           //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
             if (readytoAttack.Count > 0 && !attacking) { 
                 attacking = true;
-            //int x = (int)Random.Range(0, readytoAttack.Count - 1);
                 tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
                 tr.LookAt(player);
                 anim = ((GameObject)enemies[nearest]).GetComponent<Animator>() ;
-            //tr.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
             if (Vector3.Distance(tr.position, player.position) >= 2)
             {
                 anim.SetBool("walking", true);
@@ -110,11 +110,9 @@ public class CombatSystem : MonoBehaviour {
                 anim.SetTrigger("swordattack");
                 tr = null;
             }
-
-
-        if (attacking && anim != null)
+        //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
+        if ((attacking && anim != null)|| selected._health <= 0)
         {
-            //anim.ResetTrigger("swordattack");
             attacking = false;
             anim = null;
         }
