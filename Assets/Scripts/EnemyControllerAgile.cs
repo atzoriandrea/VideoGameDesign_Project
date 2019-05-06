@@ -21,13 +21,13 @@ public class EnemyControllerAgile : Controller {
     void Update()
     {
         
-        if (EnemyInfo.health > 0) {
+        if (EnemyInfoAgile.health > 0) {
             //il nemico è sempre rivolto verso il giocatore
             transform.LookAt(player);
             //distanza tra nemico e giocatore
             distance = Vector3.Distance(transform.position, player.position);
             //camminata nemico
-            if (distance < walkingDistance && distance > 2)
+            if (distance < walkingDistance && distance > 5)
             {
                 //Il nemico viene sempre verso il giocatore
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
@@ -43,7 +43,7 @@ public class EnemyControllerAgile : Controller {
                 ready = false;
 
             }
-            else if (distance < 2) {
+            else if (distance < 5) {
                 /*int temp;
                 temp = Random.Range(0, 50);
                 if (temp == 0)
