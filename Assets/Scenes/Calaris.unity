@@ -2866,8 +2866,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 313709765}
-  m_LocalRotation: {x: 0.08987929, y: 0.0021179325, z: 0.00021912463, w: -0.9959504}
-  m_LocalPosition: {x: 169.3847, y: -610.02344, z: -2919.9277}
+  m_LocalRotation: {x: 0.20703582, y: 0.7742328, z: 0.3155577, w: -0.5080582}
+  m_LocalPosition: {x: -213.12776, y: -169.51721, z: 86.22998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 737684472}
@@ -6636,8 +6636,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702034731}
-  m_LocalRotation: {x: 0.17900565, y: 0.016274331, z: 0.0029900726, w: -0.9837089}
-  m_LocalPosition: {x: 620.9518, y: -437.04437, z: -527.4672}
+  m_LocalRotation: {x: 0.20703582, y: 0.7742328, z: 0.3155577, w: -0.5080582}
+  m_LocalPosition: {x: 282.0432, y: -223.6375, z: 996.2024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7952,7 +7952,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 86c0265b49cb3b4438377e57a0313bba, type: 2}
+  - {fileID: 2100000, guid: bb8e3bd2db0534a248255d0a854908cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9635,7 +9635,7 @@ GameObject:
   - component: {fileID: 955003789}
   - component: {fileID: 955003788}
   m_Layer: 5
-  m_Name: internal_viewFinder (1)
+  m_Name: Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17406,7 +17406,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 86c0265b49cb3b4438377e57a0313bba, type: 2}
+  - {fileID: 2100000, guid: bb8e3bd2db0534a248255d0a854908cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21356,7 +21356,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 86c0265b49cb3b4438377e57a0313bba, type: 2}
+  - {fileID: 2100000, guid: bb8e3bd2db0534a248255d0a854908cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22991,7 +22991,7 @@ GameObject:
   - component: {fileID: 2105662824}
   - component: {fileID: 2105662823}
   m_Layer: 5
-  m_Name: internal_viewFinder (3)
+  m_Name: Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
