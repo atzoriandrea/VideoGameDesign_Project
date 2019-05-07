@@ -32,7 +32,5 @@ public class EnemyInfo : Controller {
         }
     }
 
-    public static int getHealth() {
-        return health;
-    }
+
 }

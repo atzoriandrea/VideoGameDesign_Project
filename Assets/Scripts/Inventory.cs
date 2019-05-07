@@ -29,26 +29,35 @@ public class Inventory : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown("1")  && !CheckPlaying()) {
+            anim.SetTrigger("change");
             selected = 1;
             Sword();
         }
-        if (Input.GetKeyDown("2") && !CheckPlaying()) { 
+        if (Input.GetKeyDown("2") && !CheckPlaying()) {
+            anim.SetTrigger("change");
             selected = 2;
             SecondWeapon();
         }
         if (Input.GetKeyDown("3") && !CheckPlaying())
         {
+            anim.SetTrigger("change");
             selected = 3;
             Potion();
         }
         if (Input.GetKeyDown("4") && !CheckPlaying())
         {
+            anim.SetTrigger("change");
             selected = 4;
             Bendages();
         }
         if (Input.GetButton("Fire1") && selected == 1)
         {
             anim.SetTrigger("swordattack");
+
+        }
+        if (Input.GetButton("Fire1") && selected == 2)
+        {
+            anim.SetTrigger("shoot");
 
         }
         if ((selected == 3 || selected == 4 )&& Input.GetButton("Fire1")) {      

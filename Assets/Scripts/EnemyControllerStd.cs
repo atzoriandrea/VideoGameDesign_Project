@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyControllerStd : Controller {
+public class EnemyControllerStd : Controller{
 
     public Transform player;
     public float walkingDistance = 25.0f;
@@ -26,7 +26,7 @@ public class EnemyControllerStd : Controller {
             //distanza tra nemico e giocatore
             distance = Vector3.Distance(transform.position, player.position);
             //camminata nemico
-            if (distance < walkingDistance && distance > 2)
+            if (distance < walkingDistance && distance > 5)
             {
                 //Il nemico viene sempre verso il giocatore
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
@@ -38,13 +38,13 @@ public class EnemyControllerStd : Controller {
             }
             else if (distance < walkingDistance * 8 && distance > walkingDistance) {
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
-                anim.SetBool("running", true);
+                anim.SetBool("running", false);
                 anim.SetBool("walking", true);
                 ready = false;
 
 
             }
-            else if (distance < 2) {
+            else if (distance < 5) {
                 /*int temp;
                 temp = Random.Range(0, 50);
                 if (temp == 0)
