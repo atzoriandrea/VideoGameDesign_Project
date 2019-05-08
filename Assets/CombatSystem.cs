@@ -121,6 +121,7 @@ public class CombatSystem : MonoBehaviour {
                 anim.SetBool("walkback", true);
                 anim.SetBool("walking", false);
                 anim.SetBool("running", false);
+
             }
         }
        
