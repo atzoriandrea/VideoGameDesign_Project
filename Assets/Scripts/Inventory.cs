@@ -7,9 +7,9 @@ using UnityEditor.Animations;
 public class Inventory : MonoBehaviour {
     private int selected;
 
-    Image sword, secondary, potion, bendages;
-    public GameObject weapon1, weapon2, item1, item2;
-    UnityEngine.Color sw, snd, pot, ben;
+    Image sword, secondary, third, potion, bendages;
+    public GameObject weapon1, weapon2, weapon3, item1, item2;
+    UnityEngine.Color sw, snd, trd, pot, ben;
     public Animator anim;
 
     // Use this for initialization
@@ -19,6 +19,8 @@ public class Inventory : MonoBehaviour {
         sw = sword.color;
         secondary = GameObject.Find("SecondWeapon").GetComponent<Image>();
         snd = secondary.color;
+        third = GameObject.Find("ThirdWeapon").GetComponent<Image>();
+        trd = third.color;
         potion = GameObject.Find("Potions").GetComponent<Image>();
         pot = potion.color;
         bendages = GameObject.Find("LifePoints").GetComponent<Image>();
@@ -42,15 +44,21 @@ public class Inventory : MonoBehaviour {
         {
             anim.SetTrigger("change");
             selected = 3;
-            Potion();
+            ThirdWeapon();
         }
         if (Input.GetKeyDown("4") && !CheckPlaying())
         {
             anim.SetTrigger("change");
             selected = 4;
+            Potion();
+        }
+        if (Input.GetKeyDown("5") && !CheckPlaying())
+        {
+            anim.SetTrigger("change");
+            selected = 5;
             Bendages();
         }
-        if (Input.GetButton("Fire1") && selected == 1)
+        if (Input.GetButton("Fire1") && (selected == 1 || selected == 3))
         {
             anim.SetTrigger("swordattack");
 
@@ -60,7 +68,7 @@ public class Inventory : MonoBehaviour {
             anim.SetTrigger("shoot");
 
         }
-        if ((selected == 3 || selected == 4 )&& Input.GetButton("Fire1")) {      
+        if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      
            anim.SetTrigger("heal");
         }
     }
@@ -69,10 +77,12 @@ public class Inventory : MonoBehaviour {
     {
         sword.color = new Color(sw.r + 0.2f, sw.g + 0.2f, sw.b + 0.2f);
         secondary.color = snd;
+        third.color = trd;
         potion.color = pot;
         bendages.color = ben;
         weapon1.SetActive(true);
         weapon2.SetActive(false);
+        weapon3.SetActive(false);
         item1.SetActive(false);
         item2.SetActive(false);
     }
@@ -80,21 +90,40 @@ public class Inventory : MonoBehaviour {
     {
         sword.color = sw;
         secondary.color = new Color(snd.r + 0.2f, snd.g + 0.2f, snd.b + 0.2f);
+        third.color = trd;
         potion.color = pot;
         bendages.color = ben;
         weapon1.SetActive(false);
         weapon2.SetActive(true);
+        weapon3.SetActive(false);
         item1.SetActive(false);
         item2.SetActive(false);
     }
+
+    public void ThirdWeapon()
+    {
+        sword.color = sw;
+        secondary.color = snd;
+        third.color = new Color(snd.r + 0.2f, snd.g + 0.2f, snd.b + 0.2f);
+        potion.color = pot;
+        bendages.color = ben;
+        weapon1.SetActive(false);
+        weapon2.SetActive(false);
+        weapon3.SetActive(true);
+        item1.SetActive(false);
+        item2.SetActive(false);
+    }
+
     public void Potion()
     {
         sword.color = sw;
         secondary.color = snd;
+        third.color = trd;
         potion.color = new Color(pot.r + 0.2f, pot.g + 0.2f, pot.b + 0.2f);
         bendages.color = ben;
         weapon1.SetActive(false);
         weapon2.SetActive(false);
+        weapon3.SetActive(false);
         item1.SetActive(true);
         item2.SetActive(false);
     }
@@ -102,13 +131,17 @@ public class Inventory : MonoBehaviour {
     {
         sword.color = sw;
         secondary.color = snd;
+        third.color = trd;
         potion.color = pot;
         bendages.color = new Color(ben.r + 0.2f, ben.g + 0.2f, ben.b + 0.2f);
         weapon1.SetActive(false);
         weapon2.SetActive(false);
+        weapon3.SetActive(false);
         item1.SetActive(false);
         item2.SetActive(true);
     }
+
+
     public bool CheckPlaying() {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Eating") ||
             anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att") ||
