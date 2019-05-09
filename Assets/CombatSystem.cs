@@ -69,14 +69,33 @@ public class CombatSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         int i = 0;
-        tr = null;
-        readytoAttack = null;
         readytoAttack = new ArrayList();
-        selected = null;
         foreach (Object[] cop in scripts) {
             if (((Controller)cop[0]).ready && ((Controller)cop[1])._health > 0)
             {
-                readytoAttack.Add(i);
+                foreach (Object[] cop2 in scripts) {
+                    if (Vector3.Distance(((Transform)cop[2]).position, ((Transform)cop2[2]).position) < 3)
+                    {
+                        if (Vector3.Distance(((Transform)cop[2]).position, player.position) < Vector3.Distance(((Transform)cop2[2]).position, player.position))
+                        {
+                            ((Controller)cop2[0]).move = false;
+                            ((Controller)cop[0]).move = true;
+                        }
+                        else
+                        {
+                            ((Controller)cop[0]).move = false;
+                            ((Controller)cop2[0]).move = true;
+
+                        }
+
+                    }
+                    else {
+                        ((Controller)cop[0]).move = true;
+                        ((Controller)cop2[0]).move = true;
+                    }
+
+                }
+                    readytoAttack.Add(i);
                 distance = Vector3.Distance(((Transform)cop[2]).position, player.position);
                 if (i == 0)
                 {
@@ -98,35 +117,23 @@ public class CombatSystem : MonoBehaviour {
                 i++;
             }
         }
-        //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
-        if (readytoAttack.Count > 0 && !attacking)
-        {
-            attacking = true;
-            tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
-            tr.LookAt(player);
-            anim = ((GameObject)enemies[nearest]).GetComponent<Animator>();
-            if (Vector3.Distance(tr.position, player.position) >= 3)
+           //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
+            if (readytoAttack.Count > 0 && !attacking) { 
+                attacking = true;
+                tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
+                tr.LookAt(player);
+                anim = ((GameObject)enemies[nearest]).GetComponent<Animator>() ;
+            if (Vector3.Distance(tr.position, player.position) >= 2)
             {
                 anim.SetBool("walking", true);
                 anim.SetBool("running", false);
-                anim.SetBool("walkback", false);
-
-            }
-            else if (Vector3.Distance(tr.position, player.position) < 3 && Vector3.Distance(tr.position, player.position) > 1.5)
-            {
-                anim.SetTrigger("swordattack");
             }
             else
-            {
-                anim.SetBool("walkback", true);
-                anim.SetBool("walking", false);
-                anim.SetBool("running", false);
-
+                anim.SetTrigger("swordattack");
+                tr = null;
             }
-        }
-       
         //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
-        if ((attacking && anim != null)/*|| (selected != null && selected._health <= 0)*/)
+        if (anim != null && (attacking|| selected._health <= 0))
         {
             attacking = false;
             anim = null;

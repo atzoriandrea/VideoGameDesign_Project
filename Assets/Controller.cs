@@ -5,6 +5,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour {
     public bool ready;
     public int _health;
+    public bool move;
     public static int  health;
     // Use this for initialization
     void Start () {
