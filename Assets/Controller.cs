@@ -7,11 +7,11 @@ public class Controller : MonoBehaviour {
     public int _health;
     public bool move;
     public static int  health;
+    public float damage;
     // Use this for initialization
     void Start () {
 		
 	}
-	
 	// Update is called once per frame
 	void Update () {
         health = _health;

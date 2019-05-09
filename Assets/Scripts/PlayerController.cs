@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private int _healthText;
     public Text healthText;
     Animator anim;
-
     [HideInInspector]
     public int worth = 50;
 
