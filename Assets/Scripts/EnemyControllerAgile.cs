@@ -16,12 +16,18 @@ public class EnemyControllerAgile : Controller {
     void Start()
     {
         anim = GetComponent<Animator>();
+        move = true;
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
     }
     void Update()
     {
-        
-        if (EnemyInfoAgile.health > 0) {
+
+        if (!move)
+        {
+            anim.SetBool("walking", false);
+            anim.SetBool("running", false);
+        }
+        if (EnemyInfoAgile.health > 0 && move) {
             //il nemico è sempre rivolto verso il giocatore
             transform.LookAt(player);
             //distanza tra nemico e giocatore

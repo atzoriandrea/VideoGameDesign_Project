@@ -9,19 +9,24 @@ public class EnemyControllerBrute : Controller {
     public float smoothTime = 1.0f;
     private Vector3 smoothVelocity = Vector3.zero;
     Vector3 movement;
+
     //public static bool ready;
 
     Animator anim;
     float distance;
     void Start()
     {
+        move = true;
         anim = GetComponent<Animator>();
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
     }
     void Update()
     {
-        
-        if (EnemyInfoBrute.health > 0) {
+        if (!move) {
+            anim.SetBool("walking", false);
+            anim.SetBool("running", false);
+        }
+        if (EnemyInfoBrute.health > 0 && move) {
             //il nemico è sempre rivolto verso il giocatore
             transform.LookAt(player);
             //distanza tra nemico e giocatore

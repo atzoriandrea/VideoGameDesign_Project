@@ -10,7 +10,6 @@ public class EnemyInfo : Controller {
     {
         _enemyCont = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        _health = 100;
     }
     private void OnTriggerEnter(Collider other)
     {

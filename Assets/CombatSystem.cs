@@ -19,6 +19,7 @@ public class CombatSystem : MonoBehaviour {
     int nearest;
     float mostnear;
     float distance;
+    GameObject weapon;
     Controller contr, info, selected;
 
     // Use this for initialization
@@ -31,8 +32,7 @@ public class CombatSystem : MonoBehaviour {
         Object[] agili = new Object[3];
         Object[] bruti = new Object[3];
         Object[] standard = new Object[3];
-
-
+        giocatore = GameObject.Find("Character_Hero_Knight_Male").GetComponent<PlayerController>();
         temp1 = new ArrayList(GameObject.FindGameObjectsWithTag("Standard"));
         temp2 = new ArrayList(GameObject.FindGameObjectsWithTag("Agile"));
         temp3 = new ArrayList(GameObject.FindGameObjectsWithTag("Bruto"));
@@ -41,16 +41,16 @@ public class CombatSystem : MonoBehaviour {
         foreach (GameObject e in temp2)
         {
             enemies.Add(e);
-            agili[0] = e.GetComponent<EnemyControllerAgile>();
-            agili[1] = e.GetComponent<EnemyInfoAgile>();
+            agili[0] = e.GetComponent<EnemyControllerStd>();
+            agili[1] = e.GetComponent<EnemyInfo>();
             agili[2] = e.GetComponent<Transform>();
             scripts.Add(agili);
         }
         foreach (GameObject e in temp3)
         {
             enemies.Add(e);
-            bruti[0] = e.GetComponent<EnemyControllerBrute>();
-            bruti[1] = e.GetComponent<EnemyInfoBrute>();
+            bruti[0] = e.GetComponent<EnemyControllerStd>();
+            bruti[1] = e.GetComponent<EnemyInfo>();
             bruti[2] = e.GetComponent<Transform>();
             scripts.Add(bruti);
         }
@@ -70,14 +70,33 @@ public class CombatSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         int i = 0;
-        tr = null;
-        readytoAttack = null;
         readytoAttack = new ArrayList();
-        selected = null;
         foreach (Object[] cop in scripts) {
             if (((Controller)cop[0]).ready && ((Controller)cop[1])._health > 0)
             {
-                readytoAttack.Add(i);
+                foreach (Object[] cop2 in scripts) {
+                    if (Vector3.Distance(((Transform)cop[2]).position, ((Transform)cop2[2]).position) < 3)
+                    {
+                        if (Vector3.Distance(((Transform)cop[2]).position, player.position) <= Vector3.Distance(((Transform)cop2[2]).position, player.position))
+                        {
+                            ((Controller)cop2[0]).move = false;
+                            ((Controller)cop[0]).move = true;
+                        }
+                        else
+                        {
+                            ((Controller)cop[0]).move = false;
+                            ((Controller)cop2[0]).move = true;
+
+                        }
+
+                    }
+                    else {
+                        ((Controller)cop[0]).move = true;
+                        ((Controller)cop2[0]).move = true;
+                    }
+
+                }
+                    readytoAttack.Add(i);
                 distance = Vector3.Distance(((Transform)cop[2]).position, player.position);
                 if (i == 0)
                 {
@@ -95,17 +114,16 @@ public class CombatSystem : MonoBehaviour {
                     }
 
                 }
-
                 i++;
             }
         }
-        //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
-        if (readytoAttack.Count > 0 && !attacking)
-        {
-            attacking = true;
-            tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
-            tr.LookAt(player);
-            anim = ((GameObject)enemies[nearest]).GetComponent<Animator>();
+
+           //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
+            if (readytoAttack.Count > 0 && !attacking){ 
+                attacking = true;
+                tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
+                tr.LookAt(player);
+                anim = ((GameObject)enemies[nearest]).GetComponent<Animator>();
             if (Vector3.Distance(tr.position, player.position) >= 2)
             {
                 anim.SetBool("walking", true);
@@ -113,19 +131,26 @@ public class CombatSystem : MonoBehaviour {
             }
             else
             {
+
+                //weapon = ((GameObject)enemies[nearest]).GetComponent
+                Debug.Log(weapon != null);
                 anim.SetTrigger("swordattack");
                 tr = null;
-
             }
         }
-
-            //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
-        if ((attacking && anim != null)/*|| (selected != null && selected._health <= 0)*/)
+        //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
+        if (anim != null && (attacking|| selected._health <= 0))
         {
             attacking = false;
             anim = null;
         }
         
 
+    }
+    ArrayList SortEnemiesByDistance(ArrayList a) {
+        ArrayList sorted = new ArrayList();
+        foreach (Object[] cop in a) {
+        }
+        return sorted;
     }
 }
