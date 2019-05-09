@@ -11,7 +11,7 @@ public class CombatSystem : MonoBehaviour {
     ArrayList enemies;
     ArrayList temp1, temp2, temp3;
     public ArrayList scripts;
-
+    PlayerController giocatore;
     ArrayList readytoAttack;
     Animator anim;
     Transform tr;
@@ -27,6 +27,7 @@ public class CombatSystem : MonoBehaviour {
         scripts = new ArrayList();
         enemies = new ArrayList();
         attacking = false;
+        giocatore = GameObject.Find("Character_Hero_Knight_Male").GetComponent<PlayerController>();
         Object[] agili = new Object[3];
         Object[] bruti = new Object[3];
         Object[] standard = new Object[3];
@@ -105,32 +106,26 @@ public class CombatSystem : MonoBehaviour {
             tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
             tr.LookAt(player);
             anim = ((GameObject)enemies[nearest]).GetComponent<Animator>();
-            if (Vector3.Distance(tr.position, player.position) >= 3)
+            if (Vector3.Distance(tr.position, player.position) >= 2)
             {
                 anim.SetBool("walking", true);
                 anim.SetBool("running", false);
-                anim.SetBool("walkback", false);
-
-            }
-            else if (Vector3.Distance(tr.position, player.position) < 3 && Vector3.Distance(tr.position, player.position) > 1.5)
-            {
-                anim.SetTrigger("swordattack");
             }
             else
             {
-                anim.SetBool("walkback", true);
-                anim.SetBool("walking", false);
-                anim.SetBool("running", false);
+                anim.SetTrigger("swordattack");
+                tr = null;
 
             }
         }
-       
-        //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
+
+            //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
         if ((attacking && anim != null)/*|| (selected != null && selected._health <= 0)*/)
         {
             attacking = false;
             anim = null;
         }
+        
 
     }
 }
