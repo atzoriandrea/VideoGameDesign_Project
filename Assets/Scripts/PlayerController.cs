@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private int _healthText;
     public Text healthText;
     Animator anim;
+
     [HideInInspector]
     public int worth = 50;
 
@@ -143,13 +144,18 @@ public class PlayerController : MonoBehaviour
             attacking = false;
         }
 
-        TakeDamage(0.1f);
     }
 
     public void TakeDamage (float amount)
     {
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
+        if (player.health <= 0)
+        {
+            anim.SetTrigger("death");
+            anim.SetBool("isDead", true);
+            
+        }
     }
 
 }

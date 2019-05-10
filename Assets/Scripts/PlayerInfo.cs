@@ -13,11 +13,5 @@ public class PlayerInfo : MonoBehaviour {
         _health = 100;
     }
 
-    public void Hurt(int damage)
-    {
-        _health -= damage;
-        if (_health <= 0)
-            anim.SetTrigger("death");
-        Debug.Log("Health: " + _health);
-    }
+    
 }

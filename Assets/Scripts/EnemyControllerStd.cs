@@ -26,6 +26,12 @@ public class EnemyControllerStd : Controller{
             anim.SetBool("walking", false);
             anim.SetBool("running", false);
         }
+        if (EnemyInfo.health <= 0) {
+            anim.SetBool("walking", false);
+            anim.SetBool("running", false);
+            move = false;
+            ready = false;
+        }
         if (EnemyInfo.health > 0 && move) {
             //il nemico è sempre rivolto verso il giocatore
             transform.LookAt(player);
@@ -42,15 +48,17 @@ public class EnemyControllerStd : Controller{
 
 
             }
-            else if (distance < walkingDistance * 8 && distance > walkingDistance) {
+            else if (distance < walkingDistance * 8 && distance > walkingDistance)
+            {
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
-                anim.SetBool("running", false);
-                anim.SetBool("walking", true);
+                anim.SetBool("running", true);
+                anim.SetBool("walking", false);
                 ready = false;
 
 
             }
-            else if (distance < 5) {
+            else if (distance < 5)
+            {
                 /*int temp;
                 temp = Random.Range(0, 50);
                 if (temp == 0)
@@ -59,6 +67,9 @@ public class EnemyControllerStd : Controller{
 
                 anim.SetBool("running", false);
                 anim.SetBool("walking", false);
+            }
+            else {
+                ready = false;
             }
         }
     }

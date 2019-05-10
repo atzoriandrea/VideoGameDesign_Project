@@ -10,7 +10,7 @@ public class CombatSystem : MonoBehaviour {
     private Vector3 smoothVelocity = Vector3.zero;
     ArrayList enemies;
     ArrayList temp1, temp2, temp3;
-    public ArrayList scripts;
+    public ArrayList scripts,checkAlive;
     PlayerController giocatore;
     ArrayList readytoAttack;
     Animator anim;
@@ -69,31 +69,44 @@ public class CombatSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         int i = 0;
+        checkAlive = new ArrayList();
+        readytoAttack = null;
         readytoAttack = new ArrayList();
+        foreach (Object[] cop in scripts)
+        {
+            checkAlive.Add(cop);
+        }
+        foreach (Object[] cop in checkAlive)
+        {
+            if (((Controller)cop[1])._health <= 0)
+            {
+                scripts.Remove(cop);
+                enemies.Remove(((Controller)cop[0]).gameObject);
+            }
+        }
+        
+
         foreach (Object[] cop in scripts) {
             if (((Controller)cop[0]).ready && ((Controller)cop[1])._health > 0)
             {
                 foreach (Object[] cop2 in scripts) {
                     if (Vector3.Distance(((Transform)cop[2]).position, ((Transform)cop2[2]).position) < 3)
                     {
-                        if (Vector3.Distance(((Transform)cop[2]).position, player.position) <= Vector3.Distance(((Transform)cop2[2]).position, player.position))
+                        if (Vector3.Distance(((Transform)cop[2]).position, player.position) <= Vector3.Distance(((Transform)cop2[2]).position, player.position) && ((Controller)cop[1])._health > 0)
                         {
                             ((Controller)cop2[0]).move = false;
                             ((Controller)cop[0]).move = true;
                         }
-                        else
+                        else if (Vector3.Distance(((Transform)cop[2]).position, player.position) > Vector3.Distance(((Transform)cop2[2]).position, player.position) && ((Controller)cop2[1])._health > 0)
                         {
                             ((Controller)cop[0]).move = false;
                             ((Controller)cop2[0]).move = true;
-
                         }
-
                     }
                     else {
                         ((Controller)cop[0]).move = true;
                         ((Controller)cop2[0]).move = true;
                     }
-
                 }
                     readytoAttack.Add(i);
                 distance = Vector3.Distance(((Transform)cop[2]).position, player.position);
@@ -111,10 +124,10 @@ public class CombatSystem : MonoBehaviour {
                         mostnear = distance;
                         selected = (Controller)cop[1];
                     }
-
                 }
                 i++;
             }
+            
         }
            //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
             if (readytoAttack.Count > 0 && !attacking){ 
@@ -129,8 +142,8 @@ public class CombatSystem : MonoBehaviour {
             }
             else
             {
-                //weapon = ((GameObject)enemies[nearest]).GetComponent
-                Debug.Log(weapon != null);
+                weapon = tr.Find("Root").Find("Hips").Find("Spine_01").Find("Spine_02").Find("Spine_03").Find("Clavicle_R").Find("Shoulder_R").Find("Elbow_R").Find("Hand_R").Find("Thumb_01 1").Find("Arma").gameObject;
+                
                 anim.SetTrigger("swordattack");
                 tr = null;
             }
@@ -138,6 +151,7 @@ public class CombatSystem : MonoBehaviour {
         //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
         if (anim != null && (attacking|| selected._health <= 0))
         {
+            Debug.Log(attacking);
             attacking = false;
             anim = null;
         }
@@ -148,5 +162,14 @@ public class CombatSystem : MonoBehaviour {
         foreach (Object[] cop in a) {
         }
         return sorted;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+    
+        if (other.name.Equals("Arma") && ((GameObject)enemies[nearest]).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
+        {
+            giocatore.TakeDamage(selected.damage);
+        }
     }
 }
