@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class StandardEnemyData {
-
-
+public class LastEnemyV2Data{
 
     public int level;
     public float health;
     public float[] position;
 
-    public StandardEnemyData(StandardEnemy enemy)
+    public LastEnemyV2Data(LastEnemyV2 enemy)
     {
         level = enemy.level;
         health = enemy.health;
@@ -23,3 +21,4 @@ public class StandardEnemyData {
     }
 
 }
+

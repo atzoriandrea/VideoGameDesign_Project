@@ -6,6 +6,11 @@ public class Player : MonoBehaviour {
 
     public int level;
     public float health;
+    public float experience;
+    public float limitExperience;
+    public float arrow;
+    public int apples;
+    public int potions;
 
     public void SavePlayer()
     {
@@ -21,7 +26,13 @@ public class Player : MonoBehaviour {
         position.x = data.position[0];
         position.y = data.position[1];
         position.z = data.position[2];
+        experience = data.experience;
+        limitExperience = data.limitExperience;
+        arrow = data.arrow;
+        apples = data.apples;
+        potions = data.potions;
 
         transform.position = position;
     }
+
 }
