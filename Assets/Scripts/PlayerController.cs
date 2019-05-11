@@ -45,10 +45,18 @@ public class PlayerController : MonoBehaviour
             _crouch = !_crouch;
             anim.SetBool("crouch", _crouch);
         }
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            anim.SetTrigger("schivata");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetTrigger("raccogli");
+        }
+
         //if (_charCont.isGrounded)
         //{
-            deltaX = Input.GetAxis("Horizontal") * _speed;
+        deltaX = Input.GetAxis("Horizontal") * _speed;
             deltaZ = Input.GetAxis("Vertical") * _speed;
             //camminata avanti
             if ((deltaZ > 0) && !Input.GetKey(KeyCode.LeftShift))
@@ -100,7 +108,7 @@ public class PlayerController : MonoBehaviour
         if (_charCont.isGrounded && !Input.GetKey(KeyCode.Space))
         {
             anim.SetBool("jump", false);
-            anim.SetBool("jumpback", false);
+            //anim.SetBool("jumpback", false);
         }
         _charCont.Move(movement * Time.deltaTime);
         //Corsa in avanti
@@ -144,7 +152,10 @@ public class PlayerController : MonoBehaviour
             attacking = false;
         }
 
+<<<<<<< HEAD
         //TakeDamage(0.1f);
+=======
+>>>>>>> bd1c5add6a365f0a51cea63833091cd837e88833
     }
 
     public void TakeDamage (float amount)
@@ -152,6 +163,7 @@ public class PlayerController : MonoBehaviour
         
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
+<<<<<<< HEAD
     }
 
     public void OnCollisionEnter(Collider other, GameObject arma, EnemyInfo enemy)
@@ -168,6 +180,13 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject == CombatSystem.weapon)
                 TakeDamage(((GameObject)CombatSystem.enemies[CombatSystem.nearest]).GetComponent<EnemyInfo>().damage);
+=======
+        if (player.health <= 0)
+        {
+            anim.SetTrigger("death");
+            anim.SetBool("isDead", true);
+            
+>>>>>>> bd1c5add6a365f0a51cea63833091cd837e88833
         }
     }
 

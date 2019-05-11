@@ -8,6 +8,8 @@ public class Controller : MonoBehaviour {
     public bool move;
     public static int  health;
     public float damage;
+    public bool onScreen;
+
     // Use this for initialization
     void Start () {
 		
