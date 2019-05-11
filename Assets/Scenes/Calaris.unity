@@ -12331,7 +12331,7 @@ MonoBehaviour:
   ready: 0
   _health: 80
   move: 0
-  damage: 20
+  damage: 10
   player: {fileID: 0}
   walkingDistance: 10
   smoothTime: 5
@@ -19782,6 +19782,28 @@ Prefab:
       propertyPath: m_Name
       value: Arma
       objectReference: {fileID: 0}
+    - target: {fileID: 1112336507678520, guid: a1329959e5f762241883c5b98d815601, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088248602319644, guid: a1329959e5f762241883c5b98d815601, type: 2}
+      propertyPath: m_TagString
+      value: EnemySword
+      objectReference: {fileID: 0}
+    - target: {fileID: 1088248602319644, guid: a1329959e5f762241883c5b98d815601, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136784245317104094, guid: a1329959e5f762241883c5b98d815601,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114734830997959176, guid: a1329959e5f762241883c5b98d815601,
+        type: 2}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1329959e5f762241883c5b98d815601, type: 2}
   m_IsPrefabAsset: 0
@@ -25728,7 +25750,7 @@ MonoBehaviour:
   ready: 0
   _health: 150
   move: 0
-  damage: 50
+  damage: 20
   player: {fileID: 0}
   walkingDistance: 10
   smoothTime: 10
@@ -27536,7 +27558,7 @@ GameObject:
   - component: {fileID: 1559537723}
   m_Layer: 0
   m_Name: Arma
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28041,7 +28063,7 @@ MonoBehaviour:
   ready: 0
   _health: 0
   move: 0
-  damage: 0
+  damage: 5
   player: {fileID: 0}
   walkingDistance: 10
   smoothTime: 10

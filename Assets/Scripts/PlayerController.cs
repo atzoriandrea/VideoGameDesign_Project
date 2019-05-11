@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private int _healthText;
     public Text healthText;
     Animator anim;
+
     [HideInInspector]
     public int worth = 50;
 
@@ -143,13 +144,31 @@ public class PlayerController : MonoBehaviour
             attacking = false;
         }
 
-        TakeDamage(0.1f);
+        //TakeDamage(0.1f);
     }
 
     public void TakeDamage (float amount)
     {
+        
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
+    }
+
+    public void OnCollisionEnter(Collider other, GameObject arma, EnemyInfo enemy)
+    {
+        if (other.gameObject == arma)
+        {
+            TakeDamage(enemy.damage);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (CombatSystem.attacking)
+        {
+            if (collision.gameObject == CombatSystem.weapon)
+                TakeDamage(((GameObject)CombatSystem.enemies[CombatSystem.nearest]).GetComponent<EnemyInfo>().damage);
+        }
     }
 
 }
