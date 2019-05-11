@@ -152,10 +152,7 @@ public class PlayerController : MonoBehaviour
             attacking = false;
         }
 
-<<<<<<< HEAD
-        //TakeDamage(0.1f);
-=======
->>>>>>> bd1c5add6a365f0a51cea63833091cd837e88833
+
     }
 
     public void TakeDamage (float amount)
@@ -163,30 +160,12 @@ public class PlayerController : MonoBehaviour
         
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
-<<<<<<< HEAD
-    }
 
-    public void OnCollisionEnter(Collider other, GameObject arma, EnemyInfo enemy)
-    {
-        if (other.gameObject == arma)
-        {
-            TakeDamage(enemy.damage);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (CombatSystem.attacking)
-        {
-            if (collision.gameObject == CombatSystem.weapon)
-                TakeDamage(((GameObject)CombatSystem.enemies[CombatSystem.nearest]).GetComponent<EnemyInfo>().damage);
-=======
         if (player.health <= 0)
         {
             anim.SetTrigger("death");
             anim.SetBool("isDead", true);
             
->>>>>>> bd1c5add6a365f0a51cea63833091cd837e88833
         }
     }
 
