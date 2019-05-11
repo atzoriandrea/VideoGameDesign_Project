@@ -13,15 +13,15 @@ public class CombatSystem : MonoBehaviour {
     public ArrayList scripts,checkAlive;
     PlayerController giocatore;
     ArrayList readytoAttack;
-    Animator anim;
+    Animator anim, control;
     Transform tr;
     static bool attacking;
     int nearest;
     float mostnear;
     float distance;
     GameObject weapon;
+    public Camera maincamera;
     Controller contr, info, selected;
-
     // Use this for initialization
     void Start () {
         readytoAttack = new ArrayList();
@@ -36,7 +36,6 @@ public class CombatSystem : MonoBehaviour {
         temp2 = new ArrayList(GameObject.FindGameObjectsWithTag("Agile"));
         temp3 = new ArrayList(GameObject.FindGameObjectsWithTag("Bruto"));
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
-
         foreach (GameObject e in temp2)
         {
             enemies.Add(e);
@@ -53,7 +52,6 @@ public class CombatSystem : MonoBehaviour {
             bruti[2] = e.GetComponent<Transform>();
             scripts.Add(bruti);
         }
-     
         foreach (GameObject e in temp1)
         {
             enemies.Add(e);
@@ -62,10 +60,7 @@ public class CombatSystem : MonoBehaviour {
             standard[2] = e.GetComponent<Transform>();
             scripts.Add(standard);
         }
-
-
-    }
-	
+    }	
 	// Update is called once per frame
 	void Update () {
         int i = 0;
@@ -83,11 +78,10 @@ public class CombatSystem : MonoBehaviour {
                 scripts.Remove(cop);
                 enemies.Remove(((Controller)cop[0]).gameObject);
             }
-        }
-        
-
+        }       
         foreach (Object[] cop in scripts) {
-            if (((Controller)cop[0]).ready && ((Controller)cop[1])._health > 0)
+            
+            if (((Controller)cop[0]).ready && ((Controller)cop[1])._health > 0 && ((Controller)cop[0]).onScreen)
             {
                 foreach (Object[] cop2 in scripts) {
                     if (Vector3.Distance(((Transform)cop[2]).position, ((Transform)cop2[2]).position) < 3)
@@ -124,10 +118,11 @@ public class CombatSystem : MonoBehaviour {
                         mostnear = distance;
                         selected = (Controller)cop[1];
                     }
-                }
-                i++;
+                }          
             }
+
             
+            i++;
         }
            //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
             if (readytoAttack.Count > 0 && !attacking){ 
@@ -139,34 +134,26 @@ public class CombatSystem : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 anim.SetBool("running", false);
+                anim.SetBool("walkback", false);
             }
             else
             {
-                weapon = tr.Find("Root").Find("Hips").Find("Spine_01").Find("Spine_02").Find("Spine_03").Find("Clavicle_R").Find("Shoulder_R").Find("Elbow_R").Find("Hand_R").Find("Thumb_01 1").Find("Arma").gameObject;
-                
+                weapon = tr.Find("Root").Find("Hips").Find("Spine_01").Find("Spine_02").Find("Spine_03").Find("Clavicle_R").Find("Shoulder_R").Find("Elbow_R").Find("Hand_R").Find("Thumb_01 1").Find("Arma").gameObject;        
                 anim.SetTrigger("swordattack");
                 tr = null;
             }
         }
         //se qualcuno è in fase di attacco, termina la fase per non entrare in loop infinito
-        if (anim != null && (attacking|| selected._health <= 0))
+        if (anim != null && (attacking|| (selected != null && selected._health <= 0)))
         {
-            Debug.Log(attacking);
             attacking = false;
             anim = null;
         }
 
     }
-    ArrayList SortEnemiesByDistance(ArrayList a) {
-        ArrayList sorted = new ArrayList();
-        foreach (Object[] cop in a) {
-        }
-        return sorted;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-    
         if (other.name.Equals("Arma") && ((GameObject)enemies[nearest]).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
         {
             giocatore.TakeDamage(selected.damage);

@@ -45,10 +45,18 @@ public class PlayerController : MonoBehaviour
             _crouch = !_crouch;
             anim.SetBool("crouch", _crouch);
         }
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            anim.SetTrigger("schivata");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetTrigger("raccogli");
+        }
+
         //if (_charCont.isGrounded)
         //{
-            deltaX = Input.GetAxis("Horizontal") * _speed;
+        deltaX = Input.GetAxis("Horizontal") * _speed;
             deltaZ = Input.GetAxis("Vertical") * _speed;
             //camminata avanti
             if ((deltaZ > 0) && !Input.GetKey(KeyCode.LeftShift))
@@ -100,7 +108,7 @@ public class PlayerController : MonoBehaviour
         if (_charCont.isGrounded && !Input.GetKey(KeyCode.Space))
         {
             anim.SetBool("jump", false);
-            anim.SetBool("jumpback", false);
+            //anim.SetBool("jumpback", false);
         }
         _charCont.Move(movement * Time.deltaTime);
         //Corsa in avanti
