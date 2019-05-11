@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyInfo : Controller {
 
     Animator anim;
-   private CharacterController _enemyCont;
+    private CharacterController _enemyCont;
     void Start()
     {
         _enemyCont = GetComponent<CharacterController>();

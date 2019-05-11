@@ -2893,7 +2893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e814cbf7062e46e0a09d33ab364dec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1438381722647668}
+  prefab: {fileID: 0}
   level: 1
   health: 100
 --- !u!114 &114636946442552304
