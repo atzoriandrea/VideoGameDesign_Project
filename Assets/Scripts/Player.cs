@@ -11,8 +11,9 @@ public class Player : MonoBehaviour {
     public float arrow;
     public int apples;
     public int potions;
-    bool[] keys= {false, false, false};
-    
+
+    public bool[] keys = { false, false, false };
+
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);

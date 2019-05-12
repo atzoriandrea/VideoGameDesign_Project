@@ -64,10 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("schivata");
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            anim.SetTrigger("raccogli");
-        }
+
 
         //if (_charCont.isGrounded)
         //{
@@ -225,5 +222,82 @@ public class PlayerController : MonoBehaviour
         applesText.text = "x" + player.apples;
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key"))
+        {
+            other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(true);
+        }
+    }
+        public void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Apple"))
+        {
+            if (Input.GetKey(KeyCode.F) )
+            {
+                if (player.apples < 10)
+                {
+                    anim.SetTrigger("raccogli");
+                    player.apples += 1;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Non puoi avere più di 10 mele";
+                }
+            }
+
+        }
+        else if (other.gameObject.tag.Equals("Potion"))
+        {
+            if (Input.GetKey(KeyCode.F))
+            {
+                if (player.potions < 1)
+                {
+                    anim.SetTrigger("raccogli");
+                    player.potions += 1;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai già 1 pozione";
+                }
+            }
+
+        }
+        else if (other.gameObject.tag.Equals("Key"))
+        {
+            if (Input.GetKey(KeyCode.F))
+            {
+                anim.SetTrigger("raccogli");
+                switch (other.gameObject.name)
+                {
+                    case "Key1":
+                        player.keys[0] = true;
+                        other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 1^ chiave";
+                        break;
+                    case "Key2":
+                        player.keys[1] = true;
+                        other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 2^ chiave";
+                        break;
+                    case "Key3":
+                        player.keys[2] = true;
+                        other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 3^ chiave";
+                        break;
+                }
+
+                
+            }
+        }
+
+
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key"))
+        {
+            other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(false);
+        }
+    }
 }
 

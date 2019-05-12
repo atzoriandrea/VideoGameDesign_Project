@@ -22,9 +22,7 @@ public class Inventory : MonoBehaviour {
         third = GameObject.Find("ThirdWeapon").GetComponent<Image>();
         trd = third.color;
         potion = GameObject.Find("Potions").GetComponent<Image>();
-        Debug.Log(potion.name);
         pot = potion.color;
-        Debug.Log(pot != null);
         bendages = GameObject.Find("LifePoints").GetComponent<Image>();
         ben = bendages.color;
 
