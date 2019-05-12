@@ -8,14 +8,18 @@ public class PlayerController : MonoBehaviour
     private readonly float _gravity = -9.8f;
     public float JumpForce;
     private bool _crouch;
-    public static bool attacking;
+    public bool attacking;
     public Player player;
     private float _firstHealt;
+    private float _firstExperience;
     private CharacterController _charCont;
     Vector3 movement;
     float deltaX, deltaZ;
     private int _healthText;
+    private int _experienceText;
     public Text healthText;
+    public Text experienceText;
+    public Text arrowsText, potionsText, applesText;
     Animator anim;
 
     [HideInInspector]
@@ -24,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("HealthBar")]
     public Image healthBar;
+    [Header("ExperienceBar")]
+    public Image experienceBar;
     // Use this for initialization
     void Start()
     {
@@ -31,6 +37,7 @@ public class PlayerController : MonoBehaviour
         JumpForce = 5.0f;
         _speed = 2f;
         _firstHealt = player.health;
+        _firstExperience = player.limitExperience;
         _crouch = false;
         anim = GetComponent<Animator>();
         attacking = false;
@@ -38,8 +45,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _healthText = (int)player.health;
-        healthText.text = _healthText + "/" + _firstHealt;
+        PrintHealthAndExperience();
+
+        Print_Arrows_Potions_Apples_Quantity();
+
+        //Debug.Log("Esperienza: " + player.experience);
 
         if (Input.GetKeyDown(KeyCode.C)) {
             _crouch = !_crouch;
@@ -152,18 +162,62 @@ public class PlayerController : MonoBehaviour
             attacking = false;
         }
 
+        if(player.experience >= player.limitExperience)
+        {
+            player.level++;
+            player.limitExperience += 20;
+            player.experience = 0;
+        }
+
+        _firstExperience = GetFirstExperience();
+        _experienceText = GetFCurrentExperience();
     }
 
     public void TakeDamage (float amount)
     {
+        
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
+
         if (player.health <= 0)
         {
             anim.SetTrigger("death");
             anim.SetBool("isDead", true);
             
         }
+
+    }
+
+    private void PrintHealthAndExperience()
+    {
+        _experienceText = (int)player.experience;
+        _healthText = (int)player.health;
+        healthText.text = _healthText + "/" + _firstHealt;
+        experienceText.text = _experienceText + "/" + _firstExperience;
+    }
+
+    private float GetFirstExperience()
+    {
+        return player.limitExperience;
+    }
+
+    private int GetFCurrentExperience()
+    {
+        return (int)player.experience;
+    }
+
+    public void GetExperience(float exp)
+    {
+        player.experience += exp;
+        float n = player.experience / player.limitExperience;
+        experienceBar.fillAmount = n;
+    }
+
+    private void Print_Arrows_Potions_Apples_Quantity()
+    {
+        arrowsText.text = "x" + player.arrow;
+        potionsText.text = "x" + player.potions;
+        applesText.text = "x" + player.apples;
     }
 
 }

@@ -33,19 +33,20 @@ public static class SaveSystem {
         stream.Close();
     }
 
-    public static void SaveStandardEnemy(StandardEnemy enemy, int i)
+    public static void SaveLastEnemyV2(LastEnemyV2 enemy)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/StandardEnemy/enemy"+ i +".fun";
+        string path = Application.persistentDataPath + "/LastEnemy/lastEnemyV2.fun";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        StandardEnemyData data = new StandardEnemyData(enemy);
+        LastEnemyV2Data data = new LastEnemyV2Data(enemy);
 
         formatter.Serialize(stream, data);
         stream.Close();
     }
+
 
     public static PlayerData LoadPlayer()
     {
@@ -87,36 +88,23 @@ public static class SaveSystem {
         }
     }
 
-    public static void LoadStandardEnemy()
+public static LastEnemyData LoadLastEnemyV2()
+{
+    string path = Application.persistentDataPath + "/LastEnemy/lastEnemyV2.fun";
+    if (File.Exists(path))
     {
-        int i;
-        string[] filePaths = Directory.GetFiles(Application.persistentDataPath + "/StandardEnemy");
-        foreach(string file in filePaths)
-        {
-            Debug.Log(file);
-        }
-        if (filePaths != null)
-        {
-            for (i = filePaths.Length-1; i >= 0; i--)
-            {
-                Debug.Log("Qui arrivo: " + i);
-                string path = Application.persistentDataPath + "/StandardEnemy/enemy" + i + ".fun";
-                if (File.Exists(path))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    FileStream stream = new FileStream(path, FileMode.Open);
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(path, FileMode.Open);
 
-                    StandardEnemyData data = (StandardEnemyData)formatter.Deserialize(stream);
-                    stream.Close();
-                    StandardEnemy enemy = new GameObject("StandardEnemy").AddComponent<StandardEnemy>();
-                    enemy.LoadEnemy(data);
+        LastEnemyData data = (LastEnemyData)formatter.Deserialize(stream);
+        stream.Close();
 
-                }
-                else
-                {
-                    Debug.Log("SAVE FILE NOT FOUND IN : " + path);
-                }
-            }
-        }
+        return data;
     }
+    else
+    {
+        Debug.Log("SAVE FILE NOT FOUND IN : " + path);
+        return null;
+    }
+}
 }

@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour {
 
     Image sword, secondary, third, potion, bendages;
     public GameObject weapon1, weapon2, weapon3, item1, item2;
-    UnityEngine.Color sw, snd, trd, pot, ben;
+    Color sw, snd, trd, pot, ben;
     public Animator anim;
 
     // Use this for initialization
@@ -22,7 +22,9 @@ public class Inventory : MonoBehaviour {
         third = GameObject.Find("ThirdWeapon").GetComponent<Image>();
         trd = third.color;
         potion = GameObject.Find("Potions").GetComponent<Image>();
+        Debug.Log(potion.name);
         pot = potion.color;
+        Debug.Log(pot != null);
         bendages = GameObject.Find("LifePoints").GetComponent<Image>();
         ben = bendages.color;
 

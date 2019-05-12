@@ -8,11 +8,22 @@ public class PlayerData
     public int level;
     public float health;
     public float[] position;
+    public float experience;
+    public float limitExperience;
+    public float arrow;
+    public int apples;
+    public int potions;
 
     public PlayerData(Player player)
     {
         level = player.level;
         health = player.health;
+        experience = player.experience;
+        limitExperience = player.limitExperience;
+        arrow = player.arrow;
+        apples = player.apples;
+        potions = player.potions;
+        
 
         position = new float[3];
         position[0] = player.transform.position.x;
