@@ -145,8 +145,8 @@ public class CombatSystem : MonoBehaviour
             if (Vector3.Distance(tr.position, player.position) >= 2)
             {
                 anim.SetBool("walking", true);
-                anim.SetBool("running", false);
-                anim.SetBool("walkback", false);
+                //anim.SetBool("running", false);
+                //anim.SetBool("walkback", false);
             }
             else
             {
