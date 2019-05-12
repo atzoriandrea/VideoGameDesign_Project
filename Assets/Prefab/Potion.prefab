@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4001008709065138}
   - component: {fileID: 23607118885638078}
   m_Layer: 0
-  m_Name: GPVFX_POTION C
+  m_Name: Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
