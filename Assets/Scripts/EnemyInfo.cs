@@ -16,24 +16,52 @@ public class EnemyInfo : Controller {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("swordcollider") && playerController.attacking)
+        if (playerController.attacking)
         {
-            Hurt(50);
+            if(other.name.Equals("swordcollider"))
+                Hurt(50);
+            if (other.name.Equals("AlabardaCollider"))
+                Hurt(60);
         }
     }
    
     public void Hurt(int damage)
     {
-        _health -= damage;
-        Debug.Log(_health);
-        if (_health <= 0)
+        if (this.tag.Equals("Boss"))
         {
-            anim.SetTrigger("death");
-            anim.SetBool("isDead", true);
-            //transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            _enemyCont.height = 0;
-            _enemyCont.radius = 0;
-            playerController.GetExperience(3);
+            Debug.Log(this.tag);
+            this.GetComponent<LastEnemy>().health -= (damage/2);
+            Debug.Log("Boss 1 : " + this.GetComponent<LastEnemy>().health);
+            if (this.GetComponent<LastEnemy>().health <= 0)
+            {
+                anim.SetTrigger("death");
+                anim.SetBool("isDead", true);
+                _enemyCont.height = 0;
+                _enemyCont.radius = 0;
+            }
+        }
+        else if (this.tag.Equals("Boss2"))
+        {
+            this.GetComponent<LastEnemyV2>().health -= (damage/2);
+            if (this.GetComponent<LastEnemyV2>().health <= 0)
+            {
+                anim.SetTrigger("death");
+                anim.SetBool("isDead", true);
+                _enemyCont.height = 0;
+                _enemyCont.radius = 0;
+            }
+        }
+        else
+        {
+            _health -= damage;
+            if (_health <= 0)
+            {
+                anim.SetTrigger("death");
+                anim.SetBool("isDead", true);
+                _enemyCont.height = 0;
+                _enemyCont.radius = 0;
+                playerController.GetExperience(3);
+            }
         }
     }
 

@@ -10,7 +10,7 @@ public class CombatSystem : MonoBehaviour
     Vector3 movement;
     private Vector3 smoothVelocity = Vector3.zero;
     ArrayList enemies;
-    ArrayList temp1, temp2, temp3;
+    ArrayList temp1, temp2, temp3, temp4, temp5;
     public ArrayList scripts, checkAlive;
     PlayerController giocatore;
     ArrayList readytoAttack;
@@ -35,6 +35,8 @@ public class CombatSystem : MonoBehaviour
         temp1 = new ArrayList(GameObject.FindGameObjectsWithTag("Standard"));
         temp2 = new ArrayList(GameObject.FindGameObjectsWithTag("Agile"));
         temp3 = new ArrayList(GameObject.FindGameObjectsWithTag("Bruto"));
+        temp4 = new ArrayList(GameObject.FindGameObjectsWithTag("Boss"));
+        temp5 = new ArrayList(GameObject.FindGameObjectsWithTag("Boss2"));
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
         
         foreach (GameObject e in temp3)
@@ -42,6 +44,10 @@ public class CombatSystem : MonoBehaviour
         foreach (GameObject e in temp2)
             enemies.Add(e);
         foreach (GameObject e in temp1)
+            enemies.Add(e);
+        foreach (GameObject e in temp4)
+            enemies.Add(e);
+        foreach (GameObject e in temp5)
             enemies.Add(e);
     }
     // Update is called once per frame

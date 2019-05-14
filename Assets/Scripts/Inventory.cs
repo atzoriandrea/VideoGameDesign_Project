@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour {
     public GameObject weapon1, weapon2, weapon3, item1, item2;
     Color sw, snd, trd, pot, ben;
     public Animator anim;
+    public Player player;
 
     // Use this for initialization
     void Start () {
@@ -69,7 +70,33 @@ public class Inventory : MonoBehaviour {
 
         }
         if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      
-           anim.SetTrigger("heal");
+            switch (selected)
+            {
+                case 4:
+                    if (player.potions > 0)
+                    {
+                        anim.SetTrigger("heal");
+                        player.health = 100;
+                        player.potions--;
+                    }
+                    break;
+                case 5:
+                    if(player.apples > 0){
+                        if (player.health >= 70 && player.health < 100)
+                        {
+                            anim.SetTrigger("heal");
+                            player.health = 100;
+                            player.apples--;
+                        }
+                        else
+                        {
+                            anim.SetTrigger("heal");
+                            player.health = player.health + 30;
+                            player.apples--;
+                        }
+                    }
+                    break;
+            }
         }
     }
 
