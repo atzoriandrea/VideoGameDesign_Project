@@ -12,6 +12,7 @@ public class EnemyInfo : Controller {
     {
         _enemyCont = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        playerController = GameObject.Find("Character_Hero_Knight_Male").GetComponent<PlayerController>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -29,6 +30,7 @@ public class EnemyInfo : Controller {
         {
             anim.SetTrigger("death");
             anim.SetBool("isDead", true);
+            //transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             _enemyCont.height = 0;
             _enemyCont.radius = 0;
             playerController.GetExperience(3);

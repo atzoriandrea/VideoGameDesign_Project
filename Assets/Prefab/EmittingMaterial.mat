@@ -8,9 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: EmittingMaterial
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-    _SPECULARHIGHLIGHTS_OFF
-  m_LightmapFlags: 1
+  m_ShaderKeywords: _EMISSION _SPECULARHIGHLIGHTS_OFF
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -62,18 +61,18 @@ Material:
     - _DstBlend: 0
     - _GlossMapScale: 0.74
     - _Glossiness: 0.5
-    - _GlossyReflections: 0
-    - _Metallic: 0.26
+    - _GlossyReflections: 1
+    - _Metallic: 0.379
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SmoothnessTextureChannel: 1
+    - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     - intensity: 3
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 0, a: 0.3}
-    - _EmissionColor: {r: 1.2201058, g: 1.2201058, b: 1.2201058, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 145.31857, g: 142.27525, b: 142.27525, a: 5.4}
     - _NotVisibleColor: {r: 0, g: 1, b: 0, a: 1}

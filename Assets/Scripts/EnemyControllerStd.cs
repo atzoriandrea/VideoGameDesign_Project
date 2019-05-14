@@ -21,6 +21,7 @@ public class EnemyControllerStd : Controller{
         anim = GetComponent<Animator>();
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
         navmesh = GetComponent<NavMeshAgent>();
+        
     }
     void Update()
     {
@@ -28,21 +29,21 @@ public class EnemyControllerStd : Controller{
         //bool onScreen = /*((Transform)cop[2]).gameObject.GetComponent<Renderer>().isVisible;*/ screenPoint.x > 0 && screenPoint.x <= 1 && screenPoint.y >= 0 && screenPoint.y <= 1 && screenPoint.z > 0;
         Vector3 directionToTarget = player.position - transform.position;
         float angle = Vector3.Angle(player.forward, directionToTarget);
-        onScreen = Mathf.Abs(angle) > 80;
+        onScreen = Mathf.Abs(angle) < 240 && Mathf.Abs(angle) > 120;
         
-        
-        if (!move)
+        /*if (!move)
         {
             anim.SetBool("walking", false);
             anim.SetBool("running", false);
-        }
-        if (EnemyInfo.health <= 0) {
+        }*/
+        if (EnemyInfo.health <= 0  || anim.GetCurrentAnimatorStateInfo(0).IsName("death")) {
             anim.SetBool("walking", false);
             anim.SetBool("running", false);
             move = false;
             ready = false;
         }
-        if (EnemyInfo.health > 0 && move) {
+        if (EnemyInfo.health > 0 && move)
+        {
             if (!onScreen && Vector3.Distance(transform.position, player.position) <= 2)
             {
                 anim.SetBool("walkback", true);
@@ -63,30 +64,22 @@ public class EnemyControllerStd : Controller{
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
                 anim.SetBool("walking", true);
                 anim.SetBool("running", false);
-                if (anim.GetCurrentAnimatorStateInfo(0).IsName("walk"))
-                {
-                    navmesh.destination = player.position;
-                    navmesh.speed = 1;
-                }
+                navmesh.destination = player.position;
+                navmesh.speed = 1;
                 ready = false;
             }
             else if (distance < walkingDistance * 8 && distance > walkingDistance)
             {
-                navmesh.destination = player.position;
                 navmesh.speed = 1;
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
                 anim.SetBool("running", true);
                 anim.SetBool("walking", false);
-                if (anim.GetCurrentAnimatorStateInfo(0).IsName("run"))
-                {
-                    navmesh.destination = player.position;
-                    navmesh.speed = 1;
-                }
+                navmesh.destination = player.position;
+                navmesh.speed = 1;
                 ready = false;
             }
             else if (distance < 5)
             {
-                navmesh.destination = transform.position;
                 navmesh.speed = 0;
                 transform.LookAt(player);
 
@@ -94,9 +87,13 @@ public class EnemyControllerStd : Controller{
                 anim.SetBool("running", false);
                 anim.SetBool("walking", false);
             }
-            else {
+            else
+            {
                 ready = false;
             }
+        }
+        else {
+            navmesh.speed = 0;
         }
     }
 }

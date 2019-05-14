@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
+
+
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -21,7 +23,6 @@ public class PlayerController : MonoBehaviour
     public Text experienceText;
     public Text arrowsText, potionsText, applesText;
     Animator anim;
-    public Material WallTest;
 
     [HideInInspector]
     public int worth = 50;
@@ -41,6 +42,10 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         attacking = false;
     }
+    void Awake()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -48,18 +53,11 @@ public class PlayerController : MonoBehaviour
 
         Print_Arrows_Potions_Apples_Quantity();
 
-        //Debug.Log("Esperienza: " + player.experience);
-
         if (Input.GetKeyDown(KeyCode.C)) {
             _crouch = !_crouch;
             anim.SetBool("crouch", _crouch);
         }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Color active = Color.green;
-            active.a = 0.3f;
-            WallTest.SetColor("_Color", active);
-        }
+    
         if (Input.GetKeyDown(KeyCode.Q))
         {
             anim.SetTrigger("schivata");
