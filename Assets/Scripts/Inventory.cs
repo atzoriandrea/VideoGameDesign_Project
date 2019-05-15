@@ -13,7 +13,9 @@ public class Inventory : MonoBehaviour {
     public Animator anim;
     public GameObject freccia;
     public Camera cam;
-   
+    bool sparato;
+    public Player player;
+
     // Use this for initialization
     void Start () {
         selected = 1;
@@ -32,10 +34,7 @@ public class Inventory : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-                     if (newBullet != null && weapon2.active)
-        {
-            
-        }
+                     
         if (Input.GetKeyDown("1")  && !CheckPlaying()) {
             anim.SetTrigger("change");
             selected = 1;
@@ -69,28 +68,66 @@ public class Inventory : MonoBehaviour {
             anim.SetTrigger("swordattack");
 
         }
-        if (!Input.GetMouseButton(1) && selected == 2)
+        if (selected == 2)
         {
-            anim.SetBool("shoot", true);
+            if (Input.GetMouseButton(1))
+                anim.SetBool("shoot", true);
             if (newBullet == null)
             {
+                sparato = false;
                 newBullet = (GameObject)Instantiate(freccia) as GameObject;
+                newBullet.transform.rotation = Quaternion.Euler(newBullet.transform.eulerAngles.x + 90, newBullet.transform.eulerAngles.y, newBullet.transform.rotation.z - 90);
                 newBullet.transform.position = GameObject.Find("ArrowSpawn").transform.position;
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, 400.0f))
-                {
-                    GameObject newBall = Instantiate(freccia, cam.transform.position, cam.transform.rotation) as GameObject;
-                    //newBall.GetComponent<Rigidbody>().velocity = (hit.point - transform.position).normalized * speed;
-                }
             }
-           
-            if (newBullet != null && Input.GetMouseButtonDown(0))
-                newBullet.GetComponent<Rigidbody>().AddForce(GameObject.Find("Character_Hero_Knight_Male").transform.forward);
+            if (newBullet != null && !sparato)
+            {
+                newBullet.SetActive(true);
+                newBullet.transform.position = GameObject.Find("ArrowSpawn").transform.position;
+                newBullet.transform.rotation = GameObject.Find("ArrowSpawn").transform.rotation;
+            }
+            if (Input.GetMouseButtonDown(0)) {
+                sparato = true;
+                Debug.Log("sparato");
+                newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.right * -20, ForceMode.Impulse);
+                newBullet = null;
+            }
+        }       
+        else{
+            if(newBullet!=null)
+                newBullet.SetActive(false);
         }
-        if(Input.GetMouseButtonUp(1))
+        
+        if (Input.GetMouseButtonUp(1) || selected != 2)
             anim.SetBool("shoot", false);
+
         if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      
-           anim.SetTrigger("heal");
+            switch (selected)
+            {
+                case 4:
+                    if (player.potions > 0)
+                    {
+                        anim.SetTrigger("heal");
+                        player.health = 100;
+                        player.potions--;
+                    }
+                    break;
+                case 5:
+                    if(player.apples > 0){
+                        if (player.health >= 70 && player.health < 100)
+                        {
+                            anim.SetTrigger("heal");
+                            player.health = 100;
+                            player.apples--;
+                        }
+                        else
+                        {
+                            anim.SetTrigger("heal");
+                            player.health = player.health + 30;
+                            player.apples--;
+                        }
+                    }
+                    break;
+            }
         }
     }
 

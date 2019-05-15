@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float _firstExperience;
     private CharacterController _charCont;
     Vector3 movement;
+    public GameObject wall1, wall2, wall3;
     float deltaX, deltaZ;
     private int _healthText;
     private int _experienceText;
@@ -67,50 +68,51 @@ public class PlayerController : MonoBehaviour
         //if (_charCont.isGrounded)
         //{
         deltaX = Input.GetAxis("Horizontal") * _speed;
-            deltaZ = Input.GetAxis("Vertical") * _speed;
-            //camminata avanti
-            if ((deltaZ > 0) && !Input.GetKey(KeyCode.LeftShift))
-            {
-                if (!_crouch)
-                {
-                    anim.SetBool("walkback", false);
-                    anim.SetBool("walking", true);
-                }
-                else {
-                    anim.SetBool("crouchwalk", true);
-                }
-            }
-            //camminata indietro
-            else if ((deltaZ < 0) && !Input.GetKey(KeyCode.LeftShift))
-            {
-                if (!_crouch)
-                {
-                    anim.SetBool("walkback", true);
-                    anim.SetBool("walking", false);
-                }
-                else {
-                    anim.SetBool("crouchback", true);
-                }
-            }
-            //fermo
-            else
-            {
-                anim.SetBool("crouchback", false);
-                anim.SetBool("crouchwalk", false);
-                anim.SetBool("walking", false);
-                anim.SetBool("walkback", false);
-            }
-            movement = new Vector3(deltaX, movement.y, deltaZ);//Vettore movimento
-            movement = transform.TransformDirection(movement);
-            //corsa avanti
-            if (Input.GetKey(KeyCode.Space) && deltaZ >= 0 && movement.y < _gravity)
+        deltaZ = Input.GetAxis("Vertical") * _speed;
+        //camminata avanti
+        if ((deltaZ > 0) && !Input.GetKey(KeyCode.LeftShift))
         {
-                movement.y = JumpForce;
+            if (!_crouch)
+            {
+                anim.SetBool("walkback", false);
+                anim.SetBool("walking", true);
             }
-            //corsa indietro
-            else if (Input.GetKey(KeyCode.Space) && deltaZ < 0) {
-                movement.y = JumpForce;
+            else 
+            {
+                anim.SetBool("crouchwalk", true);
             }
+        }
+        //camminata indietro
+        else if ((deltaZ < 0) && !Input.GetKey(KeyCode.LeftShift))
+        {
+            if (!_crouch)
+            {
+                anim.SetBool("walkback", true);
+                anim.SetBool("walking", false);
+            }
+            else {
+                anim.SetBool("crouchback", true);
+            }
+        }
+        //fermo
+        else
+        {
+            anim.SetBool("crouchback", false);
+            anim.SetBool("crouchwalk", false);
+            anim.SetBool("walking", false);
+            anim.SetBool("walkback", false);
+        }
+        movement = new Vector3(deltaX, movement.y, deltaZ);//Vettore movimento
+        movement = transform.TransformDirection(movement);
+        //corsa avanti
+        if (Input.GetKey(KeyCode.Space) && deltaZ >= 0 && movement.y < _gravity)
+        {
+            movement.y = JumpForce;
+        }
+        //corsa indietro
+        else if (Input.GetKey(KeyCode.Space) && deltaZ < 0) {
+            movement.y = JumpForce;
+        }
         //}
         
         movement.y += _gravity * Time.deltaTime;
@@ -175,7 +177,6 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage (float amount)
     {
-        
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
 
@@ -185,13 +186,13 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isDead", true);
             
         }
-
     }
 
     private void PrintHealthAndExperience()
     {
         _experienceText = (int)player.experience;
         _healthText = (int)player.health;
+        healthBar.fillAmount = player.health / 100f;
         healthText.text = _healthText + "/" + _firstHealt;
         experienceText.text = _experienceText + "/" + _firstExperience;
     }
@@ -273,14 +274,17 @@ public class PlayerController : MonoBehaviour
                     case "Key1":
                         player.keys[0] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 1^ chiave";
+                        wall1.SetActive(false);
                         break;
                     case "Key2":
                         player.keys[1] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 2^ chiave";
+                        wall2.SetActive(false);
                         break;
                     case "Key3":
                         player.keys[2] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 3^ chiave";
+                        wall3.SetActive(false);
                         break;
                 }
 
@@ -294,6 +298,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key"))
         {
+            other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Raccogli (F)";
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(false);
         }
     }

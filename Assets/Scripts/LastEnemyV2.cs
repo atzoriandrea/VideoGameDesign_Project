@@ -1,12 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LastEnemyV2 : MonoBehaviour {
 
     public int level;
     public float health;
+    private int _firstHealth;
+    private int _healthText;
+    public Text healthText;
+    public Slider healthSlider;
 
+    private void Start()
+    {
+        _firstHealth = (int)health;
+    }
+    private void Update()
+    {
+        _healthText = (int)health;
+        healthSlider.value = health / 400f;
+        healthText.text = _healthText + "/" + _firstHealth;
+    }
 
     public void SaveLastEnemyV2()
     {
