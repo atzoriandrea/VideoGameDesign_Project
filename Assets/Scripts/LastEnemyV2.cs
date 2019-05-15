@@ -19,7 +19,7 @@ public class LastEnemyV2 : MonoBehaviour {
     private void Update()
     {
         _healthText = (int)health;
-        healthSlider.value = health / 250f;
+        healthSlider.value = health / 400f;
         healthText.text = _healthText + "/" + _firstHealth;
     }
 

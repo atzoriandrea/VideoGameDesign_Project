@@ -8,6 +8,7 @@ public class EnemyInfo : Controller {
     public Player player;
     public PlayerController playerController;
     private CharacterController _enemyCont;
+    public GameObject lastEnemy2;
     void Start()
     {
         _enemyCont = GetComponent<CharacterController>();
@@ -36,6 +37,7 @@ public class EnemyInfo : Controller {
             {
                 anim.SetTrigger("death");
                 anim.SetBool("isDead", true);
+                lastEnemy2.SetActive(true);
                 _enemyCont.height = 0;
                 _enemyCont.radius = 0;
             }
