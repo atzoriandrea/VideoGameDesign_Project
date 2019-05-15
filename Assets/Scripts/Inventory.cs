@@ -6,12 +6,14 @@ using UnityEditor.Animations;
 
 public class Inventory : MonoBehaviour {
     private int selected;
-
+    GameObject newBullet;
     Image sword, secondary, third, potion, bendages;
     public GameObject weapon1, weapon2, weapon3, item1, item2;
     Color sw, snd, trd, pot, ben;
     public Animator anim;
-
+    public GameObject freccia;
+    public Camera cam;
+   
     // Use this for initialization
     void Start () {
         selected = 1;
@@ -30,6 +32,10 @@ public class Inventory : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+                     if (newBullet != null && weapon2.active)
+        {
+            
+        }
         if (Input.GetKeyDown("1")  && !CheckPlaying()) {
             anim.SetTrigger("change");
             selected = 1;
@@ -63,11 +69,26 @@ public class Inventory : MonoBehaviour {
             anim.SetTrigger("swordattack");
 
         }
-        if (Input.GetButton("Fire1") && selected == 2)
+        if (!Input.GetMouseButton(1) && selected == 2)
         {
-            anim.SetTrigger("shoot");
-
+            anim.SetBool("shoot", true);
+            if (newBullet == null)
+            {
+                newBullet = (GameObject)Instantiate(freccia) as GameObject;
+                newBullet.transform.position = GameObject.Find("ArrowSpawn").transform.position;
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 400.0f))
+                {
+                    GameObject newBall = Instantiate(freccia, cam.transform.position, cam.transform.rotation) as GameObject;
+                    //newBall.GetComponent<Rigidbody>().velocity = (hit.point - transform.position).normalized * speed;
+                }
+            }
+           
+            if (newBullet != null && Input.GetMouseButtonDown(0))
+                newBullet.GetComponent<Rigidbody>().AddForce(GameObject.Find("Character_Hero_Knight_Male").transform.forward);
         }
+        if(Input.GetMouseButtonUp(1))
+            anim.SetBool("shoot", false);
         if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      
            anim.SetTrigger("heal");
         }
