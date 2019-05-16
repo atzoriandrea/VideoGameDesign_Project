@@ -34,7 +34,6 @@ public class Inventory : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-                     
         if (Input.GetKeyDown("1")  && !CheckPlaying()) {
             anim.SetTrigger("change");
             selected = 1;
@@ -68,7 +67,7 @@ public class Inventory : MonoBehaviour {
             anim.SetTrigger("swordattack");
 
         }
-        if (selected == 2)
+        if (selected == 2 && player.arrow > 0)
         {
             if (Input.GetMouseButton(1))
                 anim.SetBool("shoot", true);
@@ -89,6 +88,7 @@ public class Inventory : MonoBehaviour {
                 sparato = true;
                 Debug.Log("sparato");
                 newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.right * -20, ForceMode.Impulse);
+                player.arrow--;
                 newBullet = null;
             }
         }       
@@ -104,19 +104,23 @@ public class Inventory : MonoBehaviour {
             switch (selected)
             {
                 case 4:
-                    if (player.potions > 0)
+                    if (player.health < player.maxHealth)
                     {
-                        anim.SetTrigger("heal");
-                        player.health = 100;
-                        player.potions--;
-                    }
-                    break;
-                case 5:
-                    if(player.apples > 0){
-                        if (player.health >= 70 && player.health < 100)
+                        if (player.potions > 0)
                         {
                             anim.SetTrigger("heal");
                             player.health = 100;
+                            player.potions--;
+                        }
+                    }
+                    break;
+                case 5:
+                    if (player.health < player.maxHealth && player.apples > 0)
+                    {
+                        if ((player.health + 30) >= player.maxHealth)
+                        {
+                            anim.SetTrigger("heal");
+                            player.health = player.maxHealth;
                             player.apples--;
                         }
                         else
@@ -203,7 +207,7 @@ public class Inventory : MonoBehaviour {
     public bool CheckPlaying() {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Eating") ||
             anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att") ||
-            anim.GetCurrentAnimatorStateInfo(0).IsName("YourAnimationName")) //manca arma secondaria
+            anim.GetCurrentAnimatorStateInfo(0).IsName("YourAnimationName"))
             return true;
         return false;
     }

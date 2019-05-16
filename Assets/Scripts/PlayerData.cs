@@ -7,6 +7,7 @@ public class PlayerData
 {
     public int level;
     public float health;
+    public float maxHealth;
     public float[] position;
     public float experience;
     public float limitExperience;
@@ -23,6 +24,7 @@ public class PlayerData
         arrow = player.arrow;
         apples = player.apples;
         potions = player.potions;
+        maxHealth = player.maxHealth;
         
 
         position = new float[3];

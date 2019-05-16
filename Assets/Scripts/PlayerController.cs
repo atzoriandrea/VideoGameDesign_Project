@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Text experienceText;
     public Text arrowsText, potionsText, applesText;
     Animator anim;
+    public Sword sword;
 
     [HideInInspector]
     public int worth = 50;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         _charCont = GetComponent<CharacterController>();
         JumpForce = 5.0f;
         _speed = 2f;
-        _firstHealt = player.health;
+        _firstHealt = player.maxHealth;
         _firstExperience = player.limitExperience;
         _crouch = false;
         anim = GetComponent<Animator>();
@@ -192,7 +193,7 @@ public class PlayerController : MonoBehaviour
     {
         _experienceText = (int)player.experience;
         _healthText = (int)player.health;
-        healthBar.fillAmount = player.health / 100f;
+        healthBar.fillAmount = player.health / _firstHealt;
         healthText.text = _healthText + "/" + _firstHealt;
         experienceText.text = _experienceText + "/" + _firstExperience;
     }
@@ -223,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key"))
+        if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key") || other.gameObject.tag.Equals("PowerUp"))
         {
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(true);
         }
@@ -243,7 +244,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Apple"))
         {
-            if (Input.GetKey(KeyCode.F) )
+            if (Input.GetKey(KeyCode.F))
             {
                 if (player.apples < 10)
                 {
@@ -299,15 +300,37 @@ public class PlayerController : MonoBehaviour
                         break;
                 }
 
-                
+
+            }
+        }
+        else if (other.gameObject.tag.Equals("PowerUp"))
+        {
+            if (Input.GetKey(KeyCode.F))
+            {
+                anim.SetTrigger("raccogli");
+                switch (other.gameObject.name)
+                {
+                    case "PowerUp_Res":
+                        player.maxHealth += 25;
+                        _firstHealt = player.maxHealth;
+                        Destroy(other.gameObject);
+                        break;
+                    case "PowerUp_Spada":
+                        sword.damage += 5;
+                        sword.level++;
+                        Destroy(other.gameObject);
+                        break;
+                }
             }
         }
 
 
     }
+
+
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key"))
+        if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key") || other.gameObject.tag.Equals("PowerUp"))
         {
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Raccogli (F)";
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(false);
