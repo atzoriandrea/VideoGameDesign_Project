@@ -42,7 +42,7 @@ public class EnemyControllerStd : Controller{
             move = false;
             ready = false;
         }
-        if (EnemyInfo.health > 0 && move)
+        if (EnemyInfo.health > 0)
         {
             if (!onScreen && Vector3.Distance(transform.position, player.position) <= 2)
             {

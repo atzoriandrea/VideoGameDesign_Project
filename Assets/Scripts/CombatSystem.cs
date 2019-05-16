@@ -115,5 +115,13 @@ public class CombatSystem : MonoBehaviour
         {
             giocatore.TakeDamage(selected.damage);
         }
+        if (other.name.Equals("BossSword") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
+        {
+            giocatore.TakeDamage(30);
+        }
+        if (other.name.Equals("BossSecondWeapon") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
+        {
+            giocatore.TakeDamage(40);
+        }
     }
 }
