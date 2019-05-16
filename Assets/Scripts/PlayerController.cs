@@ -227,6 +227,17 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(true);
         }
+        else if (other.gameObject.tag.Equals("Ammo"))
+        {
+            if (player.arrow < 10)
+            {
+                if (player.arrow + 3 > 10)
+                    player.arrow = 10;
+                else
+                    player.arrow += 3;
+                Destroy(other.gameObject);
+            }
+        }
     }
         public void OnTriggerStay(Collider other)
     {
