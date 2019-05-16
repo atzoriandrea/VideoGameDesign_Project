@@ -9,11 +9,24 @@ public static class SaveSystem {
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path =  Application.persistentDataPath + "/Player/player.fun";
+        string path =  Application.persistentDataPath + "player.fun";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+    public static void SaveSword(Sword sword)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path = Application.persistentDataPath + "sword.fun";
+
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        SwordData data = new SwordData(sword);
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -23,7 +36,7 @@ public static class SaveSystem {
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/LastEnemy/lastEnemy.fun";
+        string path = Application.persistentDataPath + "lastEnemy.fun";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -37,7 +50,7 @@ public static class SaveSystem {
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/LastEnemy/lastEnemyV2.fun";
+        string path = Application.persistentDataPath + "lastEnemyV2.fun";
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -50,7 +63,7 @@ public static class SaveSystem {
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/Player/player.fun";
+        string path = Application.persistentDataPath + "player.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -67,10 +80,29 @@ public static class SaveSystem {
             return null;
         }
     }
+    public static SwordData LoadSword()
+    {
+        string path = Application.persistentDataPath + "sword.fun";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            SwordData data = (SwordData)formatter.Deserialize(stream);
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.Log("SAVE FILE NOT FOUND IN : " + path);
+            return null;
+        }
+    }
 
     public static LastEnemyData LoadLastEnemy()
     {
-        string path = Application.persistentDataPath + "/LastEnemy/lastEnemy.fun";
+        string path = Application.persistentDataPath + "lastEnemy.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -90,7 +122,7 @@ public static class SaveSystem {
 
 public static LastEnemyData LoadLastEnemyV2()
 {
-    string path = Application.persistentDataPath + "/LastEnemy/lastEnemyV2.fun";
+    string path = Application.persistentDataPath + "lastEnemyV2.fun";
     if (File.Exists(path))
     {
         BinaryFormatter formatter = new BinaryFormatter();

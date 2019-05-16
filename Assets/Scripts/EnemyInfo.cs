@@ -19,10 +19,10 @@ public class EnemyInfo : Controller {
     {
         if (playerController.attacking)
         {
-            if(other.name.Equals("swordcollider"))
-                Hurt(50);
+            if (other.name.Equals("swordcollider"))
+                Hurt(other.gameObject.GetComponent<Sword>().damage);
             if (other.name.Equals("AlabardaCollider"))
-                Hurt(60);
+                Hurt(40);
         }
         if(other.gameObject.tag.Equals("Arrow"))
             Hurt(20);
@@ -32,9 +32,7 @@ public class EnemyInfo : Controller {
     {
         if (this.tag.Equals("Boss"))
         {
-            Debug.Log(this.tag);
             this.GetComponent<LastEnemy>().health -= (damage/2);
-            Debug.Log("Boss 1 : " + this.GetComponent<LastEnemy>().health);
             if (this.GetComponent<LastEnemy>().health <= 0)
             {
                 anim.SetTrigger("death");

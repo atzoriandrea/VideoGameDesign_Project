@@ -34,7 +34,6 @@ public class Inventory : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-                     
         if (Input.GetKeyDown("1")  && !CheckPlaying()) {
             anim.SetTrigger("change");
             selected = 1;
