@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         _charCont = GetComponent<CharacterController>();
         JumpForce = 5.0f;
         _speed = 2f;
-        _firstHealt = player.health;
+        _firstHealt = player.maxHealth;
         _firstExperience = player.limitExperience;
         _crouch = false;
         anim = GetComponent<Animator>();
@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
     {
         _experienceText = (int)player.experience;
         _healthText = (int)player.health;
-        healthBar.fillAmount = player.health / 100f;
+        healthBar.fillAmount = player.health / _firstHealt;
         healthText.text = _healthText + "/" + _firstHealt;
         experienceText.text = _experienceText + "/" + _firstExperience;
     }
