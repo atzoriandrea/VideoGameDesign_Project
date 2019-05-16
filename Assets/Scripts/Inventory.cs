@@ -104,21 +104,25 @@ public class Inventory : MonoBehaviour {
             switch (selected)
             {
                 case 4:
-                    if (player.potions > 0)
+                    if (player.health < player.maxHealth)
                     {
-                        anim.SetTrigger("heal");
-                        player.health = 100;
-                        player.potions--;
-                    }
-                    break;
-                case 5:
-                    if(player.apples > 0){
-                        if (player.health >= 70 && player.health < 100)
+                        if (player.potions > 0)
                         {
                             anim.SetTrigger("heal");
                             player.health = 100;
+                            player.potions--;
+                        }
+                    }
+                    break;
+                case 5:
+                    if(player.apples > 0 && player.health < player.maxHealth){
+                        if ((player.health+30) >= player.maxHealth)
+                        {
+                            anim.SetTrigger("heal");
+                            player.health = player.maxHealth;
                             player.apples--;
                         }
+
                         else
                         {
                             anim.SetTrigger("heal");

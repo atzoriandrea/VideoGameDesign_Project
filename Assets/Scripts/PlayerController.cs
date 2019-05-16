@@ -312,6 +312,7 @@ public class PlayerController : MonoBehaviour
                 {
                     case "PowerUp_Res":
                         player.maxHealth += 25;
+                        _firstHealt = player.maxHealth;
                         Destroy(other.gameObject);
                         break;
                     case "PowerUp_Spada":
