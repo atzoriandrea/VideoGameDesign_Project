@@ -8,7 +8,6 @@ public class CombatSystem : MonoBehaviour
     public float walkingDistance = 25.0f;
     public float smoothTime = 1.0f;
     Vector3 movement;
-    private Vector3 smoothVelocity = Vector3.zero;
     ArrayList enemies;
     ArrayList temp1, temp2, temp3, temp4, temp5;
     public ArrayList scripts, checkAlive;
