@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEditor.Animations;
 
 public class Inventory : MonoBehaviour {
-    private int selected;
+    public static int selected;
     GameObject newBullet;
     Image sword, secondary, third, potion, bendages;
     public GameObject weapon1, weapon2, weapon3, item1, item2;
@@ -13,7 +13,11 @@ public class Inventory : MonoBehaviour {
     public Animator anim;
     public GameObject freccia;
     public Camera cam;
+    //public static int selected;
     bool sparato;
+    public GameObject balestra;
+    public AudioClip sparo;
+    private AudioSource source;
     public Player player;
 
     // Use this for initialization
@@ -29,6 +33,7 @@ public class Inventory : MonoBehaviour {
         pot = potion.color;
         bendages = GameObject.Find("LifePoints").GetComponent<Image>();
         ben = bendages.color;
+        source = balestra.GetComponent<AudioSource>();
 
     }
 
@@ -86,8 +91,9 @@ public class Inventory : MonoBehaviour {
             }
             if (Input.GetMouseButtonDown(0)) {
                 sparato = true;
-                Debug.Log("sparato");
+                //Debug.Log("sparato");
                 newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.right * -20, ForceMode.Impulse);
+                source.PlayOneShot(sparo);
                 player.arrow--;
                 newBullet = null;
             }

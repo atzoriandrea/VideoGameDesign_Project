@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     public Text arrowsText, potionsText, applesText;
     Animator anim;
     public Sword sword;
-
     [HideInInspector]
     public int worth = 50;
     [Header("HealthBar")]
@@ -180,7 +179,7 @@ public class PlayerController : MonoBehaviour
     {
         player.health -= amount;
         healthBar.fillAmount = player.health / 100f;
-
+        
         if (player.health <= 0)
         {
             anim.SetTrigger("death");
