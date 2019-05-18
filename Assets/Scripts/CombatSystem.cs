@@ -24,6 +24,14 @@ public class CombatSystem : MonoBehaviour
     public Camera maincamera;
     Controller contr, info, selected;
     string prova;
+    public AudioClip hit;
+    public AudioClip hit2;
+    public AudioClip heavyhit;
+    public AudioClip heavyhit2;
+    public AudioClip heavyhit3;
+    public AudioClip heavyhit4;
+    public AudioClip hit3;
+    private AudioSource source;
     // Use this for initialization
     void Start()
     {
@@ -37,7 +45,8 @@ public class CombatSystem : MonoBehaviour
         temp4 = new ArrayList(GameObject.FindGameObjectsWithTag("Boss"));
         temp5 = new ArrayList(GameObject.FindGameObjectsWithTag("Boss2"));
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
-        
+        source = GetComponent<AudioSource>();
+
         foreach (GameObject e in temp3)
             enemies.Add(e);
         foreach (GameObject e in temp2)
@@ -113,14 +122,53 @@ public class CombatSystem : MonoBehaviour
         if (other.name.Equals("Arma") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
         {
             giocatore.TakeDamage(selected.damage);
+            if (selected.gameObject.tag.Equals("Bruto"))
+                HeavySound();
+            else
+                NormalSound();
+            
         }
         if (other.name.Equals("BossSword") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
         {
+            NormalSound();
             giocatore.TakeDamage(30);
         }
         if (other.name.Equals("BossSecondWeapon") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
         {
+            HeavySound();
             giocatore.TakeDamage(40);
+        }
+    }
+    private void HeavySound() {
+        switch ((new System.Random()).Next(0,4))
+        {
+            case 0:
+                source.PlayOneShot(heavyhit);
+                break;
+            case 1:
+                source.PlayOneShot(heavyhit2);
+                break;
+            case 2:
+                source.PlayOneShot(heavyhit3);
+                break;
+            case 3:
+                source.PlayOneShot(heavyhit4);
+                break;
+        }
+    }
+    private void NormalSound()
+    {
+        switch ((new System.Random()).Next(0, 3))
+        {
+            case 0:
+                source.PlayOneShot(hit);
+                break;
+            case 1:
+                source.PlayOneShot(hit2);
+                break;
+            case 2:
+                source.PlayOneShot(hit3);
+                break;
         }
     }
 }

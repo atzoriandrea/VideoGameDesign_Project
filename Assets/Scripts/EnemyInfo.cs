@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyInfo : Controller {
 
@@ -9,10 +10,17 @@ public class EnemyInfo : Controller {
     public PlayerController playerController;
     private CharacterController _enemyCont;
     public GameObject lastEnemy2;
+    public AudioClip hit;
+    public AudioClip hit2;
+    public AudioClip hit3;
+    private AudioSource source;
+    System.Random r;
     void Start()
     {
         _enemyCont = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
+        r = new System.Random();
         playerController = GameObject.Find("Character_Hero_Knight_Male").GetComponent<PlayerController>();
     }
     private void OnTriggerEnter(Collider other)
@@ -20,9 +28,26 @@ public class EnemyInfo : Controller {
         if (playerController.attacking)
         {
             if (other.name.Equals("swordcollider"))
+            {
+                int random = r.Next(0,3);
+                switch (random) {
+                    case 0:
+                        source.PlayOneShot(hit);
+                        break;
+                    case 1:
+                        source.PlayOneShot(hit2);
+                        break;
+                    case 2:
+                        source.PlayOneShot(hit3);
+                        break;
+                }
                 Hurt(other.gameObject.GetComponent<Sword>().damage);
+
+            }
             if (other.name.Equals("AlabardaCollider"))
+            {
                 Hurt(40);
+            }
         }
         if(other.gameObject.tag.Equals("Arrow"))
             Hurt(20);
