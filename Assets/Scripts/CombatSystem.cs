@@ -31,10 +31,16 @@ public class CombatSystem : MonoBehaviour
     public AudioClip heavyhit3;
     public AudioClip heavyhit4;
     public AudioClip hit3;
+    public GameObject comandi;
     private AudioSource source;
     // Use this for initialization
     void Start()
     {
+        if (readytoAttack.Count > 0)
+            comandi.SetActive(true);
+        else
+            comandi.SetActive(false);
+
         readytoAttack = new ArrayList();
         enemies = new ArrayList();
         attacking = false;
