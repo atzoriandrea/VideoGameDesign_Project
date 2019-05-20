@@ -8,12 +8,13 @@ public class CombatSystem : MonoBehaviour
     public float walkingDistance = 25.0f;
     public float smoothTime = 1.0f;
     Vector3 movement;
-    private Vector3 smoothVelocity = Vector3.zero;
     ArrayList enemies;
-    ArrayList temp1, temp2, temp3, temp4, temp5;
+    ArrayList temp1, temp2, temp3;
+    GameObject boss, bossTwo;
     public ArrayList scripts, checkAlive;
     PlayerController giocatore;
     ArrayList readytoAttack;
+    public GameObject pauseMenu;
     Animator anim, control;
     Transform tr;
     static bool attacking;
@@ -32,10 +33,13 @@ public class CombatSystem : MonoBehaviour
     public AudioClip heavyhit3;
     public AudioClip heavyhit4;
     public AudioClip hit3;
+    public GameObject comandi;
     private AudioSource source;
     // Use this for initialization
     void Start()
     {
+        
+
         readytoAttack = new ArrayList();
         enemies = new ArrayList();
         attacking = false;
@@ -43,8 +47,9 @@ public class CombatSystem : MonoBehaviour
         temp1 = new ArrayList(GameObject.FindGameObjectsWithTag("Standard"));
         temp2 = new ArrayList(GameObject.FindGameObjectsWithTag("Agile"));
         temp3 = new ArrayList(GameObject.FindGameObjectsWithTag("Bruto"));
-        temp4 = new ArrayList(GameObject.FindGameObjectsWithTag("Boss"));
-        temp5 = new ArrayList(GameObject.FindGameObjectsWithTag("Boss2"));
+        boss = GameObject.Find("LastEnemyLv1");
+        bossTwo = GameObject.Find("LastEnemyLv2") ;
+        bossTwo.SetActive(false);
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
         source = GetComponent<AudioSource>();
 
@@ -54,10 +59,8 @@ public class CombatSystem : MonoBehaviour
             enemies.Add(e);
         foreach (GameObject e in temp1)
             enemies.Add(e);
-        foreach (GameObject e in temp4)
-            enemies.Add(e);
-        foreach (GameObject e in temp5)
-            enemies.Add(e);
+        enemies.Add(boss);
+        
     }
     // Update is called once per frame
     void Update()
@@ -89,9 +92,16 @@ public class CombatSystem : MonoBehaviour
                         selected = cop.GetComponent<EnemyControllerStd>();
                     }
                 }
-            }        
+            }   
+            
             i++;
         }
+        if (boss.GetComponent<EnemyInfo>()._health <= 0 && !bossTwo.active)
+            enemies.Add(bossTwo);
+        if (readytoAttack.Count > 0 && !pauseMenu.active)
+            comandi.SetActive(true);
+        else
+            comandi.SetActive(false);
         //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
         if (readytoAttack.Count > 0 && !attacking)
         {
@@ -144,16 +154,16 @@ public class CombatSystem : MonoBehaviour
         switch ((new System.Random()).Next(0,4))
         {
             case 0:
-                source.PlayOneShot(heavyhit);
+                source.PlayOneShot(heavyhit, 0.4f);
                 break;
             case 1:
-                source.PlayOneShot(heavyhit2);
+                source.PlayOneShot(heavyhit2, 0.4f);
                 break;
             case 2:
-                source.PlayOneShot(heavyhit3);
+                source.PlayOneShot(heavyhit3, 0.4f);
                 break;
             case 3:
-                source.PlayOneShot(heavyhit4);
+                source.PlayOneShot(heavyhit4, 0.4f);
                 break;
         }
     }
@@ -162,13 +172,13 @@ public class CombatSystem : MonoBehaviour
         switch ((new System.Random()).Next(0, 3))
         {
             case 0:
-                source.PlayOneShot(hit);
+                source.PlayOneShot(hit, 0.1f);
                 break;
             case 1:
-                source.PlayOneShot(hit2);
+                source.PlayOneShot(hit2, 0.1f);
                 break;
             case 2:
-                source.PlayOneShot(hit3);
+                source.PlayOneShot(hit3, 0.1f);
                 break;
         }
     }

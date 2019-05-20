@@ -11,7 +11,9 @@ public class SkyBoxCtrl : MonoBehaviour {
     public AudioClip scene3;
     public Material sky4;
     public AudioClip scene4;
+    public AudioClip thunder;
     public Light flash;
+    bool[] firstTime = {true,true,true,true};
     int scene;
     public GameObject camera;
     AudioSource source;
@@ -54,6 +56,7 @@ public class SkyBoxCtrl : MonoBehaviour {
     IEnumerator changeToSkyOne() {
         bool up = true;
         bool done = false;
+       
         while (!done)
         {
             if (up)
@@ -93,6 +96,7 @@ public class SkyBoxCtrl : MonoBehaviour {
     {
         bool up = true;
         bool done = false;
+        
         while (!done)
         {
             if (up)
@@ -107,6 +111,11 @@ public class SkyBoxCtrl : MonoBehaviour {
                     source.clip = scene2;
                     source.Play();
                     RenderSettings.skybox = sky2;
+                    if (firstTime[1] == true)
+                    {
+                        source.PlayOneShot(thunder, 1f);
+                        firstTime[1] = false;
+                    }
                     up = false;
                 }
             }

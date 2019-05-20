@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Text experienceText;
     public Text arrowsText, potionsText, applesText;
     Animator anim;
+    public AudioClip denied;
     public Sword sword;
     [HideInInspector]
     public int worth = 50;
@@ -223,6 +224,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        
+        if (other.gameObject.tag.Equals("Walls"))
+        {
+            Vector3 directionToTarget = other.gameObject.transform.position - transform.position;
+            float angle = Vector3.Angle(GetComponent<Transform>().forward, directionToTarget);
+            if(Mathf.Abs(angle) < 225 && Mathf.Abs(angle) > 135)
+                GetComponent<Rigidbody>().AddForce(transform.right * -2000, ForceMode.Impulse);
+            else if (Mathf.Abs(angle) > 45 && Mathf.Abs(angle) < 135)
+                GetComponent<Rigidbody>().AddForce(transform.forward * -2000, ForceMode.Impulse);
+            else if (Mathf.Abs(angle) >= 225 && Mathf.Abs(angle) < 315)
+                GetComponent<Rigidbody>().AddForce(transform.forward * 2000, ForceMode.Impulse);
+            else
+                GetComponent<Rigidbody>().AddForce(transform.right * 2000, ForceMode.Impulse);
+            GetComponent<AudioSource>().PlayOneShot(denied);
+        }
         if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key") || other.gameObject.tag.Equals("PowerUp"))
         {
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(true);

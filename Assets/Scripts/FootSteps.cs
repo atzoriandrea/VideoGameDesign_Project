@@ -15,20 +15,36 @@ public class FootSteps : MonoBehaviour
     public AudioClip swordAttFour;
     public AudioClip heavyAttOne;
     public AudioClip heavyAttTwo;
-
+    private Transform player;
+    float distVolume;
+    float distance;
     private AudioSource audioSource;
     //private TerrainDetector terrainDetector;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        player = GameObject.Find("Character_Hero_Knight_Male").transform;
         //terrainDetector = new TerrainDetector();
     }
 
     private void Step()
     {
         AudioClip clip = GetRandomStep();
-        audioSource.PlayOneShot(clip);
+        if (!gameObject.name.Equals("Character_Hero_Knight_Male")) {
+            distance = Vector3.Distance(transform.position, player.position);
+            if (distance <= 6)
+                distVolume = 1;
+            else if (distance > 6 && distance <= 12)
+                distVolume = 0.7f;
+            else if (distance > 12 && distance <= 18)
+                distVolume = 0.3f;
+            else if (distance > 18)
+                distVolume = 0;
+            audioSource.PlayOneShot(clip,distVolume);
+        }
+        else
+            audioSource.PlayOneShot(clip);
     }
 
     private AudioClip GetRandomStep()
@@ -55,7 +71,7 @@ public class FootSteps : MonoBehaviour
     private void Sword()
     {
         AudioClip clip = GetRandomSwordSnd();
-        audioSource.PlayOneShot(clip);
+        audioSource.PlayOneShot(clip,0.1f);
     }
 
     private AudioClip GetRandomSwordSnd()

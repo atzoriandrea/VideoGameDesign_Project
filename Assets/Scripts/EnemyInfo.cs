@@ -13,6 +13,10 @@ public class EnemyInfo : Controller {
     public AudioClip hit;
     public AudioClip hit2;
     public AudioClip hit3;
+    public AudioClip heavyhit;
+    public AudioClip heavyhit2;
+    public AudioClip heavyhit3;
+    public AudioClip heavyhit4;
     private AudioSource source;
     System.Random r;
     void Start()
@@ -32,13 +36,13 @@ public class EnemyInfo : Controller {
                 int random = r.Next(0,3);
                 switch (random) {
                     case 0:
-                        source.PlayOneShot(hit);
+                        source.PlayOneShot(hit, 0.1f);
                         break;
                     case 1:
-                        source.PlayOneShot(hit2);
+                        source.PlayOneShot(hit2, 0.1f);
                         break;
                     case 2:
-                        source.PlayOneShot(hit3);
+                        source.PlayOneShot(hit3, 0.1f);
                         break;
                 }
                 Hurt(other.gameObject.GetComponent<Sword>().damage);
@@ -46,6 +50,7 @@ public class EnemyInfo : Controller {
             }
             if (other.name.Equals("AlabardaCollider"))
             {
+                HeavySound();
                 Hurt(40);
             }
         }
@@ -91,6 +96,23 @@ public class EnemyInfo : Controller {
             }
         }
     }
-
+    private void HeavySound()
+    {
+        switch ((new System.Random()).Next(0, 4))
+        {
+            case 0:
+                source.PlayOneShot(heavyhit, 0.4f);
+                break;
+            case 1:
+                source.PlayOneShot(heavyhit2, 0.4f);
+                break;
+            case 2:
+                source.PlayOneShot(heavyhit3, 0.4f);
+                break;
+            case 3:
+                source.PlayOneShot(heavyhit4, 0.4f);
+                break;
+        }
+    }
 
 }

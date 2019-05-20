@@ -121,6 +121,7 @@ public class Inventory : MonoBehaviour {
                     }
                     break;
                 case 5:
+
                     if (player.health < player.maxHealth && player.apples > 0)
                     {
                         if ((player.health + 30) >= player.maxHealth)
@@ -129,6 +130,7 @@ public class Inventory : MonoBehaviour {
                             player.health = player.maxHealth;
                             player.apples--;
                         }
+
                         else
                         {
                             anim.SetTrigger("heal");
