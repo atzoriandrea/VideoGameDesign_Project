@@ -49,7 +49,6 @@ public class SkyBoxCtrl : MonoBehaviour {
                 StartCoroutine("changeToSkyOne");
             }
         }
-        Debug.Log(scene);
     }
     
           

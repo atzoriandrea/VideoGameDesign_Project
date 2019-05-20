@@ -96,9 +96,9 @@ public class CombatSystem : MonoBehaviour
             
             i++;
         }
-        if (boss.GetComponent<EnemyInfo>()._health <= 0 && !bossTwo.active)
+        if (boss.GetComponent<EnemyInfo>()._health <= 0 && !bossTwo.activeSelf)
             enemies.Add(bossTwo);
-        if (readytoAttack.Count > 0 && !pauseMenu.active)
+        if (readytoAttack.Count > 0 && !pauseMenu.activeSelf)
             comandi.SetActive(true);
         else
             comandi.SetActive(false);
@@ -115,7 +115,6 @@ public class CombatSystem : MonoBehaviour
             }
             else
             {
-                //weapon = tr.Find("Root").Find("Hips").Find("Spine_01").Find("Spine_02").Find("Spine_03").Find("Clavicle_R").Find("Shoulder_R").Find("Elbow_R").Find("Hand_R").Find("Thumb_01 1").Find("Arma").gameObject;
                 anim.SetTrigger("swordattack");
                 tr = null;
             }
