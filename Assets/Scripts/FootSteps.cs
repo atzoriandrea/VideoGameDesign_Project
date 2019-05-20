@@ -15,6 +15,7 @@ public class FootSteps : MonoBehaviour
     public AudioClip swordAttFour;
     public AudioClip heavyAttOne;
     public AudioClip heavyAttTwo;
+    public AudioClip eat, drink, jump;
     private Transform player;
     float distVolume;
     float distance;
@@ -99,5 +100,15 @@ public class FootSteps : MonoBehaviour
             }
         }
 
+    }
+    private void Eat()
+    {
+        if (Inventory.selected == 5)
+            audioSource.PlayOneShot(eat, 0.6f);
+        if (Inventory.selected == 4)
+            audioSource.PlayOneShot(drink, 1);
+    }
+    private void Jump() {
+        audioSource.PlayOneShot(jump);
     }
 }

@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject inventory;
     public GameObject healthBar;
     public AudioSource myAudio;
+    public GameObject comandi;
     public Slider Volume;
     // Update is called once per frame
     void Update()
@@ -55,6 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        comandi.SetActive(false);
         pauseMenuUI.SetActive(true);
         player.SetActive(false);
         inventory.SetActive(false);

@@ -13,6 +13,9 @@ public class Inventory : MonoBehaviour {
     public Animator anim;
     public GameObject freccia;
     public Camera cam;
+    public GameObject mirino;
+    //private AudioSource audioSource;
+    
     //public static int selected;
     bool sparato;
     public GameObject balestra;
@@ -34,7 +37,7 @@ public class Inventory : MonoBehaviour {
         bendages = GameObject.Find("LifePoints").GetComponent<Image>();
         ben = bendages.color;
         source = balestra.GetComponent<AudioSource>();
-
+        //audioSource = GameObject.Find("Character_Hero_Knight_Male").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -75,7 +78,10 @@ public class Inventory : MonoBehaviour {
         if (selected == 2 && player.arrow > 0)
         {
             if (Input.GetMouseButton(1))
+            {
                 anim.SetBool("shoot", true);
+                mirino.SetActive(true);
+            }
             if (newBullet == null)
             {
                 sparato = false;
@@ -102,9 +108,12 @@ public class Inventory : MonoBehaviour {
             if(newBullet!=null)
                 newBullet.SetActive(false);
         }
-        
+
         if (Input.GetMouseButtonUp(1) || selected != 2)
+        {
             anim.SetBool("shoot", false);
+            mirino.SetActive(false);
+        }
 
         if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      
             switch (selected)
@@ -219,4 +228,6 @@ public class Inventory : MonoBehaviour {
             return true;
         return false;
     }
+
+   
 }

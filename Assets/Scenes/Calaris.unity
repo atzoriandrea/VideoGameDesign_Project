@@ -1610,7 +1610,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 117112919}
   m_LocalRotation: {x: 0.20842558, y: 0.12780066, z: 0.027481606, w: -0.9692629}
-  m_LocalPosition: {x: 336.02902, y: -10.732406, z: 609.31287}
+  m_LocalPosition: {x: 223.62595, y: -6.3047824, z: 732.3582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6608,6 +6608,9 @@ MonoBehaviour:
   swordAttFour: {fileID: 8300000, guid: 80786b300adf6754e97c59c84fa0d9bc, type: 3}
   heavyAttOne: {fileID: 8300000, guid: fb9e4d3fcb8265d4e874762753947a84, type: 3}
   heavyAttTwo: {fileID: 8300000, guid: efcbafda31e619549a43a7e3d1e808a7, type: 3}
+  eat: {fileID: 0}
+  drink: {fileID: 0}
+  jump: {fileID: 0}
 --- !u!1 &398698694
 GameObject:
   m_ObjectHideFlags: 0
@@ -16598,6 +16601,7 @@ MonoBehaviour:
   inventory: {fileID: 2047556952}
   healthBar: {fileID: 30830250}
   myAudio: {fileID: 0}
+  comandi: {fileID: 1971189220}
   Volume: {fileID: 114905447}
 --- !u!222 &923611423
 CanvasRenderer:
@@ -20948,6 +20952,9 @@ MonoBehaviour:
   swordAttFour: {fileID: 8300000, guid: 80786b300adf6754e97c59c84fa0d9bc, type: 3}
   heavyAttOne: {fileID: 8300000, guid: fb9e4d3fcb8265d4e874762753947a84, type: 3}
   heavyAttTwo: {fileID: 8300000, guid: efcbafda31e619549a43a7e3d1e808a7, type: 3}
+  eat: {fileID: 0}
+  drink: {fileID: 0}
+  jump: {fileID: 0}
 --- !u!4 &1122598188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407694, guid: a7dd0ffd8472e9d4cb4fc02ed478e67d,
@@ -21670,13 +21677,13 @@ MonoBehaviour:
   player: {fileID: 1479885938}
   playerController: {fileID: 1479885942}
   lastEnemy2: {fileID: 2114374497}
-  hit: {fileID: 0}
-  hit2: {fileID: 0}
-  hit3: {fileID: 0}
-  heavyhit: {fileID: 0}
-  heavyhit2: {fileID: 0}
-  heavyhit3: {fileID: 0}
-  heavyhit4: {fileID: 0}
+  hit: {fileID: 8300000, guid: 92a63afec5787624cb8ef795b248bb86, type: 3}
+  hit2: {fileID: 8300000, guid: f4ffb3ca4958737489b3269b9fef0953, type: 3}
+  hit3: {fileID: 8300000, guid: ff7d3d79bddb5b94d85f650391fb0a91, type: 3}
+  heavyhit: {fileID: 8300000, guid: 7f31515f1655de846b8461917108da73, type: 3}
+  heavyhit2: {fileID: 8300000, guid: 6cac6a74c52a2354bbd868c439ef0982, type: 3}
+  heavyhit3: {fileID: 8300000, guid: 3d9fa6cca3748444c916dd853f36ed45, type: 3}
+  heavyhit4: {fileID: 8300000, guid: abedeeb3e4ed2354db7b5d244f98b36d, type: 3}
 --- !u!114 &1152808254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27603,6 +27610,9 @@ MonoBehaviour:
   swordAttFour: {fileID: 8300000, guid: 80786b300adf6754e97c59c84fa0d9bc, type: 3}
   heavyAttOne: {fileID: 8300000, guid: fb9e4d3fcb8265d4e874762753947a84, type: 3}
   heavyAttTwo: {fileID: 8300000, guid: efcbafda31e619549a43a7e3d1e808a7, type: 3}
+  eat: {fileID: 8300000, guid: 19e82e7a6ed5005479ba4f0bb2307219, type: 3}
+  drink: {fileID: 8300000, guid: 20e915284d988bd40a400cc5181cc8e9, type: 3}
+  jump: {fileID: 8300000, guid: 443c6d9b72d5a5748af0e12446afa34a, type: 3}
 --- !u!1001 &1490649223
 Prefab:
   m_ObjectHideFlags: 0
@@ -30806,7 +30816,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1675950252}
   m_LocalRotation: {x: 0.20842558, y: 0.12780066, z: 0.027481606, w: -0.9692629}
-  m_LocalPosition: {x: 336.02902, y: -10.732406, z: 609.31287}
+  m_LocalPosition: {x: 223.62595, y: -6.3047824, z: 732.3582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -37185,6 +37195,7 @@ MonoBehaviour:
   anim: {fileID: 1479885943}
   freccia: {fileID: 1554003123942898, guid: 5d22c0e4fa74e514b874793bfedabacc, type: 2}
   cam: {fileID: 1360980957}
+  mirino: {fileID: 0}
   balestra: {fileID: 206400271}
   sparo: {fileID: 8300000, guid: b0a029ff58301de4095287c7ccb78c1d, type: 3}
   player: {fileID: 1479885938}
@@ -39520,13 +39531,13 @@ MonoBehaviour:
   player: {fileID: 1479885938}
   playerController: {fileID: 1479885942}
   lastEnemy2: {fileID: 0}
-  hit: {fileID: 0}
-  hit2: {fileID: 0}
-  hit3: {fileID: 0}
-  heavyhit: {fileID: 0}
-  heavyhit2: {fileID: 0}
-  heavyhit3: {fileID: 0}
-  heavyhit4: {fileID: 0}
+  hit: {fileID: 8300000, guid: 92a63afec5787624cb8ef795b248bb86, type: 3}
+  hit2: {fileID: 8300000, guid: f4ffb3ca4958737489b3269b9fef0953, type: 3}
+  hit3: {fileID: 8300000, guid: ff7d3d79bddb5b94d85f650391fb0a91, type: 3}
+  heavyhit: {fileID: 8300000, guid: 7f31515f1655de846b8461917108da73, type: 3}
+  heavyhit2: {fileID: 8300000, guid: 6cac6a74c52a2354bbd868c439ef0982, type: 3}
+  heavyhit3: {fileID: 8300000, guid: 3d9fa6cca3748444c916dd853f36ed45, type: 3}
+  heavyhit4: {fileID: 8300000, guid: abedeeb3e4ed2354db7b5d244f98b36d, type: 3}
 --- !u!114 &2114374500
 MonoBehaviour:
   m_ObjectHideFlags: 0
