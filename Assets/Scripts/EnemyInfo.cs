@@ -97,10 +97,14 @@ public class EnemyInfo : Controller {
                 anim.SetBool("isDead", true);
                 _enemyCont.height = 0;
                 _enemyCont.radius = 0;
-                playerController.GetExperience(15);
+                if(gameObject.tag.Equals("Standard"))
+                    playerController.GetExperience(15);
+                if (gameObject.tag.Equals("Bruto"))
+                    playerController.GetExperience(35);
+                if (gameObject.tag.Equals("Agile"))
+                    playerController.GetExperience(22);
                 GetComponent<CharacterController>().enabled = false;
                 GetComponent<NavMeshAgent>().enabled = false;
-                //GetComponent<EnemyInfo>().enabled = false;
                 GetComponent<EnemyControllerStd>().enabled = false;
             }
         }

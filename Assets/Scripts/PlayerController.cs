@@ -168,9 +168,11 @@ public class PlayerController : MonoBehaviour
 
         if(player.experience >= player.limitExperience)
         {
+            float tempExp = player.limitExperience;
             player.level++;
-            player.limitExperience += 20;
-            player.experience = 0;
+            player.limitExperience += 10;
+            player.experience = player.experience - tempExp;
+
         }
 
         _firstExperience = GetFirstExperience();
@@ -212,8 +214,10 @@ public class PlayerController : MonoBehaviour
     public void GetExperience(float exp)
     {
         player.experience += exp;
-        float n = player.experience / player.limitExperience;
-        experienceBar.fillAmount = n;
+        if (player.experience > player.limitExperience)
+            experienceBar.fillAmount = (player.experience - player.limitExperience)/ player.limitExperience;
+        else
+            experienceBar.fillAmount = player.experience / player.limitExperience; 
     }
 
     private void Print_Arrows_Potions_Apples_Quantity()
