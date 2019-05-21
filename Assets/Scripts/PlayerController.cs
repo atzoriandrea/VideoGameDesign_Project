@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
-
+using System.Collections;
 
 using UnityEngine.UI;
 
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool _crouch;
     public bool attacking;
     public Player player;
+    public GameObject bodyLight, swordLight;
     private float _firstHealt;
     private float _firstExperience;
     private CharacterController _charCont;
@@ -321,6 +322,7 @@ public class PlayerController : MonoBehaviour
 
 
             }
+            
         }
         else if (other.gameObject.tag.Equals("PowerUp"))
         {
@@ -335,6 +337,7 @@ public class PlayerController : MonoBehaviour
                             player.maxHealth += 25;
                             _firstHealt = player.maxHealth;
                             Destroy(other.gameObject);
+                            StartCoroutine("bodyAnim");
                         }
                         break;
                     case "PowerUp_Spada":
@@ -343,10 +346,11 @@ public class PlayerController : MonoBehaviour
                             sword.damage += 5;
                             sword.level++;
                             Destroy(other.gameObject);
-
+                            StartCoroutine("swordAnim");
                         }
                         break;
                 }
+
             }
         }
 
@@ -381,6 +385,78 @@ public class PlayerController : MonoBehaviour
             wall2.SetActive(false);
         if (player.keys[2] && player.level >= 12)
             wall3.SetActive(false);
+    }
+    IEnumerator swordAnim()
+    {
+        bool up = true;
+        bool done = false;
+        Light luce = swordLight.GetComponent<Light>();
+        while (!done)
+        {
+            if (up)
+            {
+                if (luce.intensity < 20)
+                {
+                    luce.intensity += 4f;
+                }
+                if (luce.intensity >= 20)
+                {
+                    //source.clip = scene4;
+                    //source.Play();
+                    up = false;
+                }
+            }
+            else
+            {
+                if (luce.intensity > 0)
+                {
+                    luce.intensity -= 15f;
+                }
+                else if (luce.intensity <= 0)
+                {
+                    done = true;
+                }
+
+            }
+            yield return null;
+        }
+
+    }
+    IEnumerator bodyAnim()
+    {
+        bool up = true;
+        bool done = false;
+        Light luce = bodyLight.GetComponent<Light>();
+        while (!done)
+        {
+            if (up)
+            {
+                if (luce.intensity < 20)
+                {
+                    luce.intensity += 4f;
+                }
+                if (luce.intensity >= 20)
+                {
+                    //source.clip = scene4;
+                    //source.Play();
+                    up = false;
+                }
+            }
+            else
+            {
+                if (luce.intensity > 0)
+                {
+                    luce.intensity -= 15f;
+                }
+                else if (luce.intensity <= 0)
+                {
+                    done = true;
+                }
+
+            }
+            yield return null;
+        }
+
     }
 }
 
