@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
         apples = data.apples;
         potions = data.potions;
         maxHealth = data.maxHealth;
+        keys = data.keys;
 
         transform.position = position;
     }

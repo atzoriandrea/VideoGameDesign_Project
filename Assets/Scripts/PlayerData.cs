@@ -14,6 +14,7 @@ public class PlayerData
     public float arrow;
     public int apples;
     public int potions;
+    public bool[] keys;
 
     public PlayerData(Player player)
     {
@@ -25,6 +26,7 @@ public class PlayerData
         apples = player.apples;
         potions = player.potions;
         maxHealth = player.maxHealth;
+        keys = player.keys;
         
 
         position = new float[3];

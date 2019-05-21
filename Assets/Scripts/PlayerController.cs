@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
         Print_Arrows_Potions_Apples_Quantity();
 
+
+
         if (Input.GetKeyDown(KeyCode.C)) {
             _crouch = !_crouch;
             anim.SetBool("crouch", _crouch);
@@ -351,5 +353,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(false);
         }
     }
+
+
 }
 
