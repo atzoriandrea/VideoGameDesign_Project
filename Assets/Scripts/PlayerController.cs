@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
-
+using System.Collections;
 
 using UnityEngine.UI;
 
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool _crouch;
     public bool attacking;
     public Player player;
+    public GameObject bodyLight, swordLight;
     private float _firstHealt;
     private float _firstExperience;
     private CharacterController _charCont;
@@ -307,21 +308,25 @@ public class PlayerController : MonoBehaviour
                         player.keys[0] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 1^ chiave";
                         wall1.SetActive(false);
+                        Destroy(other.gameObject);
                         break;
                     case "Key2":
                         player.keys[1] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 2^ chiave";
                         wall2.SetActive(false);
+                        Destroy(other.gameObject);
                         break;
                     case "Key3":
                         player.keys[2] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 3^ chiave";
                         wall3.SetActive(false);
+                        Destroy(other.gameObject);
                         break;
                 }
 
 
             }
+            
         }
         else if (other.gameObject.tag.Equals("PowerUp"))
         {
@@ -334,13 +339,16 @@ public class PlayerController : MonoBehaviour
                         player.maxHealth += 25;
                         _firstHealt = player.maxHealth;
                         Destroy(other.gameObject);
+                        StartCoroutine("bodyAnim");
                         break;
                     case "PowerUp_Spada":
                         sword.damage += 5;
                         sword.level++;
+                        StartCoroutine("swordAnim");
                         Destroy(other.gameObject);
                         break;
                 }
+
             }
         }
 
@@ -364,6 +372,78 @@ public class PlayerController : MonoBehaviour
             wall2.SetActive(false);
         if (player.keys[2])
             wall3.SetActive(false);
+    }
+    IEnumerator swordAnim()
+    {
+        bool up = true;
+        bool done = false;
+        Light luce = swordLight.GetComponent<Light>();
+        while (!done)
+        {
+            if (up)
+            {
+                if (luce.intensity < 20)
+                {
+                    luce.intensity += 4f;
+                }
+                if (luce.intensity >= 20)
+                {
+                    //source.clip = scene4;
+                    //source.Play();
+                    up = false;
+                }
+            }
+            else
+            {
+                if (luce.intensity > 0)
+                {
+                    luce.intensity -= 15f;
+                }
+                else if (luce.intensity <= 0)
+                {
+                    done = true;
+                }
+
+            }
+            yield return null;
+        }
+
+    }
+    IEnumerator bodyAnim()
+    {
+        bool up = true;
+        bool done = false;
+        Light luce = bodyLight.GetComponent<Light>();
+        while (!done)
+        {
+            if (up)
+            {
+                if (luce.intensity < 20)
+                {
+                    luce.intensity += 4f;
+                }
+                if (luce.intensity >= 20)
+                {
+                    //source.clip = scene4;
+                    //source.Play();
+                    up = false;
+                }
+            }
+            else
+            {
+                if (luce.intensity > 0)
+                {
+                    luce.intensity -= 15f;
+                }
+                else if (luce.intensity <= 0)
+                {
+                    done = true;
+                }
+
+            }
+            yield return null;
+        }
+
     }
 }
 
