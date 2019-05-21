@@ -99,7 +99,7 @@ public class Inventory : MonoBehaviour {
                 sparato = true;
                 //Debug.Log("sparato");
                 newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.right * -20, ForceMode.Impulse);
-                source.PlayOneShot(sparo);
+                source.PlayOneShot(sparo,0.6f);
                 player.arrow--;
                 newBullet = null;
             }

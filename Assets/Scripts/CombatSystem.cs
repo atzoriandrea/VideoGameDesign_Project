@@ -35,6 +35,7 @@ public class CombatSystem : MonoBehaviour
     public AudioClip hit3;
     public GameObject comandi;
     private AudioSource source;
+    private ArrayList morti; 
     // Use this for initialization
     void Start()
     {
@@ -49,7 +50,7 @@ public class CombatSystem : MonoBehaviour
         temp3 = new ArrayList(GameObject.FindGameObjectsWithTag("Bruto"));
         boss = GameObject.Find("LastEnemyLv1");
         bossTwo = GameObject.Find("LastEnemyLv2") ;
-        bossTwo.SetActive(false);
+        
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
         source = GetComponent<AudioSource>();
 
@@ -60,7 +61,9 @@ public class CombatSystem : MonoBehaviour
         foreach (GameObject e in temp1)
             enemies.Add(e);
         enemies.Add(boss);
-        
+        enemies.Add(bossTwo);
+        bossTwo.SetActive(false);
+
     }
     // Update is called once per frame
     void Update()
@@ -68,12 +71,18 @@ public class CombatSystem : MonoBehaviour
         //Debug.Log(enemies.Count);
         i = 0;
         nearest = 999;
-        checkAlive = new ArrayList();
+        
         readytoAttack = null;
         readytoAttack = new ArrayList();
+        if (morti != null && morti.Count > 0)
+        {
+            foreach (GameObject dead in morti)
+                enemies.Remove(dead);
+        }
+        morti = new ArrayList();
         foreach (GameObject cop in enemies)
         {
-            if (cop.GetComponent<EnemyControllerStd>().ready && cop.GetComponent<EnemyInfo>()._health > 0 && cop.GetComponent<EnemyControllerStd>().onScreen)
+            if (cop.GetComponent<EnemyControllerStd>().ready && cop.GetComponent<EnemyInfo>()._health > 0 && cop.GetComponent<EnemyControllerStd>().onScreen && cop.activeSelf)
             {
                 readytoAttack.Add(i);
                 distance = Vector3.Distance(cop.transform.position, player.position);
@@ -92,12 +101,16 @@ public class CombatSystem : MonoBehaviour
                         selected = cop.GetComponent<EnemyControllerStd>();
                     }
                 }
-            }   
-            
+                
+            }
+            if (cop.GetComponent<EnemyInfo>()._health <= 0)
+            {
+                morti.Add(cop);
+                cop.GetComponent<EnemyInfo>().enabled = false;
+            }
             i++;
         }
-        if (boss.GetComponent<EnemyInfo>()._health <= 0 && !bossTwo.activeSelf)
-            enemies.Add(bossTwo);
+        
         if (readytoAttack.Count > 0 && !pauseMenu.activeSelf)
             comandi.SetActive(true);
         else

@@ -19,12 +19,12 @@ public class GameOver : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(player.health <= 0f)
+		if(player.health <= 0f )
         {
 
             Canvas.SetActive(false);
             anim.SetTrigger("GameOver");
-            anim.SetBool("GameOver", true);
+            //anim.SetBool("GameOver", true);
             giocatore.SetActive(false);
 
         }
@@ -33,6 +33,8 @@ public class GameOver : MonoBehaviour {
     public void LoadGame()
     {
         Canvas.SetActive(true);
+        //anim.SetBool("GameOver", false);
+        anim.ResetTrigger("GameOver");
         anim.SetTrigger("load");
     }
 

@@ -32,7 +32,7 @@ public class SkyBoxCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         t = GetComponent<Transform>();
-        if (t.position.x > 450)
+        if (t.position.x > 342 && t.position.z > 744)
         {  
             if (scene != 2)
             {
@@ -40,13 +40,31 @@ public class SkyBoxCtrl : MonoBehaviour {
                 StartCoroutine("changeToSkyTwo");
             }
         }
-        if (t.position.x <= 450)
+        if (t.position.x <= 342 && t.position.z >= 838)
         {
             
             if (scene != 1)
             {
                 scene = 1; 
                 StartCoroutine("changeToSkyOne");
+            }
+        }
+        if (t.position.x > 300 && t.position.z < 730)
+        {
+
+            if (scene != 3)
+            {
+                scene = 3;
+                StartCoroutine("changeToSkyThree");
+            }
+        }
+        if (t.position.x <= 300 && t.position.z < 815)
+        {
+
+            if (scene != 4)
+            {
+                scene = 4;
+                StartCoroutine("changeToSkyFour");
             }
         }
     }
@@ -123,6 +141,86 @@ public class SkyBoxCtrl : MonoBehaviour {
                     lt.intensity = 0;
                 }
                 else if(flash.intensity <= 0)
+                {
+                    done = true;
+                }
+
+            }
+            yield return null;
+        }
+
+    }
+    IEnumerator changeToSkyThree()
+    {
+        bool up = true;
+        bool done = false;
+
+        while (!done)
+        {
+            if (up)
+            {
+                if (flash.intensity < 100)
+                {
+                    flash.intensity += 15f;
+                    lt.intensity = 1;
+                }
+                if (flash.intensity >= 100)
+                {
+                    source.clip = scene3;
+                    source.Play();
+                    RenderSettings.skybox = sky3;
+                    source.PlayOneShot(thunder, 1f);
+                    up = false;
+                }
+            }
+            else
+            {
+                if (flash.intensity > 0)
+                {
+                    flash.intensity -= 15f;
+                    lt.intensity = 1;
+                }
+                else if (flash.intensity <= 0)
+                {
+                    done = true;
+                }
+
+            }
+            yield return null;
+        }
+
+    }
+    IEnumerator changeToSkyFour()
+    {
+        bool up = true;
+        bool done = false;
+
+        while (!done)
+        {
+            if (up)
+            {
+                if (flash.intensity < 100)
+                {
+                    flash.intensity += 15f;
+                    lt.intensity = 1;
+                }
+                if (flash.intensity >= 100)
+                {
+                    source.clip = scene4;
+                    source.Play();
+                    RenderSettings.skybox = sky4;
+                    source.PlayOneShot(thunder, 1f);
+                    up = false;
+                }
+            }
+            else
+            {
+                if (flash.intensity > 0)
+                {
+                    flash.intensity -= 15f;
+                    lt.intensity = 1;
+                }
+                else if (flash.intensity <= 0)
                 {
                     done = true;
                 }

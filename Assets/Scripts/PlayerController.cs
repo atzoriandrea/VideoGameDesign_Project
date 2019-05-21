@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+       
         _charCont = GetComponent<CharacterController>();
         JumpForce = 5.0f;
         _speed = 2f;
@@ -350,6 +351,15 @@ public class PlayerController : MonoBehaviour
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Raccogli (F)";
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(false);
         }
+    }
+    public void GameLoaded()
+    {
+        if (player.keys[0])
+            wall1.SetActive(false);
+        if (player.keys[1])
+            wall2.SetActive(false);
+        if (player.keys[2])
+            wall3.SetActive(false);
     }
 }
 

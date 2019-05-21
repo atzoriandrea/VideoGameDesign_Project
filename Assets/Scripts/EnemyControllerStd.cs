@@ -68,7 +68,7 @@ public class EnemyControllerStd : Controller{
                 navmesh.speed = 1;
                 ready = false;
             }
-            else if (distance < walkingDistance * 8 && distance > walkingDistance)
+            else if (distance < walkingDistance * 5 && distance > walkingDistance)
             {
                 navmesh.speed = 1;
                 transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
