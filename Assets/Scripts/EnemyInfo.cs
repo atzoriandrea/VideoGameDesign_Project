@@ -67,7 +67,7 @@ public class EnemyInfo : Controller {
     {
         if (this.tag.Equals("Boss"))
         {
-            this.GetComponent<LastEnemy>().health -= (damage/2);
+            this.GetComponent<LastEnemy>().health -= damage;
             if (this.GetComponent<LastEnemy>().health <= 0)
             {
                 anim.SetTrigger("death");
@@ -79,7 +79,7 @@ public class EnemyInfo : Controller {
         }
         else if (this.tag.Equals("Boss2"))
         {
-            this.GetComponent<LastEnemyV2>().health -= (damage/2);
+            this.GetComponent<LastEnemyV2>().health -= damage;
             if (this.GetComponent<LastEnemyV2>().health <= 0)
             {
                 anim.SetTrigger("death");
@@ -97,10 +97,14 @@ public class EnemyInfo : Controller {
                 anim.SetBool("isDead", true);
                 _enemyCont.height = 0;
                 _enemyCont.radius = 0;
-                playerController.GetExperience(15);
+                if(gameObject.tag.Equals("Standard"))
+                    playerController.GetExperience(15);
+                if (gameObject.tag.Equals("Bruto"))
+                    playerController.GetExperience(35);
+                if (gameObject.tag.Equals("Agile"))
+                    playerController.GetExperience(22);
                 GetComponent<CharacterController>().enabled = false;
                 GetComponent<NavMeshAgent>().enabled = false;
-                //GetComponent<EnemyInfo>().enabled = false;
                 GetComponent<EnemyControllerStd>().enabled = false;
             }
         }

@@ -991,11 +991,11 @@ GameObject:
   - component: {fileID: 111000423797387324}
   - component: {fileID: 143372128751669042}
   - component: {fileID: 114814497786646106}
-  - component: {fileID: 114263491157741992}
   - component: {fileID: 195325800066218916}
   - component: {fileID: 82053430934325340}
   - component: {fileID: 114122587906785052}
   - component: {fileID: 23459342731565760}
+  - component: {fileID: 114566386946139310}
   m_Layer: 0
   m_Name: Brute
   m_TagString: Bruto
@@ -2188,7 +2188,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1843601365859416}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 63.97, y: -0.05, z: 897.9812}
+  m_LocalPosition: {x: 63.97, y: -0.05, z: 927.368}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 4636541813160304}
@@ -3100,7 +3100,7 @@ MonoBehaviour:
   eat: {fileID: 0}
   drink: {fileID: 0}
   jump: {fileID: 0}
---- !u!114 &114263491157741992
+--- !u!114 &114566386946139310
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3112,9 +3112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready: 0
-  _health: 150
+  _health: 100
   move: 0
-  damage: 12
+  damage: 8
   onScreen: 0
   player: {fileID: 0}
   playerController: {fileID: 0}
@@ -3126,6 +3126,7 @@ MonoBehaviour:
   heavyhit2: {fileID: 8300000, guid: 6cac6a74c52a2354bbd868c439ef0982, type: 3}
   heavyhit3: {fileID: 8300000, guid: 3d9fa6cca3748444c916dd853f36ed45, type: 3}
   heavyhit4: {fileID: 8300000, guid: abedeeb3e4ed2354db7b5d244f98b36d, type: 3}
+  darthit: {fileID: 8300000, guid: 66174467e0ddc4a4c99a93160f8bf2b4, type: 3}
 --- !u!114 &114814497786646106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3140,7 +3141,7 @@ MonoBehaviour:
   ready: 0
   _health: 150
   move: 0
-  damage: 12
+  damage: 10
   onScreen: 0
   player: {fileID: 0}
   walkingDistance: 10

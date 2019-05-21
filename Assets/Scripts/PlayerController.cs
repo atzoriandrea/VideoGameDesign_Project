@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PrintHealthAndExperience();
-
+        CheckKeys();
         Print_Arrows_Potions_Apples_Quantity();
 
 
@@ -170,9 +170,11 @@ public class PlayerController : MonoBehaviour
 
         if(player.experience >= player.limitExperience)
         {
+            float tempExp = player.limitExperience;
             player.level++;
-            player.limitExperience += 20;
-            player.experience = 0;
+            player.limitExperience += 10;
+            player.experience = player.experience - tempExp;
+
         }
 
         _firstExperience = GetFirstExperience();
@@ -214,8 +216,10 @@ public class PlayerController : MonoBehaviour
     public void GetExperience(float exp)
     {
         player.experience += exp;
-        float n = player.experience / player.limitExperience;
-        experienceBar.fillAmount = n;
+        if (player.experience > player.limitExperience)
+            experienceBar.fillAmount = (player.experience - player.limitExperience)/ player.limitExperience;
+        else
+            experienceBar.fillAmount = player.experience / player.limitExperience; 
     }
 
     private void Print_Arrows_Potions_Apples_Quantity()
@@ -304,17 +308,14 @@ public class PlayerController : MonoBehaviour
                     case "Key1":
                         player.keys[0] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 1^ chiave";
-                        wall1.SetActive(false);
                         break;
                     case "Key2":
                         player.keys[1] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 2^ chiave";
-                        wall2.SetActive(false);
                         break;
                     case "Key3":
                         player.keys[2] = true;
                         other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Hai Raccolto la 3^ chiave";
-                        wall3.SetActive(false);
                         break;
                 }
 
@@ -364,11 +365,21 @@ public class PlayerController : MonoBehaviour
     }
     public void GameLoaded()
     {
-        if (player.keys[0])
+        if (player.keys[0] && player.level >= 5)
             wall1.SetActive(false);
-        if (player.keys[1])
+        if (player.keys[1] && player.level >= 9)
             wall2.SetActive(false);
-        if (player.keys[2])
+        if (player.keys[2] && player.level >= 12)
+            wall3.SetActive(false);
+    }
+
+    public void CheckKeys()
+    {
+        if(player.keys[0] && player.level >= 5)
+            wall1.SetActive(false);
+        if (player.keys[1] && player.level >= 9)
+            wall2.SetActive(false);
+        if (player.keys[2] && player.level >= 12)
             wall3.SetActive(false);
     }
 }

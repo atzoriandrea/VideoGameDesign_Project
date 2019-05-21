@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour {
+public class Winner : MonoBehaviour {
+
 
     public GameObject Canvas;
-    public Player player;
     private Animator anim;
     public GameObject giocatore;
-    public GameObject win;
-
+    public LastEnemyV2 lastEnemy;
+    public GameObject gameOver;
 
     private void Start()
     {
@@ -18,28 +18,22 @@ public class GameOver : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-		if(player.health <= 0f )
+    void Update()
+    {
+        if (lastEnemy.health <= 0f)
         {
-            win.SetActive(false);
+            gameOver.SetActive(false);
             Canvas.SetActive(false);
-            anim.SetTrigger("GameOver");
+            anim.SetTrigger("Winner");
             giocatore.SetActive(false);
 
         }
-    }
-
-    public void LoadGame()
-    {
-        win.SetActive(true);
-        Canvas.SetActive(true);
-        anim.ResetTrigger("GameOver");
-        anim.SetTrigger("load");
     }
 
     public void TerminaPartita()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
 
 }
