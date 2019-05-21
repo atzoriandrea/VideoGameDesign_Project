@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+       
         _charCont = GetComponent<CharacterController>();
         JumpForce = 5.0f;
         _speed = 2f;
@@ -247,10 +248,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag.Equals("Ammo"))
         {
-            if (player.arrow < 10)
+            if (player.arrow < 30)
             {
-                if (player.arrow + 3 > 10)
-                    player.arrow = 10;
+                if (player.arrow + 3 > 30)
+                    player.arrow = 30;
                 else
                     player.arrow += 3;
                 Destroy(other.gameObject);
@@ -263,7 +264,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.F))
             {
-                if (player.apples < 10)
+                if (player.apples < 5)
                 {
                     anim.SetTrigger("raccogli");
                     player.apples += 1;
@@ -328,14 +329,21 @@ public class PlayerController : MonoBehaviour
                 switch (other.gameObject.name)
                 {
                     case "PowerUp_Res":
-                        player.maxHealth += 25;
-                        _firstHealt = player.maxHealth;
-                        Destroy(other.gameObject);
+                        if (player.maxHealth < 175)
+                        {
+                            player.maxHealth += 25;
+                            _firstHealt = player.maxHealth;
+                            Destroy(other.gameObject);
+                        }
                         break;
                     case "PowerUp_Spada":
-                        sword.damage += 5;
-                        sword.level++;
-                        Destroy(other.gameObject);
+                        if (sword.damage < 50)
+                        {
+                            sword.damage += 5;
+                            sword.level++;
+                            Destroy(other.gameObject);
+
+                        }
                         break;
                 }
             }
@@ -352,8 +360,16 @@ public class PlayerController : MonoBehaviour
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.GetComponent<Transform>().Find("Image").gameObject.GetComponent<Transform>().Find("Text").GetComponent<Text>().text = "Raccogli (F)";
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(false);
         }
+
     }
-
-
+    public void GameLoaded()
+    {
+        if (player.keys[0])
+            wall1.SetActive(false);
+        if (player.keys[1])
+            wall2.SetActive(false);
+        if (player.keys[2])
+            wall3.SetActive(false);
+    }
 }
 

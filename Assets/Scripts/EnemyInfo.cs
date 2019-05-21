@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.AI;
 public class EnemyInfo : Controller {
 
     Animator anim;
@@ -17,8 +17,10 @@ public class EnemyInfo : Controller {
     public AudioClip heavyhit2;
     public AudioClip heavyhit3;
     public AudioClip heavyhit4;
+    public AudioClip darthit;
     private AudioSource source;
     System.Random r;
+
     void Start()
     {
         _enemyCont = GetComponent<CharacterController>();
@@ -54,8 +56,11 @@ public class EnemyInfo : Controller {
                 Hurt(40);
             }
         }
-        if(other.gameObject.tag.Equals("Arrow"))
+        if (other.gameObject.tag.Equals("Arrow"))
+        {
+            source.PlayOneShot(darthit, 0.6f);
             Hurt(20);
+        }
     }
    
     public void Hurt(int damage)
@@ -92,7 +97,11 @@ public class EnemyInfo : Controller {
                 anim.SetBool("isDead", true);
                 _enemyCont.height = 0;
                 _enemyCont.radius = 0;
-                playerController.GetExperience(3);
+                playerController.GetExperience(15);
+                GetComponent<CharacterController>().enabled = false;
+                GetComponent<NavMeshAgent>().enabled = false;
+                //GetComponent<EnemyInfo>().enabled = false;
+                GetComponent<EnemyControllerStd>().enabled = false;
             }
         }
     }

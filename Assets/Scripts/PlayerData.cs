@@ -27,7 +27,7 @@ public class PlayerData
         potions = player.potions;
         maxHealth = player.maxHealth;
         keys = player.keys;
-        
+
 
         position = new float[3];
         position[0] = player.transform.position.x;

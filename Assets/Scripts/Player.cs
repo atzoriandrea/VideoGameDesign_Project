@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour {
     public float arrow;
     public int apples;
     public int potions;
+    
+    public Text testoLivello;
 
     public bool[] keys = { false, false, false };
 
@@ -39,5 +42,8 @@ public class Player : MonoBehaviour {
 
         transform.position = position;
     }
-
+    private void Update()
+    {
+        testoLivello.GetComponent<Text>().text = level.ToString();
+    }
 }
