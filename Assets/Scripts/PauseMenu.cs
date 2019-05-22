@@ -58,6 +58,8 @@ public class PauseMenu : MonoBehaviour
         inventory.SetActive(false);
         ViewFinder.SetActive(false);
         healthBar.SetActive(false);
+        gameover.SetActive(false);
+        win.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -80,10 +82,9 @@ public class PauseMenu : MonoBehaviour
             //{
             File.Copy(filename, str, true);
             //}
-            Debug.Log(filename);
-            Debug.Log(str);
         }
 
     }
+
 
 }
