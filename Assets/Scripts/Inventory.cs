@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.Animations;
 
 public class Inventory : MonoBehaviour {
     public static int selected;
@@ -14,8 +11,7 @@ public class Inventory : MonoBehaviour {
     public GameObject freccia;
     public Camera cam;
     public GameObject mirino;
-    //private AudioSource audioSource;
-    
+
     //public static int selected;
     bool sparato;
     public GameObject balestra;
