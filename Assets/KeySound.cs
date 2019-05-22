@@ -28,6 +28,5 @@ public class KeySound : MonoBehaviour {
         else if (distance > 18)
             distVolume = 0;
         source.volume = distVolume;
-        Debug.Log(distance + " : " + distVolume);
     }
 }

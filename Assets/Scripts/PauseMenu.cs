@@ -66,7 +66,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        Debug.Log("Termina partita");
         Application.Quit();
     }
 

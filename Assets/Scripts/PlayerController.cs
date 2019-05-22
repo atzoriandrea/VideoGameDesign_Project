@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public bool attacking;
     public Player player;
     public GameObject bodyLight, swordLight;
-    private float _firstHealt;
     private float _firstExperience;
     private CharacterController _charCont;
     Vector3 movement;
@@ -39,8 +38,7 @@ public class PlayerController : MonoBehaviour
        
         _charCont = GetComponent<CharacterController>();
         JumpForce = 5.0f;
-        _speed = 2f;
-        _firstHealt = player.maxHealth;
+        _speed = 1.7f;
         _firstExperience = player.limitExperience;
         _crouch = false;
         anim = GetComponent<Animator>();
@@ -139,7 +137,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("runback", false);
             anim.SetBool("walking", false);
             anim.SetBool("running", true);
-            _speed = 4.5f;
+            _speed = 2.4f;
         }
         //Corsa all'indietro
         if (Input.GetKey(KeyCode.LeftShift) && deltaZ < 0)
@@ -152,14 +150,14 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("walking", false);
             anim.SetBool("walkback", false);
             anim.SetBool("runback", true);
-            _speed = 3.5f;
+            _speed = 2.4f;
         }
         //fine corsa
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             anim.SetBool("runback", false);
             anim.SetBool("running", false);
-            _speed = 2f;
+            _speed = 1.7f;
         }
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att")) {
             attacking = true;
@@ -199,8 +197,8 @@ public class PlayerController : MonoBehaviour
     {
         _experienceText = (int)player.experience;
         _healthText = (int)player.health;
-        healthBar.fillAmount = player.health / _firstHealt;
-        healthText.text = _healthText + "/" + _firstHealt;
+        healthBar.fillAmount = player.health / player.maxHealth;
+        healthText.text = _healthText + "/" + player.maxHealth;
         experienceText.text = _experienceText + "/" + _firstExperience;
     }
 
@@ -335,7 +333,6 @@ public class PlayerController : MonoBehaviour
                         if (player.maxHealth < 175)
                         {
                             player.maxHealth += 25;
-                            _firstHealt = player.maxHealth;
                             Destroy(other.gameObject);
                             StartCoroutine("bodyAnim");
                         }
