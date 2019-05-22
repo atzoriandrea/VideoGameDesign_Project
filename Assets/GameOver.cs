@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+/*In questa classe viene gestita la scena successiva alla morte del player.*/
 
 public class GameOver : MonoBehaviour {
 
@@ -19,6 +20,7 @@ public class GameOver : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //Quando il giocatore muore, viene attivato un trigger che avvia l'animazione per l'apparizione della schermata di gameover
 		if(player.health <= 0f )
         {
             win.SetActive(false);
@@ -28,7 +30,7 @@ public class GameOver : MonoBehaviour {
 
         }
     }
-
+    //Una volta comparsa la schermata, può decidere di ripartire dall'ultimo salvataggio o terminare la partita e tornare al menu principale.
     public void LoadGame()
     {
         win.SetActive(true);
@@ -39,7 +41,7 @@ public class GameOver : MonoBehaviour {
 
     public void TerminaPartita()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); //Torna al menu principale.
     }
 
 }

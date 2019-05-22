@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Classe dedicata al giocatore, gestisce il salvataggio e il caricamento di tutte i suoi dati.
 public class Player : MonoBehaviour {
 
     public int level;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour {
 
     public void LoadPlayer()
     {
+        //Il tipo player data viene deserializzato al caricamento e viene ripopolato il giocatore coi dati all'ultimo salvataggio
         PlayerData data = SaveSystem.LoadPlayer();
         level = data.level;
         health = data.health;
@@ -42,8 +44,9 @@ public class Player : MonoBehaviour {
 
         transform.position = position;
     }
+
     private void Update()
     {
-        testoLivello.GetComponent<Text>().text = level.ToString();
+        testoLivello.GetComponent<Text>().text = level.ToString(); //stampa il livello del player nel canvas principale.
     }
 }

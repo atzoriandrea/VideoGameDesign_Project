@@ -13,10 +13,7 @@ public class StartBoss : MonoBehaviour {
         boss.GetComponent<EnemyControllerStd>().stop = true;
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Equals("Character_Hero_Knight_Male")) {

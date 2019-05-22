@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -18,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Quando l'utente preme il tasto esc, si entra o si esce dal menù principale.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -33,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-
+    //In queste funzioni vengono gestiti tutti i pulsanti presenti nel menu di pausa.
     public void Resume()
     {
         gameover.SetActive(true);
@@ -48,6 +49,7 @@ public class PauseMenu : MonoBehaviour
 
     }
 
+    //Quando il gioco è in pausa vengono disattivati o attivati diversi game object per evitare collisioni all'interno del canvas.
     void Pause()
     {
         gameover.SetActive(false);
@@ -66,23 +68,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
-    }
-
-    public void Save()
-    {
-        string[] filePaths = Directory.GetFiles(Directory.GetCurrentDirectory() + "/Assets/Scenes/Calaris");
-        foreach (string filename in filePaths)
-        {
-            //Do your job with "file"
-            FileInfo fi = new FileInfo(filename);
-            string str = Directory.GetCurrentDirectory() + "/Assets/Scenes/Save/Save" + fi.Name;
-            //if (!File.Exists(str))
-            //{
-            File.Copy(filename, str, true);
-            //}
-        }
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1); //torna al menu principale
     }
 
 

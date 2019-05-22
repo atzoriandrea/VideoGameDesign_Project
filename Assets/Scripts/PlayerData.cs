@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
+//Classe utilizzata per ilsalvataggio dei dati del  player.
+[System.Serializable] //Rende i campi di questa classe serializzabili
 public class PlayerData 
 {
     public int level;

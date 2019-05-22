@@ -4,7 +4,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
 
 public static class SaveSystem {
-
+    /*Nella funzione SavePlayer viene creato un file in formato binario dove verranno salvati tutti i dati del giocatore,
+    del boss di primo livello e del boss di secondo livello, tramite degli oggetti serializzabili. 
+    tramite il persistent data path, i salvataggi verranno caricati nella directory prncipale, la quale esisterà sempre,
+    non ci sarà bisogno di dare un path differente a seconda della piattaforma utilizzata.*/
 	public static void SavePlayer(Player player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
