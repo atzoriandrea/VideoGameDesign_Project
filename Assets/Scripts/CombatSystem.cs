@@ -62,7 +62,7 @@ public class CombatSystem : MonoBehaviour
             enemies.Add(e);
         enemies.Add(boss);
         enemies.Add(bossTwo);
-        //bossTwo.SetActive(false);
+        bossTwo.SetActive(false);
 
     }
     // Update is called once per frame

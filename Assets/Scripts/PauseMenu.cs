@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
 
     public static bool GameIsPaused = false;
-    public static bool Options = false;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
     public GameObject player;
@@ -17,7 +13,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject inventory;
     public GameObject healthBar;
     public AudioSource myAudio;
-    public GameObject comandi;
+    public GameObject comandi, gameover, win;
     public Slider Volume;
     // Update is called once per frame
     void Update()
@@ -27,10 +23,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused)
             {
-                if (Options)
-                    OptionsExit();
-                else
-                    Resume();
+                Resume();
             }
             else
             {
@@ -43,6 +36,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        gameover.SetActive(true);
+        win.SetActive(true);
         pauseMenuUI.SetActive(false);
         player.SetActive(true);
         inventory.SetActive(true);
@@ -50,12 +45,13 @@ public class PauseMenu : MonoBehaviour
         ViewFinder.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        Options = false;
 
     }
 
     void Pause()
     {
+        gameover.SetActive(false);
+        win.SetActive(false);
         comandi.SetActive(false);
         pauseMenuUI.SetActive(true);
         player.SetActive(false);
@@ -88,27 +84,6 @@ public class PauseMenu : MonoBehaviour
             Debug.Log(str);
         }
 
-    }
-    public void OptionsExit()
-    {
-        optionsMenuUI.SetActive(false);
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-        Options = false;
-    }
-    public void OptionsEntry()
-    {
-        optionsMenuUI.SetActive(true);
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-        Options = true;
-    }
-
-    public void ChangeSoundLevel()
-    {
-        myAudio.volume = Volume.value;
     }
 
 }
