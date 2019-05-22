@@ -10,6 +10,7 @@ public class EnemyControllerStd : Controller{
     public float smoothTime = 1.0f;
     private Vector3 smoothVelocity = Vector3.zero;
     Vector3 movement;
+    public bool stop;
     public Camera maincamera;
     //public static bool ready;
     Animator anim;
@@ -18,6 +19,7 @@ public class EnemyControllerStd : Controller{
     void Start()
     {
         move = true;
+        stop = false;
         anim = GetComponent<Animator>();
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
         navmesh = GetComponent<NavMeshAgent>();
@@ -25,6 +27,18 @@ public class EnemyControllerStd : Controller{
     }
     void Update()
     {
+        if (gameObject.tag.Equals("Boss"))
+        {
+            _health = (int)GetComponent<LastEnemy>().health;
+            GetComponent<EnemyInfo>()._health = (int)GetComponent<LastEnemy>().health;
+            
+        }
+        if (gameObject.tag.Equals("Boss2"))
+        {
+            _health = (int)GetComponent<LastEnemyV2>().health;
+            GetComponent<EnemyInfo>()._health = (int)GetComponent<LastEnemyV2>().health;
+            
+        }
         //Vector3 screenPoint = maincamera.WorldToViewportPoint(transform.position);
         //bool onScreen = /*((Transform)cop[2]).gameObject.GetComponent<Renderer>().isVisible;*/ screenPoint.x > 0 && screenPoint.x <= 1 && screenPoint.y >= 0 && screenPoint.y <= 1 && screenPoint.z > 0;
         Vector3 directionToTarget = player.position - transform.position;
@@ -42,7 +56,7 @@ public class EnemyControllerStd : Controller{
             move = false;
             ready = false;
         }
-        if (EnemyInfo.health > 0)
+        if (EnemyInfo.health > 0 && !stop)
         {
             if (!onScreen && Vector3.Distance(transform.position, player.position) <= 2)
             {

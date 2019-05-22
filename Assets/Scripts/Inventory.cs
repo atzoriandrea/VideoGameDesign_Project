@@ -120,7 +120,7 @@ public class Inventory : MonoBehaviour {
                         if (player.potions > 0)
                         {
                             anim.SetTrigger("heal");
-                            player.health = 100;
+                            player.health = player.maxHealth;
                             player.potions--;
                         }
                     }
