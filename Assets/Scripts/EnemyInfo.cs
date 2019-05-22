@@ -29,6 +29,10 @@ public class EnemyInfo : Controller {
         r = new System.Random();
         playerController = GameObject.Find("Character_Hero_Knight_Male").GetComponent<PlayerController>();
     }
+    /*private void Update()
+    {
+        
+    }*/
     private void OnTriggerEnter(Collider other)
     {
         if (playerController.attacking)
@@ -75,6 +79,11 @@ public class EnemyInfo : Controller {
                 lastEnemy2.SetActive(true);
                 _enemyCont.height = 0;
                 _enemyCont.radius = 0;
+                GetComponent<CharacterController>().enabled = false;
+                GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<EnemyControllerStd>().enabled = false;
+                GetComponent<EnemyInfo>().enabled = false;
+
             }
         }
         else if (this.tag.Equals("Boss2"))
@@ -86,6 +95,10 @@ public class EnemyInfo : Controller {
                 anim.SetBool("isDead", true);
                 _enemyCont.height = 0;
                 _enemyCont.radius = 0;
+                GetComponent<CharacterController>().enabled = false;
+                GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<EnemyControllerStd>().enabled = false;
+                GetComponent<EnemyInfo>().enabled = false;
             }
         }
         else
@@ -106,6 +119,8 @@ public class EnemyInfo : Controller {
                 GetComponent<CharacterController>().enabled = false;
                 GetComponent<NavMeshAgent>().enabled = false;
                 GetComponent<EnemyControllerStd>().enabled = false;
+                GetComponent<EnemyInfo>().enabled = false;
+
             }
         }
     }

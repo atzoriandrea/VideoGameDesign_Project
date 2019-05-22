@@ -62,7 +62,8 @@ public class CombatSystem : MonoBehaviour
             enemies.Add(e);
         enemies.Add(boss);
         enemies.Add(bossTwo);
-        bossTwo.SetActive(false);
+        //bossTwo.SetActive(false);
+        bossTwo.GetComponent<EnemyControllerStd>().stop = true;
 
     }
     // Update is called once per frame
@@ -82,8 +83,10 @@ public class CombatSystem : MonoBehaviour
         morti = new ArrayList();
         foreach (GameObject cop in enemies)
         {
-            if (cop.GetComponent<EnemyControllerStd>().ready && cop.GetComponent<EnemyInfo>()._health > 0 && cop.GetComponent<EnemyControllerStd>().onScreen && cop.activeSelf)
+            if (cop.GetComponent<EnemyControllerStd>().isActiveAndEnabled && cop.GetComponent<EnemyControllerStd>().ready && cop.GetComponent<EnemyInfo>()._health > 0 && cop.GetComponent<EnemyControllerStd>().onScreen && cop.activeSelf)
             {
+                if (cop == null)
+                    Debug.Log("Benissimo");
                 readytoAttack.Add(i);
                 distance = Vector3.Distance(cop.transform.position, player.position);
                 if (nearest == 999)
@@ -106,7 +109,7 @@ public class CombatSystem : MonoBehaviour
             if (cop.GetComponent<EnemyInfo>()._health <= 0)
             {
                 morti.Add(cop);
-                cop.GetComponent<EnemyInfo>().enabled = false;
+                //cop.GetComponent<EnemyInfo>().enabled = false;
             }
             i++;
         }
