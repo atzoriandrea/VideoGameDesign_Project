@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.878
   m_CustomReflection: {fileID: 8900000, guid: 8edc74c87956ab540b784c5ee388f53c, type: 3}
   m_Sun: {fileID: 1671772500}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.878}
+  m_IndirectSpecularColor: {r: 0.42493, g: 0.5054839, b: 0.59721375, a: 0.878}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -53,7 +53,7 @@ LightmapSettings:
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
     m_Resolution: 2
@@ -7600,8 +7600,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 301852283}
-  m_LocalRotation: {x: -0.07118169, y: 0.67139614, z: 0.06810514, w: 0.7345217}
-  m_LocalPosition: {x: 25.219946, y: -1.9234098, z: 847.2268}
+  m_LocalRotation: {x: 0.10913257, y: 0.825487, z: 0.17104395, w: -0.52669275}
+  m_LocalPosition: {x: 922.59674, y: -249.21733, z: 917.59827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8885,6 +8885,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fa80e7116296f4eb4f49ec1544ee22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderSettingsBounces: 5
+  renderSettingsGISamples: 16
+  renderSettingsGIBackFaceWeight: 0
+  renderSettingsTileSize: 512
+  renderSettingsPriority: 2
+  renderSettingsTexelsPerUnit: 20
+  renderSettingsForceRefresh: 1
+  renderSettingsForceRebuildGeometry: 1
+  renderSettingsPerformRendering: 1
+  renderSettingsUserRenderMode: 0
+  renderSettingsDistanceShadowmask: 0
+  renderSettingsSettingsMode: 0
+  renderSettingsFixSeams: 1
+  renderSettingsDenoise: 1
+  renderSettingsDenoise2x: 0
+  renderSettingsEncode: 1
+  renderSettingsEncodeMode: 0
+  renderSettingsOverwriteWarning: 0
+  renderSettingsAutoAtlas: 1
+  renderSettingsUnwrapUVs: 1
+  renderSettingsMaxAutoResolution: 4096
+  renderSettingsMinAutoResolution: 16
+  renderSettingsUnloadScenes: 1
+  renderSettingsGILODMode: 0
+  renderSettingsGILODModeEnabled: 1
+  renderSettingsCheckOverlaps: 0
+  renderSettingsSkipOutOfBoundsUVs: 1
+  renderSettingsHackEmissiveBoost: 1
+  renderSettingsHackIndirectBoost: 1
+  renderSettingsTempPath: 
+  renderSettingsOutPath: 
+  renderSettingsUseScenePath: 0
+  renderSettingsHackAOIntensity: 0
+  renderSettingsHackAOSamples: 16
+  renderSettingsHackAORadius: 1
+  renderSettingsShowAOSettings: 0
+  renderSettingsShowTasks: 1
+  renderSettingsShowTasks2: 0
+  renderSettingsShowPaths: 1
+  renderSettingsOcclusionProbes: 0
+  renderSettingsTexelsPerMap: 0
+  renderSettingsTexelsColor: 1
+  renderSettingsTexelsMask: 1
+  renderSettingsTexelsDir: 1
+  renderSettingsShowDirWarning: 1
+  renderSettingsRenderDirMode: 0
+  renderSettingsShowCheckerSettings: 0
+  renderSettingsSamplesWarning: 1
+  renderSettingsPrefabWarning: 1
+  renderSettingsSplitByScene: 0
+  renderSettingsUVPaddingMax: 0
+  renderSettingsBeepOnFinish: 0
+  renderSettingsExportTerrainAsHeightmap: 1
+  lastBakeTime: 0
+  enlightenWarningShown: 0
+  enlightenWarningShown2: 0
+  lightUIDs: 
+  lights: []
+  implicitGroups: []
+  implicitGroupedObjects: []
+  bounds: []
+  hasEmissive: 
+  uvBuffOffsets: 
+  uvBuffLengths: 
+  uvSrcBuff: []
+  uvDestBuff: []
+  lmrIndicesOffsets: 
+  lmrIndicesLengths: 
+  lmrIndicesBuff: 
+  lmGroupLODResFlags: 
+  lmGroupMinLOD: 
+  lmGroupLODMatrix: 
+  debugTex: {fileID: 0}
+  debugRT: {fileID: 0}
+  maps: []
+  masks: []
+  dirMaps: []
+  rnmMaps0: []
+  rnmMaps1: []
+  rnmMaps2: []
+  mapsMode: 
+  bakedRenderers: []
+  bakedIDs: 
+  bakedScaleOffset: []
+  bakedVertexOffset: 
+  bakedVertexColorMesh: []
+  nonBakedRenderers: []
+  bakedLights: []
+  bakedLightChannels: 
+  bakedRenderersTerrain: []
+  bakedIDsTerrain: 
+  bakedScaleOffsetTerrain: []
+  assetList: []
+  uvOverlapAssetList: 
+  idremap: 
+  usesRealtimeGI: 0
+  emptyDirectionTex: {fileID: 0}
 --- !u!4 &332261097
 Transform:
   m_ObjectHideFlags: 1
@@ -31760,7 +31857,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bb8e3bd2db0534a248255d0a854908cf, type: 2}
+  - {fileID: 2100000, guid: 86c0265b49cb3b4438377e57a0313bba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -54978,6 +55075,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fa80e7116296f4eb4f49ec1544ee22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderSettingsBounces: 5
+  renderSettingsGISamples: 16
+  renderSettingsGIBackFaceWeight: 0
+  renderSettingsTileSize: 512
+  renderSettingsPriority: 2
+  renderSettingsTexelsPerUnit: 20
+  renderSettingsForceRefresh: 1
+  renderSettingsForceRebuildGeometry: 1
+  renderSettingsPerformRendering: 1
+  renderSettingsUserRenderMode: 0
+  renderSettingsDistanceShadowmask: 0
+  renderSettingsSettingsMode: 0
+  renderSettingsFixSeams: 1
+  renderSettingsDenoise: 1
+  renderSettingsDenoise2x: 0
+  renderSettingsEncode: 1
+  renderSettingsEncodeMode: 0
+  renderSettingsOverwriteWarning: 0
+  renderSettingsAutoAtlas: 1
+  renderSettingsUnwrapUVs: 1
+  renderSettingsMaxAutoResolution: 4096
+  renderSettingsMinAutoResolution: 16
+  renderSettingsUnloadScenes: 1
+  renderSettingsGILODMode: 0
+  renderSettingsGILODModeEnabled: 1
+  renderSettingsCheckOverlaps: 0
+  renderSettingsSkipOutOfBoundsUVs: 1
+  renderSettingsHackEmissiveBoost: 1
+  renderSettingsHackIndirectBoost: 1
+  renderSettingsTempPath: 
+  renderSettingsOutPath: 
+  renderSettingsUseScenePath: 0
+  renderSettingsHackAOIntensity: 0
+  renderSettingsHackAOSamples: 16
+  renderSettingsHackAORadius: 1
+  renderSettingsShowAOSettings: 0
+  renderSettingsShowTasks: 1
+  renderSettingsShowTasks2: 0
+  renderSettingsShowPaths: 1
+  renderSettingsOcclusionProbes: 0
+  renderSettingsTexelsPerMap: 0
+  renderSettingsTexelsColor: 1
+  renderSettingsTexelsMask: 1
+  renderSettingsTexelsDir: 1
+  renderSettingsShowDirWarning: 1
+  renderSettingsRenderDirMode: 0
+  renderSettingsShowCheckerSettings: 0
+  renderSettingsSamplesWarning: 1
+  renderSettingsPrefabWarning: 1
+  renderSettingsSplitByScene: 0
+  renderSettingsUVPaddingMax: 0
+  renderSettingsBeepOnFinish: 0
+  renderSettingsExportTerrainAsHeightmap: 1
+  lastBakeTime: 0
+  enlightenWarningShown: 0
+  enlightenWarningShown2: 0
+  lightUIDs: 
+  lights: []
+  implicitGroups: []
+  implicitGroupedObjects: []
+  bounds: []
+  hasEmissive: 
+  uvBuffOffsets: 
+  uvBuffLengths: 
+  uvSrcBuff: []
+  uvDestBuff: []
+  lmrIndicesOffsets: 
+  lmrIndicesLengths: 
+  lmrIndicesBuff: 
+  lmGroupLODResFlags: 
+  lmGroupMinLOD: 
+  lmGroupLODMatrix: 
+  debugTex: {fileID: 0}
+  debugRT: {fileID: 0}
+  maps: []
+  masks: []
+  dirMaps: []
+  rnmMaps0: []
+  rnmMaps1: []
+  rnmMaps2: []
+  mapsMode: 
+  bakedRenderers: []
+  bakedIDs: 
+  bakedScaleOffset: []
+  bakedVertexOffset: 
+  bakedVertexColorMesh: []
+  nonBakedRenderers: []
+  bakedLights: []
+  bakedLightChannels: 
+  bakedRenderersTerrain: []
+  bakedIDsTerrain: 
+  bakedScaleOffsetTerrain: []
+  assetList: []
+  uvOverlapAssetList: 
+  idremap: 
+  usesRealtimeGI: 0
+  emptyDirectionTex: {fileID: 0}
 --- !u!4 &1566699465
 Transform:
   m_ObjectHideFlags: 1
@@ -58183,6 +58377,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74ce2158ae608549902afb4112fd042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  intensity: 1
+  shadowSpread: 0.01
+  samples: 16
+  bitmask: 1
+  bakeToIndirect: 0
+  shadowmask: 0
+  shadowmaskDenoise: 0
+  indirectIntensity: 1
+  UID: 0
 --- !u!1 &1673504306
 GameObject:
   m_ObjectHideFlags: 0
@@ -68805,7 +69009,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bb8e3bd2db0534a248255d0a854908cf, type: 2}
+      objectReference: {fileID: 2100000, guid: 86c0265b49cb3b4438377e57a0313bba, type: 2}
     - target: {fileID: 114408297437868412, guid: 29ece08e86fc54aef9c83be90a049dde,
         type: 2}
       propertyPath: m_FontData.m_Font
@@ -71568,7 +71772,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bb8e3bd2db0534a248255d0a854908cf, type: 2}
+  - {fileID: 2100000, guid: 86c0265b49cb3b4438377e57a0313bba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

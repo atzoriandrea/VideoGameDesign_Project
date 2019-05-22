@@ -8,6 +8,7 @@ public class StartBossTwo : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        //Disattiva il movimento di boss e nemici di scorta
         guard1.GetComponent<EnemyControllerStd>().stop = true;
         guard2.GetComponent<EnemyControllerStd>().stop = true;
         guard3.GetComponent<EnemyControllerStd>().stop = true;
@@ -16,13 +17,9 @@ public class StartBossTwo : MonoBehaviour {
         bossTwo.GetComponent<EnemyControllerStd>().stop = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnTriggerEnter(Collider other)
     {
+        //Attiva boss e nemici di scorta solo al raggiungimento della zona giusta
         if (other.gameObject.name.Equals("Character_Hero_Knight_Male"))
         {
             guard1.GetComponent<EnemyControllerStd>().stop = false;

@@ -32,6 +32,7 @@ public class SkyBoxCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         t = GetComponent<Transform>();
+        //Switch degli skybox e della colonna sonora in base alla posizione del giocatore
         if (t.position.x > 342 && t.position.z > 744)
         {  
             if (scene != 2)
@@ -69,7 +70,7 @@ public class SkyBoxCtrl : MonoBehaviour {
         }
     }
     
-          
+    //Animazioni del lampo al cambio di fase del gioco      
     IEnumerator changeToSkyOne() {
         bool up = true;
         bool done = false;

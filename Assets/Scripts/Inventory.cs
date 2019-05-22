@@ -22,18 +22,17 @@ public class Inventory : MonoBehaviour {
     // Use this for initialization
     void Start () {
         selected = 1;
-        sword = GameObject.Find("Sword").GetComponent<Image>();
+        sword = GameObject.Find("Sword").GetComponent<Image>();//Spada
         sw = sword.color;
-        secondary = GameObject.Find("SecondWeapon").GetComponent<Image>();
+        secondary = GameObject.Find("SecondWeapon").GetComponent<Image>();//Arma secondaria
         snd = secondary.color;
-        third = GameObject.Find("ThirdWeapon").GetComponent<Image>();
+        third = GameObject.Find("ThirdWeapon").GetComponent<Image>();//Arma terziaria
         trd = third.color;
-        potion = GameObject.Find("Potions").GetComponent<Image>();
+        potion = GameObject.Find("Potions").GetComponent<Image>();//Pozioni
         pot = potion.color;
-        bendages = GameObject.Find("LifePoints").GetComponent<Image>();
+        bendages = GameObject.Find("LifePoints").GetComponent<Image>();//Mele
         ben = bendages.color;
         source = balestra.GetComponent<AudioSource>();
-        //audioSource = GameObject.Find("Character_Hero_Knight_Male").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -78,20 +77,20 @@ public class Inventory : MonoBehaviour {
                 anim.SetBool("shoot", true);
                 mirino.SetActive(true);
             }
-            if (newBullet == null)
+            if (newBullet == null)//Istanzia dardo
             {
                 sparato = false;
                 newBullet = (GameObject)Instantiate(freccia) as GameObject;
                 newBullet.transform.rotation = Quaternion.Euler(newBullet.transform.eulerAngles.x + 90, newBullet.transform.eulerAngles.y, newBullet.transform.rotation.z - 90);
                 newBullet.transform.position = GameObject.Find("ArrowSpawn").transform.position;
             }
-            if (newBullet != null && !sparato)
+            if (newBullet != null && !sparato) //Punta il dardo nella direzione della balestra
             {
                 newBullet.SetActive(true);
                 newBullet.transform.position = GameObject.Find("ArrowSpawn").transform.position;
                 newBullet.transform.rotation = GameObject.Find("ArrowSpawn").transform.rotation;
             }
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0)) { //Spara il dardo
                 sparato = true;
                 //Debug.Log("sparato");
                 newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.right * -20, ForceMode.Impulse);
@@ -105,13 +104,13 @@ public class Inventory : MonoBehaviour {
                 newBullet.SetActive(false);
         }
 
-        if (Input.GetMouseButtonUp(1) || selected != 2)
+        if (Input.GetMouseButtonUp(1) || selected != 2) //Animazione di mira
         {
             anim.SetBool("shoot", false);
             mirino.SetActive(false);
         }
 
-        if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      
+        if ((selected == 4 || selected == 5 )&& Input.GetButton("Fire1")) {      //Animazioni e gestione cure
             switch (selected)
             {
                 case 4:
@@ -147,7 +146,7 @@ public class Inventory : MonoBehaviour {
             }
         }
     }
-
+    //Selezione dell'arma /strumento scelto
     public void Sword()
     {
         sword.color = new Color(sw.r + 0.2f, sw.g + 0.2f, sw.b + 0.2f);
@@ -216,7 +215,7 @@ public class Inventory : MonoBehaviour {
         item2.SetActive(true);
     }
 
-
+    //Blocco dello switch di armi/strumenti durante le animazioni
     public bool CheckPlaying() {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Eating") ||
             anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att") ||

@@ -29,6 +29,7 @@ public class FootSteps : MonoBehaviour
         //terrainDetector = new TerrainDetector();
     }
 
+    //Suono dei passi
     private void Step()
     {
         AudioClip clip = GetRandomStep();
@@ -69,6 +70,8 @@ public class FootSteps : MonoBehaviour
         }
         
     }
+
+    //suono dell'attacco (non dell'impatto con il nemico)
     private void Sword()
     {
         AudioClip clip = GetRandomSwordSnd();
@@ -101,6 +104,8 @@ public class FootSteps : MonoBehaviour
         }
 
     }
+
+    //suono cure: mele e pozioni
     private void Eat()
     {
         if (Inventory.selected == 5)
@@ -108,10 +113,10 @@ public class FootSteps : MonoBehaviour
         if (Inventory.selected == 4)
             audioSource.PlayOneShot(drink, 1);
     }
-    private void Jump() {
+    private void Jump() { //suono salto
         audioSource.PlayOneShot(jump);
     }
-    private void Pick()
+    private void Pick() //Suono raccolta
     {
         audioSource.PlayOneShot(pick);
     }

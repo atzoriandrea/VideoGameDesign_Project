@@ -12,12 +12,11 @@ public class KeySound : MonoBehaviour {
 	void Start () {
         source = GetComponent<AudioSource>();
         source.clip = sound;
-        //source.volume = 0;
         source.Play();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () { //Gestioone volume del suono delle chiavi in base alla distanza
         distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance <= 6)
             distVolume = 1;

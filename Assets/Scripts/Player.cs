@@ -17,12 +17,12 @@ public class Player : MonoBehaviour {
     public Text testoLivello;
 
     public bool[] keys = { false, false, false };
-
+    //Salvataggio giocatore
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
     }
-
+    //Caricamento giocatore
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
@@ -42,6 +42,8 @@ public class Player : MonoBehaviour {
 
         transform.position = position;
     }
+
+    //Aggiorna l'indicatore del livello
     private void Update()
     {
         testoLivello.GetComponent<Text>().text = level.ToString();

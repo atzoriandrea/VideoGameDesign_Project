@@ -34,7 +34,7 @@ public class EnemyInfo : Controller {
         
     }*/
     private void OnTriggerEnter(Collider other)
-    {
+    {   //Collisione con le armi del player e relativo suono e danno
         if (playerController.attacking)
         {
             if (other.name.Equals("swordcollider"))
@@ -67,12 +67,13 @@ public class EnemyInfo : Controller {
         }
     }
    
+    //Danno al nemico
     public void Hurt(int damage)
     {
         if (this.tag.Equals("Boss"))
         {
             this.GetComponent<LastEnemy>().health -= damage;
-            if (this.GetComponent<LastEnemy>().health <= 0)
+            if (this.GetComponent<LastEnemy>().health <= 0)//Morte nemico
             {
                 anim.SetTrigger("death");
                 anim.SetBool("isDead", true);
@@ -89,7 +90,7 @@ public class EnemyInfo : Controller {
         else if (this.tag.Equals("Boss2"))
         {
             this.GetComponent<LastEnemyV2>().health -= damage;
-            if (this.GetComponent<LastEnemyV2>().health <= 0)
+            if (this.GetComponent<LastEnemyV2>().health <= 0)//Morte boss
             {
                 anim.SetTrigger("death");
                 anim.SetBool("isDead", true);

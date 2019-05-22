@@ -14,10 +14,10 @@ public class MouseMovement : MonoBehaviour {
     private void Start()
     {
         lookSensitivity = 4;
-        body = GameObject.Find("Character_Hero_Knight_Male");
-        spine = GameObject.Find("Character_Hero_Knight_Male").transform.Find("Root").Find("Hips").Find("Spine_01").gameObject;
+        body = GameObject.Find("Character_Hero_Knight_Male");//si collega al corpo del giocatore
+        spine = GameObject.Find("Character_Hero_Knight_Male").transform.Find("Root").Find("Hips").Find("Spine_01").gameObject; //si collega al busto del giocatore
     }
-    void Update()
+    void Update()//Rotazione della visuale 
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
         xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
@@ -25,7 +25,7 @@ public class MouseMovement : MonoBehaviour {
         transform.rotation = Quaternion.Euler(xRotation, body.transform.eulerAngles.y, 0);
         
     }
-    private void LateUpdate()
+    private void LateUpdate()//Rotazione della visuale
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
         xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;

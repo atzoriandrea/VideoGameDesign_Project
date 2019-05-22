@@ -39,8 +39,7 @@ public class CombatSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
-
+        //Vengono raccolti tutti i nemici della scena, viene inibito il movimento dei boss e dei relativi scagnozzi
         readytoAttack = new ArrayList();
         enemies = new ArrayList();
         attacking = false;
@@ -50,7 +49,6 @@ public class CombatSystem : MonoBehaviour
         temp3 = new ArrayList(GameObject.FindGameObjectsWithTag("Bruto"));
         boss = GameObject.Find("LastEnemyLv1");
         bossTwo = GameObject.Find("LastEnemyLv2") ;
-        
         player = GameObject.Find("Character_Hero_Knight_Male").transform;
         source = GetComponent<AudioSource>();
 
@@ -62,34 +60,31 @@ public class CombatSystem : MonoBehaviour
             enemies.Add(e);
         enemies.Add(boss);
         enemies.Add(bossTwo);
-        //bossTwo.SetActive(false);
         bossTwo.GetComponent<EnemyControllerStd>().stop = true;
 
     }
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(enemies.Count);
-        i = 0;
-        nearest = 999;
+
+        i = 0;//reset dell'indice
+        nearest = 999; //valore generico per indicare che è il primo nemico di cui si misura la distanza dal player
         
         readytoAttack = null;
-        readytoAttack = new ArrayList();
-        if (morti != null && morti.Count > 0)
+        readytoAttack = new ArrayList(); //lista degli indici dei giocatori pronti ad attaccare
+        if (morti != null && morti.Count > 0) //i nemici morti vengono tolti dalla lista
         {
             foreach (GameObject dead in morti)
                 enemies.Remove(dead);
         }
         morti = new ArrayList();
-        foreach (GameObject cop in enemies)
-        {
+        foreach (GameObject cop in enemies)//si ciclano tutti i nemici
+        {//si controlla che il nemico in oggetto sia vivo, pronto ad attaccare, e visibile a schermo
             if (cop.GetComponent<EnemyControllerStd>().isActiveAndEnabled && cop.GetComponent<EnemyControllerStd>().ready && cop.GetComponent<EnemyInfo>()._health > 0 && cop.GetComponent<EnemyControllerStd>().onScreen && cop.activeSelf)
             {
-                if (cop == null)
-                    Debug.Log("Benissimo");
                 readytoAttack.Add(i);
                 distance = Vector3.Distance(cop.transform.position, player.position);
-                if (nearest == 999)
+                if (nearest == 999) //raccolta nemico più vicino
                 {
                     nearest = i;
                     mostnear = distance;
@@ -106,20 +101,19 @@ public class CombatSystem : MonoBehaviour
                 }
                 
             }
-            if (cop.GetComponent<EnemyInfo>()._health <= 0)
+            if (cop.GetComponent<EnemyInfo>()._health <= 0) //se il nemico muore, viene aggiunto alla lista dei nemici da rimuovere da enemies
             {
                 morti.Add(cop);
-                //cop.GetComponent<EnemyInfo>().enabled = false;
             }
             i++;
         }
         
-        if (readytoAttack.Count > 0 && !pauseMenu.activeSelf)
+        if (readytoAttack.Count > 0 && !pauseMenu.activeSelf)//i comandi sono visibili se il menu di pausa non è attivo e qualche nemico è a distanza di attacco
             comandi.SetActive(true);
         else
             comandi.SetActive(false);
         //se esistono nemici pronti ad attaccare, seleziona il più vicino e lo fa avvicinare a distanza di attacco
-        if (readytoAttack.Count > 0 && !attacking)
+        if (readytoAttack.Count > 0 && !attacking) // si setta il fatto che un nemico stia attaccando (il più vicino), in modo da impedire agli altri di fare lo stesso
         {
             attacking = true;
             tr = ((GameObject)enemies[nearest]).GetComponent<Transform>();
@@ -143,6 +137,7 @@ public class CombatSystem : MonoBehaviour
 
     }
 
+    //Rileva le collisioni del player con le armi dei nemici
     private void OnTriggerEnter(Collider other)
     {
         if (other.name.Equals("Arma") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
@@ -153,18 +148,18 @@ public class CombatSystem : MonoBehaviour
             else
                 NormalSound();
             
-        }
+        }//Arma del boss di livello 1
         if (other.name.Equals("BossSword") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
         {
             NormalSound();
             giocatore.TakeDamage(30);
-        }
+        }//Arma del boss di livello 2
         if (other.name.Equals("BossSecondWeapon") && anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att"))
         {
             HeavySound();
             giocatore.TakeDamage(40);
         }
-    }
+    }//Suono collisione arma pesante
     private void HeavySound() {
         switch ((new System.Random()).Next(0,4))
         {
@@ -181,7 +176,7 @@ public class CombatSystem : MonoBehaviour
                 source.PlayOneShot(heavyhit4, 0.4f);
                 break;
         }
-    }
+    }//Suono collisione arma normale
     private void NormalSound()
     {
         switch ((new System.Random()).Next(0, 3))

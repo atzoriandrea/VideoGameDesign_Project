@@ -21,7 +21,7 @@ public class MouseMovementBody : MonoBehaviour
     }
 
 
-    void Update()
+    void Update() 
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
         currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);

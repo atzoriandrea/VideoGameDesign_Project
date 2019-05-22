@@ -56,20 +56,18 @@ public class PlayerController : MonoBehaviour
         Print_Arrows_Potions_Apples_Quantity();
 
 
-
+        //Premere C per inginocchiarsi/alzarsi
         if (Input.GetKeyDown(KeyCode.C)) {
             _crouch = !_crouch;
             anim.SetBool("crouch", _crouch);
         }
-    
+
+        //Premere Q per schivare
         if (Input.GetKeyDown(KeyCode.Q))
         {
             anim.SetTrigger("schivata");
         }
 
-
-        //if (_charCont.isGrounded)
-        //{
         deltaX = Input.GetAxis("Horizontal") * _speed;
         deltaZ = Input.GetAxis("Vertical") * _speed;
         //camminata avanti
@@ -77,8 +75,8 @@ public class PlayerController : MonoBehaviour
         {
             if (!_crouch)
             {
-                anim.SetBool("walkback", false);
-                anim.SetBool("walking", true);
+                anim.SetBool("walkback", false);//
+                anim.SetBool("walking", true);//
             }
             else 
             {
@@ -159,6 +157,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("running", false);
             _speed = 1.7f;
         }
+        //status di attacco
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("sword_att")) {
             attacking = true;
         }
@@ -180,6 +179,7 @@ public class PlayerController : MonoBehaviour
         _experienceText = GetFCurrentExperience();
     }
 
+    //ricezione del danno al giocatore
     public void TakeDamage (float amount)
     {
         player.health -= amount;
@@ -193,6 +193,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //stampa vita ed esperienza
     private void PrintHealthAndExperience()
     {
         _experienceText = (int)player.experience;
@@ -221,6 +222,7 @@ public class PlayerController : MonoBehaviour
             experienceBar.fillAmount = player.experience / player.limitExperience; 
     }
 
+    //stampa quantità di mele, pozioni e dardi
     private void Print_Arrows_Potions_Apples_Quantity()
     {
         arrowsText.text = "x" + player.arrow;
@@ -228,9 +230,10 @@ public class PlayerController : MonoBehaviour
         applesText.text = "x" + player.apples;
     }
 
+    //collisioni in entrata
     public void OnTriggerEnter(Collider other)
     {
-        
+        //collisione con le  barriere dei livelli
         if (other.gameObject.tag.Equals("Walls"))
         {
             Vector3 directionToTarget = other.gameObject.transform.position - transform.position;
@@ -245,11 +248,13 @@ public class PlayerController : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(transform.right * 2000, ForceMode.Impulse);
             GetComponent<AudioSource>().PlayOneShot(denied);
         }
+
+        //collisione con mele/bende/chiavi/powerup -> mostra messaggio di raccolta
         if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key") || other.gameObject.tag.Equals("PowerUp"))
         {
             other.gameObject.GetComponent<Transform>().Find("Canvas").gameObject.SetActive(true);
         }
-        else if (other.gameObject.tag.Equals("Ammo"))
+        else if (other.gameObject.tag.Equals("Ammo"))//collisione con dardi
         {
             if (player.arrow < 30)
             {
@@ -261,7 +266,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-        public void OnTriggerStay(Collider other)
+
+
+    public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag.Equals("Apple"))
         {
@@ -354,7 +361,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    //uscita dalle collisioni
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag.Equals("Apple") || other.gameObject.tag.Equals("Potion") || other.gameObject.tag.Equals("Key") || other.gameObject.tag.Equals("PowerUp"))
@@ -364,6 +371,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    //setta le barriere con i valori del salvataggio
     public void GameLoaded()
     {
         if (player.keys[0] && player.level >= 5)
@@ -374,6 +383,7 @@ public class PlayerController : MonoBehaviour
             wall3.SetActive(false);
     }
 
+    //controlla chiavi e livelli per gestire i muri
     public void CheckKeys()
     {
         if(player.keys[0] && player.level >= 5)
@@ -383,6 +393,8 @@ public class PlayerController : MonoBehaviour
         if (player.keys[2] && player.level >= 12)
             wall3.SetActive(false);
     }
+
+    //animazione luminosità powerup spada e vita
     IEnumerator swordAnim()
     {
         bool up = true;

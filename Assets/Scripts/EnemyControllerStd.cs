@@ -27,6 +27,7 @@ public class EnemyControllerStd : Controller{
     }
     void Update()
     {
+        //Sincronizza i valori della vita dei boss con i relativi script
         if (gameObject.tag.Equals("Boss"))
         {
             _health = (int)GetComponent<LastEnemy>().health;
@@ -39,25 +40,25 @@ public class EnemyControllerStd : Controller{
             GetComponent<EnemyInfo>()._health = (int)GetComponent<LastEnemyV2>().health;
             
         }
-        //Vector3 screenPoint = maincamera.WorldToViewportPoint(transform.position);
-        //bool onScreen = /*((Transform)cop[2]).gameObject.GetComponent<Renderer>().isVisible;*/ screenPoint.x > 0 && screenPoint.x <= 1 && screenPoint.y >= 0 && screenPoint.y <= 1 && screenPoint.z > 0;
+        
+
+        //indica se il nemico è visibile dalla camera
         Vector3 directionToTarget = player.position - transform.position;
         float angle = Vector3.Angle(player.forward, directionToTarget);
         onScreen = Mathf.Abs(angle) < 240 && Mathf.Abs(angle) > 120;
         
-        /*if (!move)
-        {
-            anim.SetBool("walking", false);
-            anim.SetBool("running", false);
-        }*/
+        //Se il nemico muore, i movimenti devono essere inibiti
         if (EnemyInfo.health <= 0  || anim.GetCurrentAnimatorStateInfo(0).IsName("death")) {
             anim.SetBool("walking", false);
             anim.SetBool("running", false);
             move = false;
             ready = false;
         }
+
+        //Nemico in vita:
         if (EnemyInfo.health > 0 && !stop)
         {
+            //Nemico molto vicino, ma alle spalle del giocatore: si allontana camminando all'indietro
             if (!onScreen && Vector3.Distance(transform.position, player.position) <= 2)
             {
                 anim.SetBool("walkback", true);
@@ -68,8 +69,7 @@ public class EnemyControllerStd : Controller{
             {
                 anim.SetBool("walkback", false);
             }
-            //il nemico è sempre rivolto verso il giocatore
-            //distanza tra nemico e giocatore
+            //il nemico è sempre rivolto verso il giocatore distanza tra nemico e giocatore
             distance = Vector3.Distance(transform.position, player.position);
             //camminata nemico
             if (distance < walkingDistance && distance > 5)
@@ -94,16 +94,16 @@ public class EnemyControllerStd : Controller{
             }
             else if (distance < 5)
             {
-                navmesh.speed = 0;
+                navmesh.speed = 0; //se il nemico è molto vicino e sta di fronte al player, viene inibita la navmesh, in modo che mantenga delle distanze realistiche
                 transform.LookAt(player);
 
-                ready = true;
+                ready = true;//si setta il nemico come pronto ad attaccare
                 anim.SetBool("running", false);
                 anim.SetBool("walking", false);
             }
             else
             {
-                ready = false;
+                ready = false;//non pronto ad attaccare
             }
         }
         else {
