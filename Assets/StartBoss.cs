@@ -14,6 +14,7 @@ public class StartBoss : MonoBehaviour {
         boss.GetComponent<EnemyControllerStd>().stop = true;
     }
 	
+
     private void OnTriggerEnter(Collider other)
     {
         //Attiva boss e nemici di scorta solo al raggiungimento della zona giusta

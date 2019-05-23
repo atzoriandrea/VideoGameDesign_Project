@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
+/*Questa classe viene utilizzata per il salvataggio del boss di secondo livello,
+  vengono salvati tutti i suoi fields tramite questa classe in un file binario*/
+[System.Serializable] //Tag che rende i campi di questa classe serializzabili
 public class LastEnemyV2Data{
 
     public int level;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[System.Serializable] //Rende i campi di classe serializzabili
 public class SwordData {
 
     public int level;
